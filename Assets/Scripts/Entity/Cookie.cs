@@ -10,7 +10,7 @@ public class Cookie : MonoBehaviour
 
     private float hp = 162f;
     public float HP { get { return hp; } }
-    private float speed = 3f;
+    private float speed = 8f;
     public float Speed { get { return speed; } }
     private float jumpForce = 25f;
     public float JumpForce { get { return jumpForce; } }
