@@ -30,10 +30,11 @@ public class Cookie : MonoBehaviour
     bool isJumping;
     bool isRunning;
     bool isSliding;
-    //bool isHit;
+    bool isHit;
     bool isDead;
 
     float t;
+    float invincibleTime = 1f;
 
     private void Start()
     {
@@ -119,11 +120,25 @@ public class Cookie : MonoBehaviour
 
     public void Hit(float damage)//피격 판정
     {
-        if(damage <= 0 || isDead) return;
+        if (damage <= 0 || isDead || isHit) return;
 
         _animator.SetTrigger("isHit");
         _hp = Mathf.Max(_hp - damage, 0);
-        if (HP <= 0) Dead();
+        if (HP <= 0)
+        {
+            Dead();
+            return;
+        }
+        else StartCoroutine(Invincible(invincibleTime));
+    }
+
+    public IEnumerator Invincible(float t)
+    {
+        isHit = true;
+
+        yield return new WaitForSeconds(t);
+
+        isHit = false;
     }
 
     public void Heal(float heal)//체력회복
