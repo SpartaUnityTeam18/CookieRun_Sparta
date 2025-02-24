@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 스코어 증가 젤리
+/// </summary>
 public class Jelly : Item
 {
-    public override void ApplyEffect(Player player)
+    [SerializeField] private int addScore;
+    public override void ApplyEffect(Cookie cookie)
     {
-        player.AddScore(value);
-        // 디버그로그 찍히는걸로 테스트하기
+        GameManager.Instance.AddScore(addScore);
     }
 }
