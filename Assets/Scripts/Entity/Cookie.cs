@@ -10,6 +10,9 @@ public class Cookie : MonoBehaviour
     BoxCollider2D _boxCollider;
     SpriteRenderer _spriteRenderer;
 
+    public int cookieId;
+    //이름
+    public string coookieName;
     //최대체력
     private float _maxHp = 162f;
     public float MaxHP { get { return _maxHp; } }
@@ -20,7 +23,7 @@ public class Cookie : MonoBehaviour
     private float _speed = 6f;
     public float Speed { get { return _speed; } }
     //점프력
-    private float _jumpForce = 25f;
+    private float _jumpForce = 20f;
     public float JumpForce { get { return _jumpForce; } }
     //달리기 속도
     //private float _runSpeed = 7f;
@@ -29,6 +32,7 @@ public class Cookie : MonoBehaviour
     public float hpDecrease = 3f;
 
     bool isJumping;
+    bool isDoubleJumping;
     bool isRunning;
     bool isSliding;
     bool isHit;
@@ -64,28 +68,51 @@ public class Cookie : MonoBehaviour
     public void DecreaseHp(float decrease)//초당 체력 감소
     {
         _hp = Mathf.Max(_hp - decrease, 0);
-        if (_hp <= 0) Dead();
+        if (HP <= 0)
+        {
+            if (isJumping) StartCoroutine(WaitForDead());
+            else Dead();
+        }
     }
 
     public void OnJump(InputAction.CallbackContext context)//점프 입력(스페이스바)
     {
+        if (isDead) return;
+
         if (context.started && !isJumping)
         {
             Jump();
             EndSlide();
         }
+        else if (context.started && isJumping && !isDoubleJumping)
+        {
+            DoubleJump();
+        }
     }
 
     void Jump()//점프
     {
+        SoundManager.Instance.PlaySFX($"Cookie_{cookieId}_Jump");
         isJumping = true;
         _animator.SetBool("isJumping", isJumping);
 
         _rb.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
     }
 
+    void DoubleJump()//점프
+    {
+        SoundManager.Instance.PlaySFX($"Cookie_{cookieId}_Jump");
+        isDoubleJumping = true;
+        _animator.SetBool("isDoubleJumping", isDoubleJumping);
+
+        _rb.velocity = new Vector2(_rb.velocity.x, 0);
+        _rb.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
+    }
+
     public void OnSlide(InputAction.CallbackContext context)//슬라이드 입력(쉬프트)
     {
+        if (isDead) return;
+
         if (context.started) StartSlide();
         else if (context.canceled) EndSlide();
 
@@ -94,6 +121,7 @@ public class Cookie : MonoBehaviour
 
     void StartSlide()//슬라이드 시작
     {
+        SoundManager.Instance.PlaySFX($"Cookie_{cookieId}_Slide");
         isSliding = true;
         _boxCollider.offset = new Vector2(_boxCollider.offset.x, 0.15f);
         _boxCollider.size = new Vector2(_boxCollider.size.x, 0.3f);
@@ -132,6 +160,7 @@ public class Cookie : MonoBehaviour
     {
         if (damage <= 0 || isDead || isHit) return;
 
+        SoundManager.Instance.PlaySFX("Hit");
         _animator.SetTrigger("isHit");
         _hp = Mathf.Max(_hp - damage, 0);
         if (HP <= 0)
@@ -159,10 +188,21 @@ public class Cookie : MonoBehaviour
         if (!isDead) _hp = Mathf.Min(_hp + heal, MaxHP);
     }
 
-    public void Dead()//죽음
+    IEnumerator WaitForDead()
+    {
+        yield return new WaitUntil(() => isJumping);
+
+        if (HP <= 0) Dead();
+    }
+
+    void Dead()//죽음
     {
         _rb.velocity = Vector2.zero;
         if (isRunning) isRunning = false;
+
+        EndSlide();
+
+        SoundManager.Instance.PlaySFX("Dead");
         isDead = true;
         _animator.SetBool("isDead", isDead);
         
@@ -174,6 +214,8 @@ public class Cookie : MonoBehaviour
         {
             isJumping = false;
             _animator.SetBool("isJumping", isJumping);
+            isDoubleJumping = false;
+            _animator.SetBool("isDoubleJumping", isDoubleJumping);
         }
     }
 }

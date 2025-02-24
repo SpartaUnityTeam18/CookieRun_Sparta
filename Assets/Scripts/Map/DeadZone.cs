@@ -13,7 +13,7 @@ public class DeadZone : MonoBehaviour
         // null이 아니면 Dead 실행
         if (cookie != null)
         {
-            cookie.Dead();
+            cookie.Hit(1000f);
             // 임시로 파괴 넣어둠
             Destroy(collision.gameObject);
         }
