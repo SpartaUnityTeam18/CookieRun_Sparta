@@ -3986,6 +3986,14 @@ PrefabInstance:
       propertyPath: bgmPlayer
       value: 
       objectReference: {fileID: 822130044}
+    - target: {fileID: 8265577967940903117, guid: 7f9458ae5e6c57d41a4c0aad63c89999, type: 3}
+      propertyPath: BGM.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265577967940903117, guid: 7f9458ae5e6c57d41a4c0aad63c89999, type: 3}
+      propertyPath: BGM.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4d71bc24206986744a4fac98812ac597, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
