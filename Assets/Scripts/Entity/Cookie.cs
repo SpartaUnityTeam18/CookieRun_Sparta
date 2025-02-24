@@ -8,6 +8,7 @@ public class Cookie : MonoBehaviour
     Rigidbody2D _rb;
     Animator _animator;
     BoxCollider2D _boxCollider;
+    SpriteRenderer _spriteRenderer;
 
     //최대체력
     private float _maxHp = 162f;
@@ -43,6 +44,7 @@ public class Cookie : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponentInChildren<Animator>();
         _boxCollider = GetComponent<BoxCollider2D>();
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void FixedUpdate()
@@ -135,10 +137,11 @@ public class Cookie : MonoBehaviour
     public IEnumerator Invincible(float t)
     {
         isHit = true;
-
+        _spriteRenderer.color = new Color(1, 1, 1, 0.25f);
         yield return new WaitForSeconds(t);
 
         isHit = false;
+        _spriteRenderer.color = new Color(1, 1, 1, 1);
     }
 
     public void Heal(float heal)//체력회복
