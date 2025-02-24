@@ -1,27 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class AchievementManager : Singleton<AchievementManager>
 {
-    public int totalDodgeObstacle = 100;
+    public int totalDodgeObstacle = 3;
     private int currentDodgeObstacle = 0;
 
-    public Text achievementText;
-
-    void Update()
-    {
-        CheckObstacle();
-    }
+    private bool ObstacleAchievement = false;
 
     void CheckObstacle()
     {
-        if (currentDodgeObstacle >= totalDodgeObstacle)
+        if (!ObstacleAchievement && (currentDodgeObstacle >= totalDodgeObstacle))
         {
-            achievementText.text = "도전과제 달성: 장애물 회피 10개!";
-            Debug.Log(achievementText.text);
-            // ui에 achievementText.text 표시
+            ObstacleAchievement = true;
+            Debug.Log($"회피 업적 완료 {currentDodgeObstacle} 연속 회피");
+            // ui에 표시. 보상 추가
         }
     }
 
@@ -30,6 +26,8 @@ public class AchievementManager : Singleton<AchievementManager>
         currentDodgeObstacle++;
 
         Debug.Log("현재 회피 횟수: " + currentDodgeObstacle);
+
+        CheckObstacle();
     }
 
     public void DodgedReset()
