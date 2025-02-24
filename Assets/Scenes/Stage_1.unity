@@ -197,7 +197,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -7}
@@ -389,63 +389,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 973259368}
---- !u!1001 &524690210
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5885122692208965666, guid: 6e0a0fed31c73324286ac55dc88d7199, type: 3}
-      propertyPath: m_Name
-      value: Boost
-      objectReference: {fileID: 0}
-    - target: {fileID: 8046562706309944604, guid: 6e0a0fed31c73324286ac55dc88d7199, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -4.1476
-      objectReference: {fileID: 0}
-    - target: {fileID: 8046562706309944604, guid: 6e0a0fed31c73324286ac55dc88d7199, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -3.1310506
-      objectReference: {fileID: 0}
-    - target: {fileID: 8046562706309944604, guid: 6e0a0fed31c73324286ac55dc88d7199, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8046562706309944604, guid: 6e0a0fed31c73324286ac55dc88d7199, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8046562706309944604, guid: 6e0a0fed31c73324286ac55dc88d7199, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8046562706309944604, guid: 6e0a0fed31c73324286ac55dc88d7199, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8046562706309944604, guid: 6e0a0fed31c73324286ac55dc88d7199, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8046562706309944604, guid: 6e0a0fed31c73324286ac55dc88d7199, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8046562706309944604, guid: 6e0a0fed31c73324286ac55dc88d7199, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8046562706309944604, guid: 6e0a0fed31c73324286ac55dc88d7199, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6e0a0fed31c73324286ac55dc88d7199, type: 3}
 --- !u!1001 &536123592
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -507,6 +450,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20edb17219a36b249a882cf43c8679cd, type: 3}
+--- !u!82 &822130044 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1589361711076180398, guid: 7f9458ae5e6c57d41a4c0aad63c89999, type: 3}
+  m_PrefabInstance: {fileID: 2131922551825149638}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &920169811
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -758,7 +706,7 @@ CompositeCollider2D:
     serializedVersion: 2
     m_Bits: 4294967295
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_GeometryType: 0
@@ -1037,6 +985,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!251 &1412241312
+PlatformEffector2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1412241302}
+  m_Enabled: 1
+  m_UseColliderMask: 1
+  m_ColliderMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RotationalOffset: 0
+  m_UseOneWay: 1
+  m_UseOneWayGrouping: 1
+  m_SurfaceArc: 75
+  m_UseSideFriction: 0
+  m_UseSideBounce: 0
+  m_SideArc: 1
 --- !u!1001 &173934659803880816
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3862,6 +3829,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8739345854302848463, guid: 1b2acf8606f5c344688c8cd143adb026, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1412241307}
+    - targetCorrespondingSourceObject: {fileID: 8739345854302848463, guid: 1b2acf8606f5c344688c8cd143adb026, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1412241312}
   m_SourcePrefab: {fileID: 100100000, guid: 1b2acf8606f5c344688c8cd143adb026, type: 3}
 --- !u!1001 &1131632800777422083
 PrefabInstance:
@@ -4012,6 +3982,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8265577967940903117, guid: 7f9458ae5e6c57d41a4c0aad63c89999, type: 3}
+      propertyPath: bgmPlayer
+      value: 
+      objectReference: {fileID: 822130044}
+    - target: {fileID: 8265577967940903117, guid: 7f9458ae5e6c57d41a4c0aad63c89999, type: 3}
+      propertyPath: BGM.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8265577967940903117, guid: 7f9458ae5e6c57d41a4c0aad63c89999, type: 3}
+      propertyPath: BGM.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 4d71bc24206986744a4fac98812ac597, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4149,7 +4131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 221246835088084359, guid: 7489bc3bab07393469edd1e3ffb97a99, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6
+      value: -6.3
       objectReference: {fileID: 0}
     - target: {fileID: 221246835088084359, guid: 7489bc3bab07393469edd1e3ffb97a99, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4230,4 +4212,3 @@ SceneRoots:
   - {fileID: 1131632800777422083}
   - {fileID: 4993641361284005786}
   - {fileID: 2131922551825149638}
-  - {fileID: 524690210}

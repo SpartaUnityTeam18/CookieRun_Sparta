@@ -36,7 +36,7 @@ public class Cookie : MonoBehaviour
     bool isRunning;
     bool isSliding;
     bool isHit;
-    bool isDead;
+    public bool isDead;
 
     float t;
     float invincibleTime = 1f;
@@ -134,7 +134,7 @@ public class Cookie : MonoBehaviour
         _boxCollider.size = new Vector2(_boxCollider.size.x, 1.3f);
     }
 
-    public void RunBoost(float t, float runSpeed)
+    public void RunBoost(float t, float runSpeed)//부스터
     {
         StartCoroutine(Run(t, runSpeed));
         StartCoroutine(Invincible(t));
@@ -171,7 +171,7 @@ public class Cookie : MonoBehaviour
         else StartCoroutine(Invincible(invincibleTime));
     }
 
-    public IEnumerator Invincible(float t)
+    public IEnumerator Invincible(float t)//피격 시 일시 무적
     {
         isHit = true;
         _spriteRenderer.color = new Color(1, 1, 1, 0.25f);
@@ -188,7 +188,7 @@ public class Cookie : MonoBehaviour
         if (!isDead) _hp = Mathf.Min(_hp + heal, MaxHP);
     }
 
-    IEnumerator WaitForDead()
+    IEnumerator WaitForDead()//공중에 있을 때 착지하기까지 죽음 보류
     {
         yield return new WaitUntil(() => isJumping);
 
@@ -217,5 +217,11 @@ public class Cookie : MonoBehaviour
             isDoubleJumping = false;
             _animator.SetBool("isDoubleJumping", isDoubleJumping);
         }
+    }
+
+    public void Rescue()//구출
+    {
+        _rb.AddForce(Vector2.up * 30f, ForceMode2D.Impulse);
+        GameManager.Instance.isPlaying = true;
     }
 }

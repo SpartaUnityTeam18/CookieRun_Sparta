@@ -8,18 +8,13 @@ public class SoundManager : Singleton<SoundManager>
     public List<AudioClip> BGM;//배경음악 모음
     public List<AudioClip> SFX;//효과음 모음
 
-    AudioSource bgmPlayer = new AudioSource();//배경음악 재생기
+    [SerializeField] AudioSource bgmPlayer = new AudioSource();//배경음악 재생기
     List<AudioSource> sfxPlayer = new List<AudioSource>();//효과음 재생기
 
     public AudioMixer audioMixer;
     string MIXER_MASTER = "MASTER";//모든 볼륨
     string MIXER_BGM = "BGM";//배경 볼륨
     string MIXER_SFX = "SFX";//효과음 볼륨
-
-    private void Start()
-    {
-        bgmPlayer = transform.GetChild(0).GetComponent<AudioSource>();
-    }
 
     public void PlayBGM(string name)//배경음악 재생
     {
