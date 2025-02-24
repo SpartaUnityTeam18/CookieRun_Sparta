@@ -101,6 +101,7 @@ public class Cookie : MonoBehaviour
 
     void DoubleJump()//มกวม
     {
+        SoundManager.Instance.PlaySFX($"Cookie_{cookieId}_Jump");
         isDoubleJumping = true;
         _animator.SetBool("isDoubleJumping", isDoubleJumping);
 
@@ -190,6 +191,8 @@ public class Cookie : MonoBehaviour
     {
         _rb.velocity = Vector2.zero;
         if (isRunning) isRunning = false;
+
+        EndSlide();
 
         SoundManager.Instance.PlaySFX("Dead");
         isDead = true;
