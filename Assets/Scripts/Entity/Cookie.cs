@@ -16,7 +16,7 @@ public class Cookie : MonoBehaviour
     private float _hp;
     public float HP { get { return _hp; } }
     //¼Óµµ
-    private float _speed = 3f;
+    private float _speed = 6f;
     public float Speed { get { return _speed; } }
     //Á¡ÇÁ·Â
     private float _jumpForce = 25f;
@@ -133,7 +133,7 @@ public class Cookie : MonoBehaviour
         if (!isDead) _hp = Mathf.Min(_hp + heal, MaxHP);
     }
 
-    void Dead()//Á×À½
+    public void Dead()//Á×À½
     {
         _rb.velocity = Vector2.zero;
         if (isRunning) isRunning = false;
