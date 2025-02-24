@@ -10,6 +10,7 @@ public class Jelly : Item
     [SerializeField] private int addScore;
     public override void ApplyEffect(Cookie cookie)
     {
+        SoundManager.Instance.PlaySFX("Jelly");
         GameManager.Instance.AddScore(addScore);
     }
 }
