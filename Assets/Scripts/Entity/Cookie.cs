@@ -41,6 +41,11 @@ public class Cookie : MonoBehaviour
     float t;
     float invincibleTime = 1f;
 
+    public float raycastDistance = 2f;
+    public LayerMask obstacleLayer;
+
+    bool isDodged = false;
+
     private void Start()
     {
         _hp = _maxHp;
@@ -49,6 +54,29 @@ public class Cookie : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         _boxCollider = GetComponent<BoxCollider2D>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+    }
+
+    private void Update()
+    {
+        RaycastHit2D hitUp = Physics2D.Raycast(transform.position, Vector2.up, raycastDistance, obstacleLayer);
+        Debug.DrawRay(transform.position, Vector2.up * raycastDistance, Color.green);
+
+        RaycastHit2D hitDown = Physics2D.Raycast(transform.position, Vector2.down, raycastDistance, obstacleLayer);
+        Debug.DrawRay(transform.position, Vector2.down * raycastDistance, Color.red);
+
+        bool isDodging = (hitUp.collider != null && hitUp.collider.CompareTag("Obstacle"))
+                  || (hitDown.collider != null && hitDown.collider.CompareTag("Obstacle"));
+
+        if (isDodging && !isDodged)
+        {
+            AchievementManager.Instance.DodgedObstacle();
+            isDodged = true;
+        }
+
+        if (!isDodging)
+        {
+            isDodged = false;
+        }
     }
 
     private void FixedUpdate()
