@@ -237,7 +237,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1090
-        y: 1364
+        y: 1362
         width: 270
         height: 270
       alignment: 7
@@ -257,8 +257,8 @@ TextureImporter:
       name: cookie_0_doublejump_5
       rect:
         serializedVersion: 2
-        x: 1360
-        y: 1364
+        x: 1362
+        y: 1362
         width: 270
         height: 270
       alignment: 7

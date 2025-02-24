@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 장애물 판정
 public class Obstacle : MonoBehaviour
 {
-    public void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+        // 충돌한 객체에서 Cookie 컴포넌트 가져옴
         Cookie cookie = collision.GetComponent<Cookie>();
 
+        // null이 아니면 HIt 실행
         if (cookie != null)
         {
-            //쿠키 체력 감소 & 잠간 무적
+            cookie.Hit(10f);
         }
     }
 }
