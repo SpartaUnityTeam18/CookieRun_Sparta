@@ -9,6 +9,9 @@ public class Cookie : MonoBehaviour
     Animator _animator;
     BoxCollider2D _boxCollider;
 
+    public int cookieId;
+    //이름
+    public string coookieName;
     //최대체력
     private float _maxHp = 162f;
     public float MaxHP { get { return _maxHp; } }
@@ -75,6 +78,7 @@ public class Cookie : MonoBehaviour
 
     void Jump()//점프
     {
+        SoundManager.Instance.PlaySFX($"Cookie_{cookieId}_Jump");
         isJumping = true;
         _animator.SetBool("isJumping", isJumping);
 
@@ -91,6 +95,7 @@ public class Cookie : MonoBehaviour
 
     void StartSlide()//슬라이드 시작
     {
+        SoundManager.Instance.PlaySFX($"Cookie_{cookieId}_Slide");
         isSliding = true;
         _boxCollider.offset = new Vector2(_boxCollider.offset.x, 0.15f);
         _boxCollider.size = new Vector2(_boxCollider.size.x, 0.3f);
@@ -121,6 +126,7 @@ public class Cookie : MonoBehaviour
     {
         if(damage <= 0 || isDead) return;
 
+        SoundManager.Instance.PlaySFX("Hit");
         _animator.SetTrigger("isHit");
         _hp = Mathf.Max(_hp - damage, 0);
         if (HP <= 0) Dead();
@@ -137,6 +143,8 @@ public class Cookie : MonoBehaviour
     {
         _rb.velocity = Vector2.zero;
         if (isRunning) isRunning = false;
+
+        SoundManager.Instance.PlaySFX("Dead");
         isDead = true;
         _animator.SetBool("isDead", isDead);
         
