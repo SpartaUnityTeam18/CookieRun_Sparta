@@ -19,7 +19,7 @@ public class Cookie : MonoBehaviour
     private float _speed = 3f;
     public float Speed { get { return _speed; } }
     //점프력
-    private float _jumpForce = 25f;
+    private float _jumpForce = 20f;
     public float JumpForce { get { return _jumpForce; } }
     //달리기 속도
     private float _runSpeed = 7f;
@@ -28,6 +28,7 @@ public class Cookie : MonoBehaviour
     public float hpDecrease = 3f;
 
     bool isJumping;
+    bool isDoubleJumping;
     bool isRunning;
     bool isSliding;
     //bool isHit;
@@ -61,15 +62,25 @@ public class Cookie : MonoBehaviour
     public void DecreaseHp(float decrease)//초당 체력 감소
     {
         _hp = Mathf.Max(_hp - decrease, 0);
-        if (_hp <= 0) Dead();
+        if (HP <= 0)
+        {
+            if (isJumping) StartCoroutine(WaitForDead());
+            else Dead();
+        }
     }
 
     public void OnJump(InputAction.CallbackContext context)//점프 입력(스페이스바)
     {
+        if (isDead) return;
+
         if (context.started && !isJumping)
         {
             Jump();
             EndSlide();
+        }
+        else if (context.started && isJumping && !isDoubleJumping)
+        {
+            DoubleJump();
         }
     }
 
@@ -81,8 +92,19 @@ public class Cookie : MonoBehaviour
         _rb.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
     }
 
+    void DoubleJump()//점프
+    {
+        isDoubleJumping = true;
+        _animator.SetBool("isDoubleJumping", isDoubleJumping);
+
+        _rb.velocity = new Vector2(_rb.velocity.x, 0);
+        _rb.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
+    }
+
     public void OnSlide(InputAction.CallbackContext context)//슬라이드 입력(쉬프트)
     {
+        if (isDead) return;
+
         if (context.started) StartSlide();
         else if (context.canceled) EndSlide();
 
@@ -133,6 +155,13 @@ public class Cookie : MonoBehaviour
         if (!isDead) _hp = Mathf.Min(_hp + heal, MaxHP);
     }
 
+    IEnumerator WaitForDead()
+    {
+        yield return new WaitUntil(() => isJumping);
+
+        if (HP <= 0) Dead();
+    }
+
     void Dead()//죽음
     {
         _rb.velocity = Vector2.zero;
@@ -148,6 +177,8 @@ public class Cookie : MonoBehaviour
         {
             isJumping = false;
             _animator.SetBool("isJumping", isJumping);
+            isDoubleJumping = false;
+            _animator.SetBool("isDoubleJumping", isDoubleJumping);
         }
     }
 }
