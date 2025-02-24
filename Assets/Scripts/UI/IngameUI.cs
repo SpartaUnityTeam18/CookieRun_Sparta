@@ -11,6 +11,8 @@ using UnityEngine.EventSystems;
 //   
 //}
 
+
+
 public class SlideButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public static event Action SlideButtonDown;
