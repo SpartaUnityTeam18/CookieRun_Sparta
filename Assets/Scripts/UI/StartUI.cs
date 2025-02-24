@@ -8,7 +8,7 @@ public class StartUI : BaseUI
 {
 
     public Button StartButton;
-    public TextMeshProUGUI explainText;
+    public TextMeshProUGUI explainText; //객체를 인스펙터에서 볼 수 있도록.
 
     protected override UIState GetUIState()
     {
