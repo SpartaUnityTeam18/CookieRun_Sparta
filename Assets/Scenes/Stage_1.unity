@@ -401,6 +401,10 @@ PrefabInstance:
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 519420032}
+    - target: {fileID: 1844336425603183200, guid: 20edb17219a36b249a882cf43c8679cd, type: 3}
+      propertyPath: m_TagString
+      value: ForeGround
+      objectReference: {fileID: 0}
     - target: {fileID: 4397437323771336416, guid: 20edb17219a36b249a882cf43c8679cd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -444,6 +448,14 @@ PrefabInstance:
     - target: {fileID: 5212924325986094103, guid: 20edb17219a36b249a882cf43c8679cd, type: 3}
       propertyPath: m_Name
       value: ForeGrounds_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5212924325986094103, guid: 20edb17219a36b249a882cf43c8679cd, type: 3}
+      propertyPath: m_TagString
+      value: ForeGround
+      objectReference: {fileID: 0}
+    - target: {fileID: 6334662532163205182, guid: 20edb17219a36b249a882cf43c8679cd, type: 3}
+      propertyPath: m_TagString
+      value: ForeGround
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -501,6 +513,22 @@ PrefabInstance:
     - target: {fileID: 8471818857974747993, guid: 621e76697e4339d43a0a87271f78cb5d, type: 3}
       propertyPath: m_Name
       value: Obstacle_0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8471818857974747993, guid: 621e76697e4339d43a0a87271f78cb5d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8471818857974747993, guid: 621e76697e4339d43a0a87271f78cb5d, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663108827206589166, guid: 621e76697e4339d43a0a87271f78cb5d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663108827206589166, guid: 621e76697e4339d43a0a87271f78cb5d, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3972,6 +4000,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackGrounds_0
       objectReference: {fileID: 0}
+    - target: {fileID: 4071784781773939945, guid: d34ec99bf63288b4fb07d16a8400342a, type: 3}
+      propertyPath: m_TagString
+      value: BackGround
+      objectReference: {fileID: 0}
+    - target: {fileID: 4741239809344368178, guid: d34ec99bf63288b4fb07d16a8400342a, type: 3}
+      propertyPath: m_TagString
+      value: BackGround
+      objectReference: {fileID: 0}
     - target: {fileID: 5564166741696212322, guid: d34ec99bf63288b4fb07d16a8400342a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -4016,6 +4052,10 @@ PrefabInstance:
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 519420032}
+    - target: {fileID: 7672859348191171622, guid: d34ec99bf63288b4fb07d16a8400342a, type: 3}
+      propertyPath: m_TagString
+      value: BackGround
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

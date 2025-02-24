@@ -21,7 +21,7 @@ public class AchievementManager : Singleton<AchievementManager>
         {
             achievementText.text = "도전과제 달성: 장애물 회피 10개!";
             Debug.Log(achievementText.text);
-            // 보상
+            // ui에 achievementText.text 표시
         }
     }
 
