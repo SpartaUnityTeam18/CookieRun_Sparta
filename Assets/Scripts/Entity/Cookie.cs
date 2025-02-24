@@ -36,7 +36,7 @@ public class Cookie : MonoBehaviour
     bool isRunning;
     bool isSliding;
     bool isHit;
-    bool isDead;
+    public bool isDead;
 
     float t;
     float invincibleTime = 1f;
@@ -209,5 +209,11 @@ public class Cookie : MonoBehaviour
             isDoubleJumping = false;
             _animator.SetBool("isDoubleJumping", isDoubleJumping);
         }
+    }
+
+    public void Rescue()
+    {
+        _rb.AddForce(Vector2.up * 30f, ForceMode2D.Impulse);
+        GameManager.Instance.isPlaying = true;
     }
 }
