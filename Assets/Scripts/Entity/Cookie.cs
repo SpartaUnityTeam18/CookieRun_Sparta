@@ -87,7 +87,7 @@ public class Cookie : MonoBehaviour
         else if (context.started && isJumping && !isDoubleJumping)
         {
             DoubleJump();
-        }
+        } 
     }
 
     void Jump()//มกวม
