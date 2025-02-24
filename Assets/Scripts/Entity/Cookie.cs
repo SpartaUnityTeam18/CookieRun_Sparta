@@ -46,7 +46,11 @@ public class Cookie : MonoBehaviour
     // 레이어 설정
     public LayerMask obstacleLayer;
     // 회피 체크용
-    bool isDodged = false;
+    private bool isDodged = false;
+    // 중복 실행 방지
+    private float dodgeCooldown = 0.3f;
+    // 마지막으로 실행된 시간 저장
+    private float lastDodgeTime = -1f;
 
     private void Start()
     {
@@ -69,10 +73,11 @@ public class Cookie : MonoBehaviour
         bool isDodging = (hitUp.collider != null && hitUp.collider.CompareTag("Obstacle"))      // 조건 : 장애물 회피 중 인지 체크
                   || (hitDown.collider != null && hitDown.collider.CompareTag("Obstacle"));
 
-        if (isDodging && !isDodged)
+        if (isDodging && !isDodged && Time.time > lastDodgeTime + dodgeCooldown)
         {
             AchievementManager.Instance.DodgedObstacle();       // 회피 도전 과제 카운트
             isDodged = true;
+            lastDodgeTime = Time.time;      // 실행된 시간 저장
         }
 
         if (!isDodging)
