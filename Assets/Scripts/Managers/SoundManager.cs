@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class SoundManager : Singleton<SoundManager>
 {
@@ -9,6 +10,11 @@ public class SoundManager : Singleton<SoundManager>
 
     AudioSource bgmPlayer = new AudioSource();//배경음악 재생기
     List<AudioSource> sfxPlayer = new List<AudioSource>();//효과음 재생기
+
+    public AudioMixer audioMixer;
+    string MIXER_MASTER = "MASTER";//모든 볼륨
+    string MIXER_BGM = "BGM";//배경 볼륨
+    string MIXER_SFX = "SFX";//효과음 볼륨
 
     private void Start()
     {
@@ -62,15 +68,14 @@ public class SoundManager : Singleton<SoundManager>
         }
     }
 
-    public void StopAllSFX()
+    public void StopAllSFX()//모든 효과음 종료
     {
         foreach(AudioSource s in sfxPlayer)
         {
             s.Stop();
         }
     }
-
-    IEnumerator DestoryAudiosource(AudioSource source)
+    IEnumerator DestoryAudiosource(AudioSource source)//효과음 재생 끝나면 오디오소스 삭제
     {
         yield return new WaitWhile(() => source.isPlaying);
 
@@ -78,9 +83,27 @@ public class SoundManager : Singleton<SoundManager>
         Destroy(source.gameObject);
     }
 
-    public void StopAllSound()
+    public void StopAllSound()//모든 음악 종료
     {
         StopBGM();
         StopAllSFX();
+    }
+
+    public void SetMasterVolume(float volume)//전체 볼륨 조절(0~1)
+    {
+        volume = Mathf.Max(volume, 0.0001f);
+        audioMixer.SetFloat(MIXER_MASTER, Mathf.Log10(volume) * 20);
+    }
+
+    public void SetBGMVolume(float volume)//배경음악 볼륨 조절(0~1)
+    {
+        volume = Mathf.Max(volume, 0.0001f);
+        audioMixer.SetFloat(MIXER_BGM, Mathf.Log10(volume) * 20);
+    }
+
+    public void SetSFXVolume(float volume)//효과음 볼륨 조절(0~1)
+    {
+        volume = Mathf.Max(volume, 0.0001f);
+        audioMixer.SetFloat(MIXER_SFX, Mathf.Log10(volume) * 20);
     }
 }
