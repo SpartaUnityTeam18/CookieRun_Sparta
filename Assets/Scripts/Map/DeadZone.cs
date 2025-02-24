@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+public class DeadZone : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -10,7 +10,8 @@ public class Obstacle : MonoBehaviour
 
         if (cookie != null)
         {
-            cookie.Hit(10f);
+            cookie.Dead();
+            Destroy(collision.gameObject);
         }
     }
 }

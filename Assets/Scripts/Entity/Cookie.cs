@@ -114,7 +114,7 @@ public class Cookie : MonoBehaviour
         if (!isDead) hp += heal;
     }
 
-    void Dead()
+    public void Dead()
     {
         _rb.velocity = Vector2.zero;
         isDead = true;

@@ -263,7 +263,7 @@ GameObject:
   - component: {fileID: 4397437323771336416}
   m_Layer: 0
   m_Name: ForeGround_0
-  m_TagString: Grounds
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -300,7 +300,7 @@ GameObject:
   - component: {fileID: 289911999917243009}
   m_Layer: 0
   m_Name: ForeGround_0
-  m_TagString: Grounds
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
