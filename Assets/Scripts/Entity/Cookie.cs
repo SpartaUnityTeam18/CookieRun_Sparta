@@ -8,6 +8,7 @@ public class Cookie : MonoBehaviour
     Rigidbody2D _rb;
     Animator _animator;
     BoxCollider2D _boxCollider;
+    SpriteRenderer _spriteRenderer;
 
     //최대체력
     private float _maxHp = 162f;
@@ -16,7 +17,7 @@ public class Cookie : MonoBehaviour
     private float _hp;
     public float HP { get { return _hp; } }
     //속도
-    private float _speed = 3f;
+    private float _speed = 6f;
     public float Speed { get { return _speed; } }
     //점프력
     private float _jumpForce = 20f;
@@ -31,10 +32,11 @@ public class Cookie : MonoBehaviour
     bool isDoubleJumping;
     bool isRunning;
     bool isSliding;
-    //bool isHit;
+    bool isHit;
     bool isDead;
 
     float t;
+    float invincibleTime = 1f;
 
     private void Start()
     {
@@ -43,6 +45,7 @@ public class Cookie : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponentInChildren<Animator>();
         _boxCollider = GetComponent<BoxCollider2D>();
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
 
     private void FixedUpdate()
@@ -141,11 +144,26 @@ public class Cookie : MonoBehaviour
 
     public void Hit(float damage)//피격 판정
     {
-        if(damage <= 0 || isDead) return;
+        if (damage <= 0 || isDead || isHit) return;
 
         _animator.SetTrigger("isHit");
         _hp = Mathf.Max(_hp - damage, 0);
-        if (HP <= 0) Dead();
+        if (HP <= 0)
+        {
+            Dead();
+            return;
+        }
+        else StartCoroutine(Invincible(invincibleTime));
+    }
+
+    public IEnumerator Invincible(float t)
+    {
+        isHit = true;
+        _spriteRenderer.color = new Color(1, 1, 1, 0.25f);
+        yield return new WaitForSeconds(t);
+
+        isHit = false;
+        _spriteRenderer.color = new Color(1, 1, 1, 1);
     }
 
     public void Heal(float heal)//체력회복
