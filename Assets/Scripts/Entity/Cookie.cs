@@ -53,6 +53,11 @@ public class Cookie : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GameManager.Instance.isPlaying == false)
+        {
+            return;
+        }
+
         if (isDead) return;//죽으면 아무것도 하지 않게
 
         t += Time.deltaTime;
@@ -77,6 +82,10 @@ public class Cookie : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)//점프 입력(스페이스바)
     {
+        if (GameManager.Instance.isPlaying == false)
+        {
+            return;
+        }
         if (isDead) return;
 
         if (context.started && !isJumping)
@@ -111,6 +120,11 @@ public class Cookie : MonoBehaviour
 
     public void OnSlide(InputAction.CallbackContext context)//슬라이드 입력(쉬프트)
     {
+        if (GameManager.Instance.isPlaying == false)
+        {
+            return ;
+        }
+
         if (isDead) return;
 
         if (context.started) StartSlide();

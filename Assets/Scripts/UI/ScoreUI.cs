@@ -37,4 +37,20 @@ public class ScoreUI : BaseUI
     {
         GameManager.StartGame();
     }
+
+    private void Update()
+    {
+        updateScore();
+        UpDateHighScore();
+    }
+
+    void updateScore()
+    {
+        CurrentScore.text = GameManager.Instance.totalScore.ToString();
+    }
+
+    void UpDateHighScore()
+    {
+       BestScore.text = PlayerPrefs.GetInt("Map1_HighScore",0).ToString();
+    }
 }

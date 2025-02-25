@@ -5,6 +5,7 @@ public enum UIState //enum : 열거형→이름이 지정된 상수 집합을 나타내는 값 형식
 {
     Start,
     Score,
+    InGame,
 }
 
 public class UIManager : MonoBehaviour
@@ -47,11 +48,13 @@ public class UIManager : MonoBehaviour
 
     public void OnClickStart()
     {
-        ChangeState(UIState.Start);
+        ChangeState(UIState.InGame);
     }
 
     public void OnClickExit()
     {
+        GameManager.Instance.GameOver();
+        ChangeState(UIState.Score);
 #if UNITY_EDITOR //유니티 에디터에서 실행 되고 종료 될 수 있도록.
         UnityEditor.EditorApplication.isPlaying = false;
 #else

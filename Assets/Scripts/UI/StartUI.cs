@@ -19,13 +19,14 @@ public class StartUI : BaseUI
     {
         base.Init(uiManager);
 
-        StartButton = transform.Find("StartButton").GetComponent<Button>();
-
         StartButton.onClick.AddListener(OnClickStartButton);
+        Debug.Log("버튼 할당됨");
 
     }
     void OnClickStartButton()
     {
-        GameManager.StartGame();
+        Debug.Log("버튼 클릭");
+        GameManager.Instance.StartGame();
+        uiManager.OnClickStart();
     }
 }
