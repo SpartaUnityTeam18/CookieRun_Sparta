@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Tutorial : MonoBehaviour
 {
     // 튜토리얼 ui 연결
     public GameObject tutorialUI;
+    // 다음 씬
+    public string nextSceneName = "Stage_1";
     // ui 번호
     private int number = 0;
     // ui Active 여부
@@ -22,6 +25,12 @@ public class Tutorial : MonoBehaviour
 
     void ShowTutorial()
     {
+        if (number >= tutorialUI.transform.childCount)
+        {
+            LoadNextScene(); // 마지막 UI를 넘어서면 씬 전환
+            return;
+        }
+
         // 모든 UI를 비활성화
         foreach (Transform child in tutorialUI.transform)
         {
@@ -44,7 +53,15 @@ public class Tutorial : MonoBehaviour
         // 엔터키 입력시 넘어감
         if (isActive && Input.GetKeyDown(KeyCode.Return))
         {
-            HideTutorial();
+            if (number >= tutorialUI.transform.childCount)
+            {
+                LoadNextScene(); // 마지막 UI를 넘어서면 씬 전환
+                return;
+            }
+            else
+            {
+                HideTutorial();
+            }
         }
     }
 
@@ -59,5 +76,14 @@ public class Tutorial : MonoBehaviour
         GameManager.Instance.isPlaying = true;
 
         isActive = false;
+    }
+
+    void LoadNextScene()
+    {
+        if (!string.IsNullOrEmpty(nextSceneName))
+        {
+            SceneManager.LoadScene(nextSceneName);
+            GameManager.Instance.isPlaying = true;
+        }
     }
 }
