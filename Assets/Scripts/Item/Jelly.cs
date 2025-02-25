@@ -12,5 +12,6 @@ public class Jelly : Item
     {
         SoundManager.Instance.PlaySFX("Jelly");
         GameManager.Instance.AddScore(addScore);
+        AchievementManager.Instance.CollectedJelly();
     }
 }
