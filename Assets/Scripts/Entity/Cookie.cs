@@ -41,17 +41,6 @@ public class Cookie : MonoBehaviour
     float t;
     float invincibleTime = 1f;
 
-    // 레이캐스트 거리
-    public float raycastDistance = 2f;
-    // 레이어 설정
-    public LayerMask obstacleLayer;
-    // 회피 체크용
-    private bool isDodged = false;
-    // 중복 실행 방지
-    private float dodgeCooldown = 0.3f;
-    // 마지막으로 실행된 시간 저장
-    private float lastDodgeTime = -1f;
-
     private void Start()
     {
         _hp = _maxHp;
@@ -60,30 +49,6 @@ public class Cookie : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         _boxCollider = GetComponent<BoxCollider2D>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-    }
-
-    private void Update()
-    {
-        RaycastHit2D hitUp = Physics2D.Raycast(transform.position, Vector2.up, raycastDistance, obstacleLayer);     // 위쪽 방향 레이캐스트
-        Debug.DrawRay(transform.position, Vector2.up * raycastDistance, Color.green);
-
-        RaycastHit2D hitDown = Physics2D.Raycast(transform.position, Vector2.down, raycastDistance, obstacleLayer);     // 아래쪽 방향 레이캐스트
-        Debug.DrawRay(transform.position, Vector2.down * raycastDistance, Color.red);
-
-        bool isDodging = (hitUp.collider != null && hitUp.collider.CompareTag("Obstacle"))      // 조건 : 장애물 회피 중 인지 체크
-                  || (hitDown.collider != null && hitDown.collider.CompareTag("Obstacle"));
-
-        if (isDodging && !isDodged && Time.time > lastDodgeTime + dodgeCooldown)
-        {
-            AchievementManager.Instance.DodgedObstacle();       // 회피 도전 과제 카운트
-            isDodged = true;
-            lastDodgeTime = Time.time;      // 실행된 시간 저장
-        }
-
-        if (!isDodging)
-        {
-            isDodged = false;
-        }
     }
 
     private void FixedUpdate()
