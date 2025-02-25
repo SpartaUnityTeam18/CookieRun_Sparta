@@ -13,6 +13,7 @@ public class Potion : Item
 
     public override void ApplyEffect(Cookie cookie)
     {
+        base.ApplyEffect(cookie);
         if (isLarge) SoundManager.Instance.PlaySFX("LargePotion");
         else SoundManager.Instance.PlaySFX("SmallPotion");
         cookie.Heal(heal);
