@@ -336,6 +336,8 @@ MonoBehaviour:
   currentScoreText: {fileID: 215335639872651457}
   highScoreText: {fileID: 1601782752225022043}
   healthBar: {fileID: 9117953335446975857}
+  decreaseRate: 2
+  cookie: {fileID: 0}
 --- !u!114 &4631108785379708399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -681,6 +683,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3328583706831611174}
+  - component: {fileID: 1947288500555672208}
   - component: {fileID: 9121511764533559444}
   - component: {fileID: 1840721730224433259}
   - component: {fileID: 8282730602022748211}
@@ -711,6 +714,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1947288500555672208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4248519387265942346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 838362e9f21575448a555e7f3a6d45ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!223 &9121511764533559444
 Canvas:
   m_ObjectHideFlags: 0
