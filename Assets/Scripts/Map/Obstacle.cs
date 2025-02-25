@@ -13,6 +13,7 @@ public class Obstacle : MonoBehaviour
         // null이 아니면 HIt 실행
         if (cookie != null)
         {
+            AchievementManager.Instance.RestDodgeAchievement();
             cookie.Hit(10f);
         }
     }

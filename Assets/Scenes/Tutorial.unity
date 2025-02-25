@@ -1648,12 +1648,20 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[172].second.m_TileObjectToInstantiateIndex
       value: 65535
       objectReference: {fileID: 0}
+    - target: {fileID: 276539542303715753, guid: ec9f9d99c43bab3428ad3d8a3d7a055f, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 492602529552789665, guid: ec9f9d99c43bab3428ad3d8a3d7a055f, type: 3}
       propertyPath: m_Name
       value: Map_1
       objectReference: {fileID: 0}
     - target: {fileID: 2551129729327825376, guid: ec9f9d99c43bab3428ad3d8a3d7a055f, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3261496721486238150, guid: ec9f9d99c43bab3428ad3d8a3d7a055f, type: 3}
+      propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3318817233404897105, guid: ec9f9d99c43bab3428ad3d8a3d7a055f, type: 3}
@@ -51629,7 +51637,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC800\uAC74 \uCCB4\uB825 \uD3EC\uC158\uC774\uC5D0\uC694.\n\n\uBA39\uC5C8\uC744
+  m_text: "\uC774\uAC74 \uCCB4\uB825 \uD3EC\uC158\uC774\uC5D0\uC694.\n\n\uBA39\uC5C8\uC744
     \uB54C \uCFE0\uD0A4\uC758 \uCCB4\uB825\uC744 \uD68C\uBCF5 \uC2DC\uCF1C\uC918\uC694!\n\n\uD070
     \uD3EC\uC158\uC740 \uB354 \uB9CE\uC774 \uCC44\uC6CC\uC918\uC694."
   m_isRightToLeft: 0
@@ -51765,10 +51773,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB3D9\uC804 \uC774 \uC55E\uC5D0 \uC788\uB124\uC694.\n\n\uB3D9\uC804\uC744
+  m_text: "\uCF54\uC778\uC774 \uC55E\uC5D0 \uC788\uB124\uC694.\n\n\uCF54\uC778\uC744
     \uBA39\uC73C\uBA74 \uC824\uB9AC \uBCF4\uB2E4 \uB354 \uB9CE\uC740 \uC810\uC218\uB97C
-    \uC5BB\uC744 \uC218 \uC788\uC5B4\uC694!\n\n\uB2F9\uC5F0\uD558\uAC8C\uB3C4 \uD070
-    \uB3D9\uC804\uC740 \uD070 \uC810\uC218\uB97C....!"
+    \uC5BB\uC744 \uC218 \uC788\uC5B4\uC694!\n\n\uC810...\uC218...\uB97C.....\uB9CE...\uC774................"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc55354fa41400048b23cf1117cabbe5, type: 2}
   m_sharedMaterial: {fileID: 4974776211592114934, guid: dc55354fa41400048b23cf1117cabbe5, type: 2}

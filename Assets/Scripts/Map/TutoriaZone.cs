@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Tutorial : MonoBehaviour
+public class TutorialZone : MonoBehaviour
 {
     // 튜토리얼 ui 연결 > tutorialzone에서 연결해서 사용
     public GameObject tutorialUI;
@@ -49,26 +49,6 @@ public class Tutorial : MonoBehaviour
         isActive = true;
     }
 
-    private void Update()
-    {
-        // 엔터키 입력시 넘어감
-        if (isActive && Input.GetKeyDown(KeyCode.Return))
-        {
-            // UI가 마지막이거나 넘어섰을때
-            if (number >= tutorialUI.transform.childCount)
-            {
-                // 지정한 다음 씬으로 전환
-                LoadNextScene();
-                return;
-            }
-            else
-            {
-                // 아니면 UI 가려줌
-                HideTutorial();
-            }
-        }
-    }
-
     void HideTutorial()
     {
         // 모든 튜토리얼 UI 비활성화
@@ -92,6 +72,27 @@ public class Tutorial : MonoBehaviour
             // 지정한 씬으로 전환, isPlaying 활성화
             SceneManager.LoadScene(nextSceneName);
             GameManager.Instance.isPlaying = true;
+        }
+    }
+
+    void OnEnter()
+    {
+        // 엔터키 입력시 넘어감
+        if (isActive)
+        {
+            // UI가 마지막이거나 넘어섰을때
+            if (number >= tutorialUI.transform.childCount)
+            {
+                // 지정한 다음 씬으로 전환
+                SoundManager.Instance.StopAllSound();
+                LoadNextScene();
+                return;
+            }
+            else
+            {
+                // 아니면 UI 가려줌
+                HideTutorial();
+            }
         }
     }
 }
