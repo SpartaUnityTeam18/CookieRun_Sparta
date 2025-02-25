@@ -31,7 +31,7 @@ public class JellySpawner : MonoBehaviour
         {
             float segmentLength = Vector3.Distance(pos[currentSegment], pos[currentSegment + 1]);//현재 선분의 길이
             float t = (distancefromSpawn - segmentStartDistance) / segmentLength;//선분에서 젤리가 생성될 위치의 비율
-            t = Mathf.Clamp01(t);
+            t = Mathf.Clamp01(t);//오차, 오류 방지
             Vector3 spawnPosition = Vector3.Lerp(pos[currentSegment], pos[currentSegment + 1], t);//선분에서 젤리가 생성될 위치
 
             Instantiate(jellyPrefab, spawnPosition, Quaternion.identity, transform);

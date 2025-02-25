@@ -13,12 +13,12 @@ public class Magnetic : MonoBehaviour
 
     private void Start()
     {
-        targetLayer = LayerMask.GetMask("Jelly");
+        targetLayer = LayerMask.GetMask("Item");
     }
 
     void Update()
     {
-        PullJellies();
+        PullItems();
     }
 
     public void Init(float pPower, float dRadius)
@@ -27,13 +27,13 @@ public class Magnetic : MonoBehaviour
         detectionRadius = dRadius;
     }
 
-    void PullJellies()//자석
+    void PullItems()//자석
     {
         Detect();
 
-        foreach(Collider2D jelly in hitColliders)
+        foreach(Collider2D item in hitColliders)
         {
-            jelly.transform.transform.position = Vector2.Lerp(jelly.transform.position, transform.position, pullPower * Time.deltaTime);
+            item.transform.transform.position = Vector2.Lerp(item.transform.position, transform.position, pullPower * Time.deltaTime);
         }
     }
 
