@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6772636315149325497}
   - component: {fileID: 8671563106723499005}
   - component: {fileID: 3102134813174276585}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Large_Potion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,6 +165,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf32db85aa2a7b74296e573428cd7ec2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addScore: 20
   heal: 20
   isLarge: 1
