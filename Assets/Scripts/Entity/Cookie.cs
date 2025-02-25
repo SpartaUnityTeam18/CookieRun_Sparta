@@ -15,6 +15,8 @@ public class Cookie : MonoBehaviour
     Vector2 _slideOffset;
     Vector2 _slideColSize;
 
+    public Sprite cookieSprite;
+
     public int cookieId;
     //¿Ã∏ß
     public string coookieName;

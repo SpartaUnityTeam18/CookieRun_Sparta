@@ -33,6 +33,8 @@ public class UI_Start : MonoBehaviour
         mapButton.onClick.AddListener(MapButton);
         mapExitButton.onClick.AddListener(MapExitButton);
         startButton.onClick.AddListener(StartButton);
+
+
     }
 
     void CookieButton()

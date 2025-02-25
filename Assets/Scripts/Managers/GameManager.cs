@@ -11,6 +11,9 @@ public class GameManager : Singleton<GameManager>
 
     public bool isPlaying;
 
+    GameObject cookiePrefab;
+    string sceneName = "stage_1";
+
     private void Start()
     {
         StartGame();
@@ -35,5 +38,15 @@ public class GameManager : Singleton<GameManager>
     {
         totalScore += score;
         AchievementManager.Instance.UpdateAchievement("Score", totalScore);
+    }
+
+    public void SetCookie(GameObject cookie)
+    {
+        cookiePrefab = cookie;
+    }
+
+    public void SetMap(string name)
+    {
+        sceneName = name;
     }
 }
