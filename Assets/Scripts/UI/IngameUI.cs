@@ -5,83 +5,115 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
+using TMPro;
+using JetBrains.Annotations;
 
-//public class InGameUI : MonoBehaviour
+
+public class InGameUI : MonoBehaviour
+{
+    public TextMeshProUGUI currentScoreText;
+    public TextMeshProUGUI highScoreText;
+    public Slider healthBar;
+
+    private void Update()
+    {
+        scoreUpdate();
+        highscoreUpdate();
+
+
+    }
+
+    public void scoreUpdate()
+    {
+        currentScoreText.text = GameManager.Instance.totalScore.ToString();
+      
+    }
+
+    public void highscoreUpdate()
+    {
+        highScoreText.text = PlayerPrefs.GetInt("Map_1_highScore",0).ToString();
+    }
+
+    public void healthBarUpdate()
+    {
+
+    }
+
+
+}
+
+
+
+
+
+//public class SlideButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 //{
-//   
+//    public static event Action SlideButtonDown;
+//    public static event Action SlideButtonUp;
+
+//    private Button _slideButton;
+
+//    private void Awake()
+//    {
+//        _slideButton = GetComponent<Button>();
+//    }
+
+//    public void OnPointerDown(PointerEventData eventData)
+//    {
+//        SlideButtonDown?.Invoke();
+//    }
+
+//    public void OnPointerUp(PointerEventData eventData)
+//    {
+//        SlideButtonUp?.Invoke();
+//    }
 //}
 
 
 
-public class SlideButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
-{
-    public static event Action SlideButtonDown;
-    public static event Action SlideButtonUp;
+//public class JumpButton : MonoBehaviour
+//{
+//    public static event Action OnClickJumpButton;
 
-    private Button _slideButton;
+//    public void JumpClick()
+//    {
+//        OnClickJumpButton?.Invoke();
+//    }
+//}
 
-    private void Awake()
-    {
-        _slideButton = GetComponent<Button>();
-    }
+//public class TotalScore : MonoBehaviour
+//{
+//    private Text _totalScoreText;
+//    private IEnumerator _raiseScore;
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        SlideButtonDown?.Invoke();
-    }
-
-    public void OnPointerUp(PointerEventData eventData)
-    {
-        SlideButtonUp?.Invoke();
-    }
-}
+//    private void Awake()
+//    {
+//        _totalScoreText = GetComponent<Text>();
+//    }
 
 
+//    private void Start()
+//    {
+//        _raiseScore = CountingScore(Cookie.ScoreUI, 0);
+//        StartCoroutine(_raiseScore);
+//    }
 
-public class JumpButton : MonoBehaviour
-{
-    public static event Action OnClickJumpButton;
+//    IEnumerator CountingScore(float maxScore, float initialScore)
+//    {
+//        float duration = 0.9f;
+//        float offset = maxScore / duration;
 
-    public void JumpClick()
-    {
-        OnClickJumpButton?.Invoke();
-    }
-}
+//        while (initialScore < maxScore)
+//        { 
 
-public class TotalScore : MonoBehaviour
-{
-    private Text _totalScoreText;
-    private IEnumerator _raiseScore;
+//            initialScore += offset * Time.deltaTime;
+//            _totalScoreText.text = $"{initialScore: #,0}";
+//            yield return null;
+//        }
 
-    private void Awake()
-    {
-        _totalScoreText = GetComponent<Text>();
-    }
-
-
-    private void Start()
-    {
-        _raiseScore = CountingScore(Cookie.ScoreUI, 0);
-        StartCoroutine(_raiseScore);
-    }
-
-    IEnumerator CountingScore(float maxScore, float initialScore)
-    {
-        float duration = 0.9f;
-        float offset = maxScore / duration;
-
-        while (initialScore < maxScore)
-        {
-            // Debug.Log($"intialScore : {maxScore}");
-
-            initialScore += offset * Time.deltaTime;
-            _totalScoreText.text = $"{initialScore: #,0}";
-            yield return null;
-        }
-
-        initialScore = maxScore;
-        _totalScoreText.text = $"{initialScore: #,0}";
-    }
-}
+//        initialScore = maxScore;
+//        _totalScoreText.text = $"{initialScore: #,0}";
+//    }
+//}
 
 

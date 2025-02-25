@@ -7,7 +7,7 @@ public class GameManager : Singleton<GameManager>
     //게임 흐른 시간
     public float timePassed;
 
-    int totalScore;
+    public int totalScore;
 
     public bool isPlaying;
 
@@ -21,6 +21,8 @@ public class GameManager : Singleton<GameManager>
         if (!isPlaying) return;
 
         timePassed += Time.deltaTime; //시간 최신화
+
+        totalScore = totalScore + 1;
     }
 
     public void StartGame()//게임 시작

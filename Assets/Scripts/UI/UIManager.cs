@@ -7,6 +7,7 @@ public enum UIState
 {
     Start,
     Score,
+    Ingame
 }
 
 public class UIManager : MonoBehaviour
@@ -22,34 +23,34 @@ public class UIManager : MonoBehaviour
 
     UIState currentState = UIState.Start;
 
-    StartUI homeUI = null;
+    //StartUI homeUI = null;
 
-    ScoreUI scoreUI = null;
+    //ScoreUI scoreUI = null;
 
     private void Awake()
     {
         instance = this;
 
-        startUI = GetComponentInChildren<StartUI>(true);
-        StartUI?.Init(this);
+        //startUI = GetComponentInChildren<StartUI>(true);
+        //StartUI?.Init(this);
  
-        scoreUI = GetComponentInChildren<ScoreUI>(true);
-        scoreUI?.Init(this);
+        //scoreUI = GetComponentInChildren<ScoreUI>(true);
+        //scoreUI?.Init(this);
 
-        ChangeState(UIState.Home);
+        ChangeState(UIState.Ingame);
     }
 
 
     public void ChangeState(UIState state)
     {
         currentState = state;
-        StartUI?.SetActive(currentState);
-        scoreUI?.SetActive(currentState);
+        //StartUI?.SetActive(currentState);
+        //scoreUI?.SetActive(currentState);
     }
 
     public void OnClickStart()
     {
-        ChangeState(UIState.Game);
+        //ChangeState(UIState.Game);
     }
 
     public void OnClickExit()
