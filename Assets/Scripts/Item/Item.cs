@@ -7,7 +7,6 @@ using UnityEngine;
 /// </summary>
 public class Item : MonoBehaviour
 {
-
     [SerializeField] private int addScore;
 
     private void OnTriggerEnter2D(Collider2D collision)
