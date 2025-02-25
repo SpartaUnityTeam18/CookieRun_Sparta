@@ -18,7 +18,13 @@ public class GameManager : Singleton<GameManager>
 
     private void Update()
     {
-        if (!isPlaying) return;
+        if (!isPlaying)
+        {
+            Time.timeScale = 0f;
+            return;
+        }
+
+        Time.timeScale = 1f;
 
         timePassed += Time.deltaTime; //시간 최신화
     }
