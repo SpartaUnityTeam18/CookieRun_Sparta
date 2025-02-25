@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
-public enum UIState //enum : ¿­°ÅÇü¡æÀÌ¸§ÀÌ ÁöÁ¤µÈ »ó¼ö ÁýÇÕÀ» ³ªÅ¸³»´Â °ª Çü½Ä
+public enum UIState //enum : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 {
     Start,
     Score,
@@ -10,34 +10,36 @@ public enum UIState //enum : ¿­°ÅÇü¡æÀÌ¸§ÀÌ ÁöÁ¤µÈ »ó¼ö ÁýÇÕÀ» ³ªÅ¸³»´Â °ª Çü½Ä
 
 public class UIManager : Singleton<UIManager>
 {
-    static UIManager instance;
-    public static UIManager Instance
-    {
-        get
-        {
-            return instance;
-        }
-    }
+    //static UIManager instance;
+    //public static UIManager Instance
+    //{
+    //    get
+    //    {
+    //        return instance;
+    //    }
+    //}
 
     UIState currentState = UIState.Start;
 
-    StartUI startUI = null;
-
-    ScoreUI scoreUI = null;
+    StartUI startUI;
+    ScoreUI scoreUI;
+    InGameUI ingameUI;
 
     public override void Awake()
     {
         isGlobal = false;
         base.Awake();
 
-
-        instance = this;
+        //instance = this;
 
         startUI = GetComponentInChildren<StartUI>(true);
         startUI?.Init(this);
 
         scoreUI = GetComponentInChildren<ScoreUI>(true);
         scoreUI?.Init(this);
+        
+        ingameUI = GetComponentInChildren<InGameUI>(true);
+        ingameUI?.Init(this);
 
         ChangeState(UIState.Start);
     }
@@ -52,6 +54,7 @@ public class UIManager : Singleton<UIManager>
         currentState = state;
         startUI?.SetActive(currentState);
         scoreUI?.SetActive(currentState);
+        ingameUI?.SetActive(currentState);
     }
 
     public void OnClickStart()
@@ -63,10 +66,10 @@ public class UIManager : Singleton<UIManager>
     {
         GameManager.Instance.GameOver();
         ChangeState(UIState.Score);
-#if UNITY_EDITOR //À¯´ÏÆ¼ ¿¡µðÅÍ¿¡¼­ ½ÇÇà µÇ°í Á¾·á µÉ ¼ö ÀÖµµ·Ï.
+#if UNITY_EDITOR //ï¿½ï¿½ï¿½ï¿½Æ¼ ï¿½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½.
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-        Application.Quit(); // ¾îÇÃ¸®ÄÉÀÌ¼Ç Á¾·á
+        Application.Quit(); // ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 #endif
     }
 }

@@ -14,16 +14,13 @@ public class GameManager : Singleton<GameManager>
     public int totalScore;
     public bool isPlaying;
 
-    private void Start()
-    {
-
-    }
-
     private void Update()
     {
         if (!isPlaying) return;
         totalScore++;
         timePassed += Time.deltaTime; //시간 최신화
+
+        totalScore = totalScore + 1;
     }
 
     public void StartGame()//게임 시작
