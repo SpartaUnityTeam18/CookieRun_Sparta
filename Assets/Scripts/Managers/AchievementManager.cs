@@ -1,0 +1,94 @@
+using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+// 도전 과제 매니저
+public class AchievementManager : Singleton<AchievementManager>
+{
+    public class Achievement
+    {
+        // 도전 과제 이름
+        public string name;
+        // 목표 값
+        public int total;
+        // 현재 값
+        public int current;
+        // 도전 과제 달성 여부
+        public bool Completed;
+        // 목표 달성 여부 (current >= total 이면 true)
+        public bool isComplete => current >= total;
+
+        public Achievement(string _name, int _total)
+        {
+            this.name = _name;
+            this.total = _total;
+            this.current = 0;
+            this.Completed = false;
+        }
+
+        public void AddCurrent(int amount = 1)
+        {
+            // 완료된 거면 리턴
+            if (Completed) return;
+
+            // current 증가
+            current += amount;
+
+            // 달성 여부가 true일때
+            if (isComplete)
+            {
+                // 도전 과제 완료
+                Completed = true;
+                Debug.Log($"{name} 업적 달성!");
+                // ui 연결, 보상 추가
+            }
+        }
+
+        public void Reset()
+        {
+            // 미완료 업적일때만 초기화 진행
+            if (!Completed)
+            {
+                current = 0;
+                Debug.Log($"{name} 업적 진행도 초기화됨!");
+            }
+        }
+    }
+
+    // 딕서녀리 사용 (키 타입 string / 데이터 타입 Achievement)
+    private Dictionary<string, Achievement> achievements = new Dictionary<string, Achievement>();
+
+    private void Start()
+    {
+        // 초기화 진행
+        achievements["Dodge"] = new Achievement("Dodge", 10);
+        achievements["Jelly"] = new Achievement("Jelly", 10);
+        achievements["Score"] = new Achievement("Score", 10);
+    }
+
+    public void UpdateAchievement(string name, int amount = 1)
+    {
+        // 도전 과제 진행 사항 업데이트, 지정된 키가 있을때만 AddCurrent
+        if (achievements.ContainsKey(name))
+        {
+            achievements[name].AddCurrent(amount);
+        }
+    }
+
+    public bool isAchievementComplete(string name)
+    {
+        // 도전 과제 완료 되었는지 체크, 지정된 키가 있는지 그 녀석이 완료 되었는지 확인, 나중에 UI에 연결할 때 쓸 거 같음
+        return achievements.ContainsKey(name) && achievements[name].isComplete;
+    }
+
+    public void RestDodgeAchievement()
+    {
+        // 피격 시 회피 도전 과제 리셋, 지정된 키가 있을 때만 Reset
+        if (achievements.ContainsKey("Dodge"))
+        {
+            achievements["Dodge"].Reset();
+        }
+    }
+}

@@ -8,7 +8,7 @@ public class Looper : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 충돌한 객체의 태그가 Grounds면 동작
-        if (collision.CompareTag("Grounds"))
+        if (collision.CompareTag("BackGround") || collision.CompareTag("ForeGround"))
         {
             // 콜라이더의 가로 길이
             float width = ((BoxCollider2D)collision).size.x;
