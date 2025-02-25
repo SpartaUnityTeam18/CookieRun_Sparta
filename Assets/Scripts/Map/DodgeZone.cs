@@ -8,7 +8,7 @@ public class DodgeZone : MonoBehaviour
     {
         if (collision != null && collision.CompareTag("Cookie"))
         {
-            AchievementManager.Instance.DodgedObstacle();
+            AchievementManager.Instance.UpdateAchievement("Dodge", 1);
         }
     }
 }
