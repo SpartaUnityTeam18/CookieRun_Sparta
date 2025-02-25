@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class Item : MonoBehaviour
 {
+    [SerializeField] private int addScore;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Cookie cookie = collision.GetComponent<Cookie>();
@@ -23,7 +25,7 @@ public class Item : MonoBehaviour
 /// <param name="cookie"></param>
     public virtual void ApplyEffect(Cookie cookie)
     {
-
+        GameManager.Instance.AddScore(addScore);
     }
 }
 
