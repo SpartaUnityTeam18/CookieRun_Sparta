@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class ScoreUI : BaseUI
 {
+
+    public GameManager GameManager;
+
     public Button GameExitButton;
     public Button RestartButton;
 
@@ -20,5 +23,18 @@ public class ScoreUI : BaseUI
     {
         base.Init(uiManager);
 
+        GameExitButton = transform.Find("GameExitButton").GetComponent<Button>();
+        RestartButton = transform.Find("RestartButton").GetComponent <Button>();
+
+        GameExitButton.onClick.AddListener(OnClickGameExitButton);
+        RestartButton.onClick.AddListener(OnClickRestartButton);
+    }
+    void OnClickGameExitButton()
+    {
+        uiManager.OnClickExit();
+    }
+    void OnClickRestartButton()
+    {
+        GameManager.StartGame();
     }
 }

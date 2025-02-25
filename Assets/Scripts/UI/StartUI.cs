@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class StartUI : BaseUI
 {
+    public GameManager GameManager;
 
     public Button StartButton;
     public TextMeshProUGUI explainText; //객체를 인스펙터에서 볼 수 있도록.
@@ -20,5 +21,11 @@ public class StartUI : BaseUI
 
         StartButton = transform.Find("StartButton").GetComponent<Button>();
 
+        StartButton.onClick.AddListener(OnClickStartButton);
+
+    }
+    void OnClickStartButton()
+    {
+        GameManager.StartGame();
     }
 }
