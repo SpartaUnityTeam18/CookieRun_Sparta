@@ -14,8 +14,16 @@ public class InGameUI : MonoBehaviour
     public TextMeshProUGUI currentScoreText;
     public TextMeshProUGUI highScoreText;
     public Slider healthBar;
+    public float decreaseRate = 2f;
 
-    private void Update()
+    public Cookie cookie;
+
+    public void Start()
+    {
+
+    }
+
+    public void Update()
     {
         scoreUpdate();
         highscoreUpdate();
@@ -26,21 +34,29 @@ public class InGameUI : MonoBehaviour
     public void scoreUpdate()
     {
         currentScoreText.text = GameManager.Instance.totalScore.ToString();
-      
+
     }
 
     public void highscoreUpdate()
     {
-        highScoreText.text = PlayerPrefs.GetInt("Map_1_highScore",0).ToString();
+        highScoreText.text = PlayerPrefs.GetInt("Map_1_highScore", 0).ToString();
     }
 
     public void healthBarUpdate()
     {
+        float rate = (cookie._hp / cookie._maxHp); //value 값 나온거를 slider에 대입
+        healthBar.value = rate;
 
+        // 슬라이더 값이 0보다 크면 감소
+        if (healthBar.value > 0)
+        {
+            healthBar.value -= decreaseRate * Time.deltaTime; // 슬라이더 값 감소
+        }
     }
 
-
 }
+
+
 
 
 
