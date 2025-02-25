@@ -27,15 +27,20 @@ public class UIManager : MonoBehaviour
 
     //ScoreUI scoreUI = null;
 
+    InGameUI ingameUI = null;
+
     private void Awake()
     {
         instance = this;
 
         //startUI = GetComponentInChildren<StartUI>(true);
         //StartUI?.Init(this);
- 
+
         //scoreUI = GetComponentInChildren<ScoreUI>(true);
         //scoreUI?.Init(this);
+
+        ingameUI = GetComponentInChildren<InGameUI>(true);
+        ingameUI?.Init(this);
 
         ChangeState(UIState.Ingame);
     }
@@ -46,6 +51,7 @@ public class UIManager : MonoBehaviour
         currentState = state;
         //StartUI?.SetActive(currentState);
         //scoreUI?.SetActive(currentState);
+        ingameUI?.SetActive(currentState);
     }
 
     public void OnClickStart()

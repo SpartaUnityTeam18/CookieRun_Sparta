@@ -9,8 +9,9 @@ using TMPro;
 using JetBrains.Annotations;
 
 
-public class InGameUI : MonoBehaviour
+public class InGameUI : BaseUI
 {
+
     public TextMeshProUGUI currentScoreText;
     public TextMeshProUGUI highScoreText;
     public Slider healthBar;
@@ -18,16 +19,23 @@ public class InGameUI : MonoBehaviour
 
     public Cookie cookie;
 
-    public void Start()
-    {
 
-    }
 
     public void Update()
     {
         scoreUpdate();
         highscoreUpdate();
+        healthBarUpdate();
 
+    }
+
+    protected override UIState GetUIState()
+    {
+        return UIState.Ingame;
+    }
+    public override void Init(UIManager uiManager)
+    {
+        base.Init(uiManager);
 
     }
 
@@ -46,12 +54,7 @@ public class InGameUI : MonoBehaviour
     {
         float rate = (cookie._hp / cookie._maxHp); //value 값 나온거를 slider에 대입
         healthBar.value = rate;
-
-        // 슬라이더 값이 0보다 크면 감소
-        if (healthBar.value > 0)
-        {
-            healthBar.value -= decreaseRate * Time.deltaTime; // 슬라이더 값 감소
-        }
+        
     }
 
 }
