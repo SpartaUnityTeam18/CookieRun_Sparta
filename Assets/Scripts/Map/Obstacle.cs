@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 장애물 판정
+// 장애물 판정    현재 씬이름 받아와서 작동 여부 해보기
 public class Obstacle : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)

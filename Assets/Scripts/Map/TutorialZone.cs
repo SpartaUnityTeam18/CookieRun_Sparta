@@ -16,8 +16,8 @@ public class TutorialZone : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // 쿠키가 충돌했고  ui가 꺼져있을때
-        if (collision != null && collision.CompareTag("Cookie") && !isActive)
+        // 쿠키가 충돌했고  ui가 꺼져있을때 isTutorialScene이 true 일때
+        if (collision != null && collision.CompareTag("Cookie") && !isActive && GameManager.Instance.isTutorialScene)
         {
             // UI 활성화
             ShowTutorial();
@@ -36,8 +36,8 @@ public class TutorialZone : MonoBehaviour
         // transform.childCount > gameobject는 다 가지고 있는 transform에 있는 childCount를 사용해서 자식 객체의 수를 알 수 있음.
         if (number < tutorialUI.transform.childCount)
         {
-            // 시간 멈춰 주고 싶어서 사용했는데 안멈춰서 겜매니저에 코드 추가 작성함
-            GameManager.Instance.isPlaying = false;
+            // 타임스케일 0로 해서 멈춰!
+            Time.timeScale = 0f;
 
             // 하위 UI 중 number에 해당되는 녀석 활성화 해줌
             tutorialUI.transform.GetChild(number).gameObject.SetActive(true);
@@ -57,8 +57,8 @@ public class TutorialZone : MonoBehaviour
             child.gameObject.SetActive(false);
         }
 
-        // isPlaying 활성화
-        GameManager.Instance.isPlaying = true;
+        //타임스케일 1로 돌려놓기
+        Time.timeScale = 1f;
 
         // isActive를 false로 해줘서 다음에 충돌했을 때 UI가 나올 수 있게 해줌
         isActive = false;
@@ -69,9 +69,9 @@ public class TutorialZone : MonoBehaviour
         // 해당 문자열 Null인지 체크 > 아니면 false 반환 > ! 라서 true
         if (!string.IsNullOrEmpty(nextSceneName))
         {
-            // 지정한 씬으로 전환, isPlaying 활성화
+            // 지정한 씬으로 전환, 타임스케일 1로 돌려놓기
             SceneManager.LoadScene(nextSceneName);
-            GameManager.Instance.isPlaying = true;
+            Time.timeScale = 1f;
         }
     }
 
