@@ -44,4 +44,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83995029295f309469d6bf11d3d16b3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalDodgeObstacle: 3

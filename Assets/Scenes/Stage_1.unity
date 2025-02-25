@@ -18514,10 +18514,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8529782116459517274, guid: 3b084a094d8177f4f9a8f873e8481c70, type: 3}
-      propertyPath: totalDodgeObstacle
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -20056,5 +20052,5 @@ SceneRoots:
   - {fileID: 374211835}
   - {fileID: 4993641361284005786}
   - {fileID: 2131922551825149638}
-  - {fileID: 1948103216}
   - {fileID: 520761276}
+  - {fileID: 1948103216}
