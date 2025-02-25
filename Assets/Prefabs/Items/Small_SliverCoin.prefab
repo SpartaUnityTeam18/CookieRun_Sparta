@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 896934874017475896}
   - component: {fileID: 3214869612196605363}
   - component: {fileID: 768880644187484639}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Small_SliverCoin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,5 +165,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4db1ed271e4d461439e6e7c535fb653d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cookie: {fileID: 0}
-  addScore: 0
+  addScore: 5

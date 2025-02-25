@@ -87,7 +87,7 @@ public class Cookie : MonoBehaviour
         else if (context.started && isJumping && !isDoubleJumping)
         {
             DoubleJump();
-        }
+        } 
     }
 
     void Jump()//มกวม
@@ -175,6 +175,7 @@ public class Cookie : MonoBehaviour
     {
         isHit = true;
         _spriteRenderer.color = new Color(1, 1, 1, 0.25f);
+        AchievementManager.Instance.DodgedReset();
         yield return new WaitForSeconds(t);
 
         isHit = false;

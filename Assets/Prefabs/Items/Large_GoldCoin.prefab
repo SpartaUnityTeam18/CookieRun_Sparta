@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7182033085666123818}
   - component: {fileID: 4112889084589574009}
   - component: {fileID: 7617552240185961547}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Large_GoldCoin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -165,5 +165,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4db1ed271e4d461439e6e7c535fb653d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cookie: {fileID: 0}
-  addScore: 10
+  addScore: 30

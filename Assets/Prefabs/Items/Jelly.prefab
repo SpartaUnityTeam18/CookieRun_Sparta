@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4416559575908725301}
   - component: {fileID: 3723663018031879876}
   - component: {fileID: 6197360355390623879}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Jelly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,8 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4db1ed271e4d461439e6e7c535fb653d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cookie: {fileID: 0}
-  addScore: 1
+  addScore: 2
 --- !u!61 &6197360355390623879
 BoxCollider2D:
   m_ObjectHideFlags: 0
