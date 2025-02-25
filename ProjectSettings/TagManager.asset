@@ -6,18 +6,16 @@ TagManager:
   tags:
   - Ground
   - Cookie
-  - Obstacle
-  - BackGround
-  - ForeGround
+  - Grounds
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Obstacle
+  - 
   - Water
   - UI
   - 
-  - 
+  - Item
   - 
   - 
   - 
