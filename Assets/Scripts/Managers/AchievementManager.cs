@@ -7,98 +7,88 @@ using UnityEngine.UI;
 // 도전 과제 매니저
 public class AchievementManager : Singleton<AchievementManager>
 {
-    // 회피 목표치
-    public int totalDodgeObstacle = 3;
-    // 현재 회피한 수
-    private int currentDodgeObstacle = 0;
-    // 회피 도전 과제 클리어 유무
-    private bool CompleteObstacle = false;
-
-    // 젤리 목표치
-    public int totalCollectJelly = 10;
-    // 현재 먹은 젤리 수
-    private int currentCollectJelly = 0;
-    // 젤리 도전 과제 클리어 유무
-    private bool CompleteJelly = false;
-
-    // 점수 목표치
-    public int totalScore = 100;
-    // 현재 점수
-    private int currentScore = 0;
-    // 점수 도전 과제 클리어 유무
-    private bool CompleteScore = false;
-
-    void CheckObstacle()
+    public class Achievement
     {
-        // 회피 도전 과제 클리어 성공 체크
-        if (!CompleteObstacle && (currentDodgeObstacle >= totalDodgeObstacle))
+        // 도전 과제 이름
+        public string name;
+        // 목표 값
+        public int total;
+        // 현재 값
+        public int current;
+        // 도전 과제 달성 여부
+        public bool Completed;
+        // 목표 달성 여부 (current >= total 이면 true)
+        public bool isComplete => current >= total;
+
+        public Achievement(string _name, int _total)
         {
-            CompleteObstacle = true;
-            Debug.Log($"회피 업적 완료 : {currentDodgeObstacle} 연속 회피");
-            // ui에 표시. 보상 추가
+            this.name = _name;
+            this.total = _total;
+            this.current = 0;
+            this.Completed = false;
+        }
+
+        public void AddCurrent(int amount = 1)
+        {
+            // 완료된 거면 리턴
+            if (Completed) return;
+
+            // current 증가
+            current += amount;
+
+            // 달성 여부가 true일때
+            if (isComplete)
+            {
+                // 도전 과제 완료
+                Completed = true;
+                Debug.Log($"{name} 업적 달성!");
+                // ui 연결, 보상 추가
+            }
+        }
+
+        public void Reset()
+        {
+            // 미완료 업적일때만 초기화 진행
+            if (!Completed)
+            {
+                current = 0;
+                Debug.Log($"{name} 업적 진행도 초기화됨!");
+            }
         }
     }
 
-    public void DodgedObstacle()
+    // 딕서녀리 사용 (키 타입 string / 데이터 타입 Achievement)
+    private Dictionary<string, Achievement> achievements = new Dictionary<string, Achievement>();
+
+    private void Start()
     {
-        // 회피 성공 시
-        currentDodgeObstacle++;
-
-        Debug.Log("현재 회피 횟수: " + currentDodgeObstacle);
-
-        // 클리어 성공 체크
-        CheckObstacle();
+        // 초기화 진행
+        achievements["Dodge"] = new Achievement("Dodge", 10);
+        achievements["Jelly"] = new Achievement("Jelly", 10);
+        achievements["Score"] = new Achievement("Score", 10);
     }
 
-    public void DodgedReset()
+    public void UpdateAchievement(string name, int amount = 1)
     {
-        // 회피 실패 시
-        currentDodgeObstacle = 0;
-
-        Debug.Log("현재 회피 횟수 초기화");
-    }
-
-    void CheckJelly()
-    {
-        // 젤리 도전 과제 클리어 성공 체크
-        if (!CompleteJelly && (currentCollectJelly >= totalCollectJelly))
+        // 도전 과제 진행 사항 업데이트, 지정된 키가 있을때만 AddCurrent
+        if (achievements.ContainsKey(name))
         {
-            CompleteJelly = true;
-            Debug.Log($"젤리 업적 완료 : {CompleteJelly} 개 먹기!");
-            // ui에 표시, 보상 추가
+            achievements[name].AddCurrent(amount);
         }
     }
 
-    public void CollectedJelly()
+    public bool isAchievementComplete(string name)
     {
-        // 젤리 먹었을 때
-        currentCollectJelly++;
-
-        Debug.Log($"현재 먹은 젤리 개수 : {currentCollectJelly}");
-
-        // 클리어 성공 체크
-        CheckJelly();
+        // 도전 과제 완료 되었는지 체크, 지정된 키가 있는지 그 녀석이 완료 되었는지 확인, 나중에 UI에 연결할 때 쓸 거 같음
+        return achievements.ContainsKey(name) && achievements[name].isComplete;
     }
 
-    void CheckScore()
+    public void RestDodgeAchievement()
     {
-        // 점수 도전 과제 클리어 성공 체크
-        if (!CompleteScore && (currentScore >= totalScore))
+        // 피격 시 회피 도전 과제 리셋, 지정된 키가 있을 때만 Reset
+        if (achievements.ContainsKey("Dodge"))
         {
-            CompleteScore = true;
-            Debug.Log($"점수 업적 완료 : {currentScore} 점 획득");
-            // ui에 표시, 보상 추가
+            achievements["Dodge"].Reset();
         }
-    }
-
-    public void CompareScore(int score)
-    {
-        // 점수 획득 시
-        currentScore = score;
-
-        Debug.Log($"현재 점수 : {currentScore}");
-
-        // 클리어 성공 체크
-        CheckScore();
     }
 }

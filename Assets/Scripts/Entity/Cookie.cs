@@ -10,6 +10,11 @@ public class Cookie : MonoBehaviour
     BoxCollider2D _boxCollider;
     SpriteRenderer _spriteRenderer;
 
+    Vector2 _standOffset;
+    Vector2 _standColSize;
+    Vector2 _slideOffset;
+    Vector2 _slideColSize;
+
     public int cookieId;
     //이름
     public string coookieName;
@@ -49,6 +54,13 @@ public class Cookie : MonoBehaviour
         _animator = GetComponentInChildren<Animator>();
         _boxCollider = GetComponent<BoxCollider2D>();
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
+        _standOffset.x = _boxCollider.offset.x;
+        _standOffset.y = _boxCollider.offset.y;
+        _standColSize.x = _boxCollider.bounds.size.x;
+        _standColSize.y = _boxCollider.bounds.size.y;
+        _slideOffset = new Vector2(_standOffset.x, 0.45f);
+        _slideColSize = new Vector2(_standColSize.x, 0.89f);
     }
 
     private void FixedUpdate()
@@ -105,6 +117,7 @@ public class Cookie : MonoBehaviour
         isJumping = true;
         _animator.SetBool("isJumping", isJumping);
 
+        _rb.velocity = new Vector2(_rb.velocity.x, 0);
         _rb.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
     }
 
@@ -137,15 +150,15 @@ public class Cookie : MonoBehaviour
     {
         SoundManager.Instance.PlaySFX($"Cookie_{cookieId}_Slide");
         isSliding = true;
-        _boxCollider.offset = new Vector2(_boxCollider.offset.x, 0.15f);
-        _boxCollider.size = new Vector2(_boxCollider.size.x, 0.3f);
+        _boxCollider.offset = _slideOffset;
+        _boxCollider.size = _slideColSize;
     }
 
     void EndSlide()//슬라이드 끝
     {
         isSliding = false;
-        _boxCollider.offset = new Vector2(_boxCollider.offset.x, 0.65f);
-        _boxCollider.size = new Vector2(_boxCollider.size.x, 1.3f);
+        _boxCollider.offset = _standOffset;
+        _boxCollider.size = _standColSize;
     }
 
     public void RunBoost(float t, float runSpeed)//부스터
@@ -189,7 +202,7 @@ public class Cookie : MonoBehaviour
     {
         isHit = true;
         _spriteRenderer.color = new Color(1, 1, 1, 0.25f);
-        AchievementManager.Instance.DodgedReset();
+        AchievementManager.Instance.RestDodgeAchievement();
         yield return new WaitForSeconds(t);
 
         isHit = false;

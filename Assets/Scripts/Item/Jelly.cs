@@ -10,6 +10,7 @@ public class Jelly : Item
     public override void ApplyEffect(Cookie cookie)
     {
         SoundManager.Instance.PlaySFX("Jelly");
-        AchievementManager.Instance.CollectedJelly();
+        GameManager.Instance.AddScore(1);
+        AchievementManager.Instance.UpdateAchievement("Jelly", 1);
     }
 }
