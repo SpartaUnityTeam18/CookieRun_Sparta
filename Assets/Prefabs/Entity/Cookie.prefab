@@ -77,7 +77,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cookieId: 0
   coookieName: 
-  hpDecrease: 3
+  hpDecrease: 100
+  isDead: 0
 --- !u!61 &5105865636413776412
 BoxCollider2D:
   m_ObjectHideFlags: 0

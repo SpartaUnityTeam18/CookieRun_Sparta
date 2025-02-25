@@ -221,6 +221,8 @@ public class Cookie : MonoBehaviour
         isDead = true;
         _animator.SetBool("isDead", isDead);
         
+        GameManager.Instance.GameOver();
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

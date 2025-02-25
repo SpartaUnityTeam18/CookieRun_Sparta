@@ -8,7 +8,7 @@ public enum UIState //enum : 열거형→이름이 지정된 상수 집합을 나타내는 값 형식
     InGame,
 }
 
-public class UIManager : MonoBehaviour
+public class UIManager : Singleton<UIManager>
 {
     static UIManager instance;
     public static UIManager Instance
@@ -25,8 +25,12 @@ public class UIManager : MonoBehaviour
 
     ScoreUI scoreUI = null;
 
-    private void Awake()
+    public override void Awake()
     {
+        isGlobal = false;
+        base.Awake();
+
+
         instance = this;
 
         startUI = GetComponentInChildren<StartUI>(true);
@@ -38,6 +42,10 @@ public class UIManager : MonoBehaviour
         ChangeState(UIState.Start);
     }
 
+    private void Start()
+    {
+        GameManager.Instance.uiManager = this;
+    }
 
     public void ChangeState(UIState state)
     {

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ScoreUI : BaseUI
@@ -35,7 +36,7 @@ public class ScoreUI : BaseUI
     }
     void OnClickRestartButton()
     {
-        GameManager.StartGame();
+        SceneManager.LoadScene("Stage_1");
     }
 
     private void Update()

@@ -5,6 +5,9 @@ using UnityEngine.InputSystem.Processors;
 
 public class GameManager : Singleton<GameManager>
 {
+
+    public UIManager uiManager;
+
     //게임 흐른 시간
     public float timePassed;
 
@@ -19,7 +22,7 @@ public class GameManager : Singleton<GameManager>
     private void Update()
     {
         if (!isPlaying) return;
-
+        totalScore++;
         timePassed += Time.deltaTime; //시간 최신화
     }
 
@@ -39,9 +42,13 @@ public class GameManager : Singleton<GameManager>
 
     public void GameOver()
     {
+        isPlaying = false;
+
         if (PlayerPrefs.GetInt("Map1_HighScore", 0) < totalScore) //최고 점수 교체.
         {
            PlayerPrefs.SetInt("Map1_HighScore",totalScore);
         }
+
+        uiManager.ChangeState(UIState.Score);
     }
 }
