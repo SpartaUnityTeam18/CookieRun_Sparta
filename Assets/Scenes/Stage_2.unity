@@ -22139,11 +22139,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8265577967940903117, guid: 7f9458ae5e6c57d41a4c0aad63c89999, type: 3}
+      propertyPath: bgmPlayer
+      value: 
+      objectReference: {fileID: 396242713}
+    - target: {fileID: 8265577967940903117, guid: 7f9458ae5e6c57d41a4c0aad63c89999, type: 3}
+      propertyPath: BGM.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 97233d2b3d20cf64b9902ea581ef36f6, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f9458ae5e6c57d41a4c0aad63c89999, type: 3}
+--- !u!82 &396242713 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1589361711076180398, guid: 7f9458ae5e6c57d41a4c0aad63c89999, type: 3}
+  m_PrefabInstance: {fileID: 396242712}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &432079987
 GameObject:
   m_ObjectHideFlags: 0
