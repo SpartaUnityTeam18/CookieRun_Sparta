@@ -715,6 +715,90 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Item_Giant_0
+      rect:
+        serializedVersion: 2
+        x: 1770
+        y: 1114
+        width: 90
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8437d6a4b6630d46921d5be780fbd08
+      internalID: -1920276098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item_Giant_1
+      rect:
+        serializedVersion: 2
+        x: 1862
+        y: 1114
+        width: 90
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3da1d1d77b28bf440bbe21a2a1da5a2b
+      internalID: 389541226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item_Giant_2
+      rect:
+        serializedVersion: 2
+        x: 1954
+        y: 1114
+        width: 90
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c59ca5de57584f44822d6c2c62095b3
+      internalID: -854405957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Item_Giant_3
+      rect:
+        serializedVersion: 2
+        x: 2046
+        y: 1114
+        width: 90
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a013c065ea244ee47ae293d4b55cf1ce
+      internalID: -1002163964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -726,6 +810,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      Item_Giant_0: -1920276098
+      Item_Giant_1: 389541226
+      Item_Giant_2: -854405957
+      Item_Giant_3: 1104877648
       Item_boost_0: -1989535396
       Item_boost_1: -1338683807
       Item_boost_2: -970703367
