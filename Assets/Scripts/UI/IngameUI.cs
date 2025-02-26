@@ -17,9 +17,12 @@ public class InGameUI : BaseUI
     public Slider healthBar;
     public float decreaseRate = 2f;
 
-    public Cookie cookie;
+    Cookie cookie;
 
-
+    private void Start()
+    {
+        cookie = FindObjectOfType<Cookie>().GetComponent<Cookie>();
+    }
 
     public void Update()
     {
@@ -31,7 +34,7 @@ public class InGameUI : BaseUI
 
     protected override UIState GetUIState()
     {
-        return UIState.Ingame;
+        return UIState.InGame;
     }
     public override void Init(UIManager uiManager)
     {

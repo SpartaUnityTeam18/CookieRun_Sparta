@@ -1,70 +1,75 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
-public enum UIState
+public enum UIState //enum : ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 {
     Start,
     Score,
-    Ingame
+    InGame,
 }
 
-public class UIManager : MonoBehaviour
+public class UIManager : Singleton<UIManager>
 {
-    static UIManager instance;
-    public static UIManager Instance
-    {
-        get
-        {
-            return instance;
-        }
-    }
+    //static UIManager instance;
+    //public static UIManager Instance
+    //{
+    //    get
+    //    {
+    //        return instance;
+    //    }
+    //}
 
     UIState currentState = UIState.Start;
 
-    //StartUI homeUI = null;
+    StartUI startUI;
+    ScoreUI scoreUI;
+    InGameUI ingameUI;
 
-    //ScoreUI scoreUI = null;
-
-    InGameUI ingameUI = null;
-
-    private void Awake()
+    public override void Awake()
     {
-        instance = this;
+        isGlobal = false;
+        base.Awake();
 
-        //startUI = GetComponentInChildren<StartUI>(true);
-        //StartUI?.Init(this);
+        //instance = this;
 
-        //scoreUI = GetComponentInChildren<ScoreUI>(true);
-        //scoreUI?.Init(this);
+        startUI = GetComponentInChildren<StartUI>(true);
+        startUI?.Init(this);
 
+        scoreUI = GetComponentInChildren<ScoreUI>(true);
+        scoreUI?.Init(this);
+        
         ingameUI = GetComponentInChildren<InGameUI>(true);
         ingameUI?.Init(this);
 
-        ChangeState(UIState.Ingame);
+        ChangeState(UIState.Start);
     }
 
+    private void Start()
+    {
+        GameManager.Instance.uiManager = this;
+    }
 
     public void ChangeState(UIState state)
     {
         currentState = state;
-        //StartUI?.SetActive(currentState);
-        //scoreUI?.SetActive(currentState);
+        startUI?.SetActive(currentState);
+        scoreUI?.SetActive(currentState);
         ingameUI?.SetActive(currentState);
     }
 
     public void OnClickStart()
     {
-        //ChangeState(UIState.Game);
+        ChangeState(UIState.InGame);
     }
 
     public void OnClickExit()
     {
-#if UNITY_EDITOR
+        GameManager.Instance.GameOver();
+        ChangeState(UIState.Score);
+#if UNITY_EDITOR //ï¿½ï¿½ï¿½ï¿½Æ¼ ï¿½ï¿½ï¿½ï¿½ï¿½Í¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½Öµï¿½ï¿½ï¿½.
         UnityEditor.EditorApplication.isPlaying = false;
 #else
-        Application.Quit(); // ¾îÇÃ¸®ÄÉÀÌ¼Ç Á¾·á
+        Application.Quit(); // ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 #endif
     }
 }
