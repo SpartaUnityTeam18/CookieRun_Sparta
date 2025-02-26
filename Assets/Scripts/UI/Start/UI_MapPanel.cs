@@ -25,7 +25,7 @@ public class UI_MapPanel : MonoBehaviour
         mapNameText.text = sceneName;
     }
 
-    void PassMap()
+    void PassMap()//맵 선택하면 게임매니저에 알려줌
     {
         GameManager.Instance.SetMap(this);
     }

@@ -21,7 +21,7 @@ public class UI_CookiePanel : MonoBehaviour
         cookieName.text = cookiePrefab.GetComponent<Cookie>().cookieName;
     }
 
-    void PassCookie()
+    void PassCookie()//쿠키 선택하면 게임매니저에 알려줌
     {
         GameManager.Instance.SetCookie(cookiePrefab);
     }

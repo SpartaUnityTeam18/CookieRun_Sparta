@@ -22,7 +22,6 @@ public class UI_Start : MonoBehaviour
     public GameObject mapSelection;
     public GameObject mapPanels;
 
-
     public Button cookieExitButton;
     public Button mapExitButton;
 
@@ -46,7 +45,7 @@ public class UI_Start : MonoBehaviour
         FindMapPanels();
     }
 
-    void FindCookiePanels()
+    void FindCookiePanels()//쿠키 목록 찾아서 버튼 할당
     {
         for (int i = 0; i < cookiePanels.transform.childCount; i++) 
         {
@@ -55,7 +54,7 @@ public class UI_Start : MonoBehaviour
         }
     }
 
-    void FindMapPanels()
+    void FindMapPanels()//맵 목록 찾아서 버튼 할당
     {
         for (int i = 0; i < mapPanels.transform.childCount; i++)
         {
@@ -64,7 +63,7 @@ public class UI_Start : MonoBehaviour
         }
     }
 
-    void OnClickCookiePanelClicked(Button btn)
+    void OnClickCookiePanelClicked(Button btn)//쿠키 선택 버튼 클릭하면 현재 선택된 쿠키 변경
     {
         Cookie cookie = btn.gameObject.GetComponent<UI_CookiePanel>().cookiePrefab.GetComponent<Cookie>();
         cookieImage.sprite = cookie.cookieSprite;
@@ -72,7 +71,7 @@ public class UI_Start : MonoBehaviour
         CookieExitButton();
     }
 
-    void OnClickMapPanelClicked(Button btn)
+    void OnClickMapPanelClicked(Button btn)//맵 선택 버튼 클릭하면 현재 선택된 맵 변경
     {
         UI_MapPanel map = btn.gameObject.GetComponent<UI_MapPanel>();
         mapImage.sprite = map.mapSprite;

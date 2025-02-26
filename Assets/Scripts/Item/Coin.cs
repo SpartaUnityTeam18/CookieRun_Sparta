@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class Coin : Item
 {
+    [SerializeField] private int coin;
     public override void ApplyEffect(Cookie cookie)
     {
         base.ApplyEffect(cookie);
+        GameManager.Instance.AddCoin(coin);
     }
 }

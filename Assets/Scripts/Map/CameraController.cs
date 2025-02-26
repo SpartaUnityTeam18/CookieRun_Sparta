@@ -14,12 +14,12 @@ public class CameraController : MonoBehaviour
     void Start()
     {
         GameObject cookie = new();
-        try
+        try//맵에 생성된 쿠키가 있으면 그거 가져옴
         {
             cookie = FindObjectOfType<Cookie>().gameObject;
             _target = cookie.GetComponent<Transform>();
         }
-        catch
+        catch//맵에 생성된 쿠키가 없으면 새로 생성함
         {
             if (_target == null)
             {

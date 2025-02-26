@@ -14,7 +14,9 @@ public class GameManager : Singleton<GameManager>
 
     public int totalScore;
     public bool isPlaying;
-    
+
+    public int totalCoin;
+
     // 튜토리얼 씬 체크
     public bool isTutorialScene;
 
@@ -64,6 +66,14 @@ public class GameManager : Singleton<GameManager>
     {
         totalScore += score;
         AchievementManager.Instance.UpdateAchievement("Score", totalScore);
+    }
+
+    public void AddCoin(int coin)
+    {
+        totalCoin += coin;
+        PlayerPrefs.SetInt("TotalCoin", totalCoin);
+        PlayerPrefs.Save();
+        Debug.Log($"코인 {totalCoin} 누적");
     }
 
     private void UpdateTutorialState()
