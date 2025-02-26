@@ -19,10 +19,10 @@ public class Cookie : MonoBehaviour
     //이름
     public string coookieName;
     //최대체력
-    private float _maxHp = 162f;
+    public float _maxHp = 162f;
     public float MaxHP { get { return _maxHp; } }
     //체력
-    private float _hp;
+    public float _hp;
     public float HP { get { return _hp; } }
     //속도
     private float _speed = 6f;
@@ -65,6 +65,11 @@ public class Cookie : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GameManager.Instance.isPlaying == false)
+        {
+            return;
+        }
+
         if (isDead) return;//죽으면 아무것도 하지 않게
 
         t += Time.deltaTime;
@@ -89,6 +94,10 @@ public class Cookie : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)//점프 입력(스페이스바)
     {
+        if (GameManager.Instance.isPlaying == false)
+        {
+            return;
+        }
         if (isDead) return;
 
         if (context.started && !isJumping)
@@ -124,6 +133,11 @@ public class Cookie : MonoBehaviour
 
     public void OnSlide(InputAction.CallbackContext context)//슬라이드 입력(쉬프트)
     {
+        if (GameManager.Instance.isPlaying == false)
+        {
+            return ;
+        }
+
         if (isDead) return;
 
         if (context.started) StartSlide();
@@ -219,6 +233,8 @@ public class Cookie : MonoBehaviour
         isDead = true;
         _animator.SetBool("isDead", isDead);
         
+        GameManager.Instance.GameOver();
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

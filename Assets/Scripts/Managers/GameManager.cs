@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem.Processors;
 
 public class GameManager : Singleton<GameManager>
 {
+
+    public UIManager uiManager;
+
     //게임 흐른 시간
     public float timePassed;
 
-    int totalScore;
-
+    public int totalScore;
     public bool isPlaying;
     
     // 튜토리얼 씬 체크
@@ -24,8 +27,10 @@ public class GameManager : Singleton<GameManager>
     private void Update()
     {
         if (!isPlaying) return;
-
+        totalScore++;
         timePassed += Time.deltaTime; //시간 최신화
+
+        totalScore = totalScore + 1;
     }
 
     private void OnEnable()
@@ -64,5 +69,17 @@ public class GameManager : Singleton<GameManager>
     {
         // 현재 씬이 튜토리얼이 아니면 false, 맞으면 true
         isTutorialScene = SceneManager.GetActiveScene().name == "Tutorial";
+    }
+
+    public void GameOver()
+    {
+        isPlaying = false;
+
+        if (PlayerPrefs.GetInt("Map1_HighScore", 0) < totalScore) //최고 점수 교체.
+        {
+           PlayerPrefs.SetInt("Map1_HighScore",totalScore);
+        }
+
+        uiManager.ChangeState(UIState.Score);
     }
 }
