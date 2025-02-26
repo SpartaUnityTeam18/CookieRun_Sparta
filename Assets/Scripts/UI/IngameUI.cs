@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using TMPro;
 using JetBrains.Annotations;
+using UnityEngine.InputSystem;
 
 
 public class InGameUI : BaseUI
@@ -15,6 +16,9 @@ public class InGameUI : BaseUI
     public TextMeshProUGUI highScoreText;
     public Slider healthBar;
     public float decreaseRate = 2f;
+
+    public InputAction inputAction;
+    public Button slideButton;
 
     public void Update()
     {
