@@ -39,7 +39,6 @@ public class Cookie : MonoBehaviour
 
     bool isJumping;
     bool isDoubleJumping;
-    bool isRunning;
     bool isSliding;
     bool isHit;
     public bool isDead;
@@ -49,6 +48,7 @@ public class Cookie : MonoBehaviour
     public GameObject breakEffectPrefab;
     // 거대화 한지 체크
     public bool isGiant = false;
+    public bool isRunning;
 
     float t;
     float invincibleTime = 1f;
@@ -168,10 +168,10 @@ public class Cookie : MonoBehaviour
         _boxCollider.size = _standColSize;
     }
 
-    public void RunBoost(float t, float runSpeed)//부스터
+    public void RunBoost(float t, float runSpeed, float invincible)//부스터
     {
         StartCoroutine(Run(t, runSpeed));
-        StartCoroutine(Invincible(t));
+        StartCoroutine(Invincible(invincible));
     }
 
     public IEnumerator Run(float t, float RunSpeed)//t초 동안 달리기
@@ -208,11 +208,41 @@ public class Cookie : MonoBehaviour
     public IEnumerator Invincible(float t)//피격 시 일시 무적
     {
         isHit = true;
-        _spriteRenderer.color = new Color(1, 1, 1, 0.25f);
-        yield return new WaitForSeconds(t);
+        float boostTime = 0f;
 
-        isHit = false;
-        _spriteRenderer.color = new Color(1, 1, 1, 1);
+        if (!isRunning)
+        {
+            // 알파값 변경해서 반투명으로 해줌
+            _spriteRenderer.color = new Color(1, 1, 1, 0.25f);
+            yield return new WaitForSeconds(t);
+
+            isHit = false;
+
+            // 원래 색상 복귀
+            _spriteRenderer.color = new Color(1, 1, 1, 1);
+        }
+        else
+        {
+            while (boostTime < t * 0.6f)
+            { 
+                // 0 ~ 1 범위를 유지 > random으로 하려고 했는데 그냥 있는 변수를 이용하는 쪽으로 함
+                float hue = (boostTime / t) % 1f;
+
+                 // HSV -> RGB 변환
+                Color rainbowColor = Color.HSVToRGB(hue, 1f, 1f);
+                _spriteRenderer.color = rainbowColor;
+
+                // 0.1초마다 색상 변경
+                yield return new WaitForSeconds(0.1f);
+                boostTime += 0.1f;
+            }
+
+            _spriteRenderer.color = new Color(1, 1, 1, 0.25f);
+            yield return new WaitForSeconds(t * 0.4f);
+
+            isHit = false;
+            _spriteRenderer.color = new Color(1, 1, 1, 1);
+        }
     }
 
     public void Heal(float heal)//체력회복
@@ -263,7 +293,7 @@ public class Cookie : MonoBehaviour
 
     public void Giant()
     {
-        StartCoroutine(GiantCoroutine(2f, 0.5f, 50f, 0.5f));
+        StartCoroutine(GiantCoroutine(2f, 0.5f, 5f, 0.5f));
     }
 
     IEnumerator GiantCoroutine(float maxScale, float giantPeriod, float giantDuration, float resetPeriod)
@@ -319,7 +349,7 @@ public class Cookie : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 충돌한 태그가 장애물이고 거대화 상태일때
-        if (collision.CompareTag("Obstacle") && isGiant)
+        if (collision.CompareTag("Obstacle") && (isGiant || isRunning))
         {
             // ClosestPoint를 사용해서 가장 가까운 충돌체의 지점을 저장
             Vector3 hitPosition = collision.ClosestPoint(transform.position);
@@ -348,10 +378,6 @@ public class Cookie : MonoBehaviour
                 Destroy(effect, 0.6f);
 
                 obstacle.RefreshTile(tilePosition);
-            }
-            else
-            {
-                Debug.LogError("타일이 존재하지 않음!");
             }
         }
     }

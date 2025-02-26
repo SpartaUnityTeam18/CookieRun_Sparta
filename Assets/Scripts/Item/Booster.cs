@@ -12,7 +12,7 @@ public class Booster : Item
     {
         base.ApplyEffect(cookie);
         SoundManager.Instance.PlaySFX("Booster");
-        cookie.RunBoost(3f, 10f);
+        cookie.RunBoost(3f, 10f, 5f);
     }
 }
  

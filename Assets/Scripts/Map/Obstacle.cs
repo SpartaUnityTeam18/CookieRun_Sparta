@@ -16,7 +16,7 @@ public class Obstacle : MonoBehaviour
         // null이 아니면 HIt 실행
         if (cookie != null )
         {
-            if (!cookie.isGiant)
+            if (!cookie.isGiant && !cookie.isRunning)
             {
                 AchievementManager.Instance.RestDodgeAchievement();
                 cookie.Hit(10f);
