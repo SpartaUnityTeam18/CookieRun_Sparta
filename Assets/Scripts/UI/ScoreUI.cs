@@ -52,6 +52,6 @@ public class ScoreUI : BaseUI
 
     void UpDateHighScore()
     {
-       BestScore.text = PlayerPrefs.GetInt("Map1_HighScore",0).ToString();
+       BestScore.text = PlayerPrefs.GetInt($"Map_{GameManager.Instance.sceneName.Split('_')[1]}_HighScore",0).ToString();
     }
 }

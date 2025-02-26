@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class UI_Start : MonoBehaviour
+public class UI_Select : MonoBehaviour
 {
     public Image cookieImage;
     public Image mapImage;
@@ -25,6 +25,9 @@ public class UI_Start : MonoBehaviour
     public Button cookieExitButton;
     public Button mapExitButton;
 
+    List<UI_CookiePanel> cookiePanelsList = new();
+    List<UI_MapPanel> mapPanelsList = new();
+
     void Start()
     {
         cookieImage.sprite = GameManager.Instance.cookiePrefab.GetComponent<Cookie>().cookieSprite;
@@ -41,15 +44,22 @@ public class UI_Start : MonoBehaviour
         mapExitButton.onClick.AddListener(MapExitButton);
         startButton.onClick.AddListener(StartButton);
 
+        //쿠키, 맵 목록 찾기
         FindCookiePanels();
         FindMapPanels();
+
+        //천사맛, 맵 2, 3 잠금 확인
+        cookiePanelsList[1].SetLock(AchievementManager.Instance.isAchievementComplete("Jelly"));
+        mapPanelsList[1].SetLock(AchievementManager.Instance.isAchievementComplete("Dodge"));
+        mapPanelsList[1].SetLock(AchievementManager.Instance.isAchievementComplete("Score"));
     }
 
     void FindCookiePanels()//쿠키 목록 찾아서 버튼 할당
     {
         for (int i = 0; i < cookiePanels.transform.childCount; i++) 
         {
-            Button button = cookiePanels.transform.GetChild(i).GetComponent<Button>();
+            cookiePanelsList.Add(cookiePanels.transform.GetChild(i).GetComponent<UI_CookiePanel>());
+            Button button = cookiePanelsList[i].cookieButton;
             button.onClick.AddListener(() => OnClickCookiePanelClicked(button));
         }
     }
@@ -58,14 +68,15 @@ public class UI_Start : MonoBehaviour
     {
         for (int i = 0; i < mapPanels.transform.childCount; i++)
         {
-            Button button = mapPanels.transform.GetChild(i).GetComponent<Button>();
+            mapPanelsList.Add(mapPanels.transform.GetChild(i).GetComponent<UI_MapPanel>());
+            Button button = mapPanelsList[i].mapButton;
             button.onClick.AddListener(() => OnClickMapPanelClicked(button));
         }
     }
 
     void OnClickCookiePanelClicked(Button btn)//쿠키 선택 버튼 클릭하면 현재 선택된 쿠키 변경
     {
-        Cookie cookie = btn.gameObject.GetComponent<UI_CookiePanel>().cookiePrefab.GetComponent<Cookie>();
+        Cookie cookie = btn.transform.parent.GetComponent<UI_CookiePanel>().cookiePrefab.GetComponent<Cookie>();
         cookieImage.sprite = cookie.cookieSprite;
         cookieText.text = cookie.cookieName;
         CookieExitButton();
@@ -73,7 +84,7 @@ public class UI_Start : MonoBehaviour
 
     void OnClickMapPanelClicked(Button btn)//맵 선택 버튼 클릭하면 현재 선택된 맵 변경
     {
-        UI_MapPanel map = btn.gameObject.GetComponent<UI_MapPanel>();
+        UI_MapPanel map = btn.transform.parent.GetComponent<UI_MapPanel>();
         mapImage.sprite = map.mapSprite;
         mapText.text = map.sceneName;
         MapExitButton();

@@ -41,7 +41,7 @@ public class InGameUI : BaseUI
 
     public void highscoreUpdate()
     {
-        highScoreText.text = PlayerPrefs.GetInt("Map_1_highScore", 0).ToString();
+        highScoreText.text = PlayerPrefs.GetInt($"Map_{GameManager.Instance.sceneName.Split('_')[1]}_highScore", 0).ToString();
     }
 
     public void healthBarUpdate()
