@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 221345980753702684}
   - component: {fileID: 1088528679696534090}
   - component: {fileID: 3577691032394574382}
-  - component: {fileID: 860118479488412510}
+  - component: {fileID: 44058600821112254}
   m_Layer: 7
   m_Name: Small_GoldCoin
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -153,7 +153,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.58, y: 0.59}
   m_EdgeRadius: 0
---- !u!114 &860118479488412510
+--- !u!114 &44058600821112254
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,7 +162,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 8185646708560567676}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4db1ed271e4d461439e6e7c535fb653d, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ed1bd446926b5844905ec39fd5e58e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   addScore: 10
+  coin: 30
