@@ -26,12 +26,6 @@ public class GameManager : Singleton<GameManager>
         totalScore = totalScore + 1;
     }
 
-    //private void Awake()
-    //{
-    //    coin = PlayerPrefs.GetInt("coin_Save", 0);
-    //    PlayerPrefs.Save(); //(SetInt)
-    //}
-
     public void StartGame()//게임 시작
     {
         isPlaying = true;
@@ -51,7 +45,7 @@ public class GameManager : Singleton<GameManager>
         totalCoin += coin;
         PlayerPrefs.SetInt("TotalCoin", totalCoin);
         PlayerPrefs.Save();
-        Debug.Log($"코인 {coin} 누적");
+        Debug.Log($"코인 {totalCoin} 누적");
     }
 
     public void GameOver()
