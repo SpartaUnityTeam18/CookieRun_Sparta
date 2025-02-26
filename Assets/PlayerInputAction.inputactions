@@ -48,6 +48,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "TT",
+            "id": "203f5dcc-fea9-4fb8-8ef7-13fc4ebfac33",
+            "actions": [
+                {
+                    "name": "enter",
+                    "type": "Button",
+                    "id": "54f91889-cf2c-407e-af89-81b13082a291",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0c6d602c-a261-47c3-acbf-2f1ef137420c",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "enter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
