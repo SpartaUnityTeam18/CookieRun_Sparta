@@ -41,6 +41,7 @@ public class Cookie : MonoBehaviour
     bool isRunning;
     bool isSliding;
     bool isHit;
+    bool isGiant = false;
     public bool isDead;
 
     float t;
@@ -253,4 +254,59 @@ public class Cookie : MonoBehaviour
         _rb.AddForce(Vector2.up * 30f, ForceMode2D.Impulse);
         GameManager.Instance.isPlaying = true;
     }
+
+    public void Giant()
+    {
+        StartCoroutine(GiantCoroutine(2f, 0.5f, 5f, 0.5f));
+    }
+
+    IEnumerator GiantCoroutine(float maxScale, float giantPeriod, float giantDuration, float resetPeriod)
+    {
+        // 코루틴 사용해서 일정 시간동안 커지고 다시 작아지게 함    GiantCoroutine( 최대 크기, 커지는 기간, 거대화 지속 시간, 줄어드는 기간 )
+        // isGiant가 false일때만 작동 > 이미 거대화 했으면 중복 안되게 했음
+        if (isGiant) yield break;
+
+        isGiant = true;
+
+        // 처음 크기 저장
+        Vector3 startScale = transform.localScale;
+        // 다 커졌을때 크기
+        Vector3 endScale = new Vector3(maxScale, maxScale, 1f);
+
+        // 점점 커질수 있게 만들려고  time 선언 후 giantPeriod 보다 작을때 반복
+        float time = 0f;
+
+        while(time < giantPeriod)
+        {
+            // lerp를 통해 점점 커지는 느낌을 줌        (   시작 크기,      목표 크기,      보간 비율 (나눈 이유 : 다 넣어보고 해봤는데 이게 젤 자연스러웠음)  )
+            transform.localScale = Vector3.Lerp(startScale, endScale, time / giantPeriod);
+            // time 갱신
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        // 반복문 끝났으면 다 커졌을때 크기로 
+        transform.localScale = endScale;
+
+        // 지속시간 만큼 기다렸다가 아래 실행
+        yield return new WaitForSeconds(giantDuration);
+
+        // 마찬가지로 점점 줄어들게 하려고 다시 time 초기화
+        time = 0f;
+        
+        while (time < resetPeriod)
+        {
+            // lerp를 통해 점점 작아짐      (시작 크기 (다 커졌을때),  목표 크기(처음 크기),  보간 비율)
+            transform.localScale = Vector3.Lerp(endScale, startScale, time / resetPeriod);
+            // time 갱신
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        // 반복문 끝났으면 다시 처음 크기로
+        transform.localScale = startScale;
+
+        // 거대화 끝 > isGiant false로 해서 다시 먹으면 작동하게 해줌
+        isGiant = false;
+    }  
 }

@@ -185,4 +185,5 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4b8000f7d46fb0c48aab47b5b29a0160, type: 3}
   - {fileID: 8300000, guid: 95b9a8fefe9c0ac49a0d0c27caf08bf8, type: 3}
   - {fileID: 8300000, guid: b06ee64b2894df042a78fc1f40d16d11, type: 3}
+  bgmPlayer: {fileID: 0}
   audioMixer: {fileID: 24100000, guid: 87cc6c91aca68ed4ca2b6097a6aae69a, type: 2}
