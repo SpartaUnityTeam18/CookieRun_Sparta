@@ -7,6 +7,10 @@ TagManager:
   - Ground
   - Cookie
   - Grounds
+  - ForeGround
+  - BackGround
+  - Obstacle
+  - Item
   layers:
   - Default
   - TransparentFX
