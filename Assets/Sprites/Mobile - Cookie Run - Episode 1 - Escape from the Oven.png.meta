@@ -358,6 +358,90 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: background_11
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 2361
+        width: 599
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6eb7acc5485e01a47b90aa426b14380d
+      internalID: -1514457945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: foreground_11_1
+      rect:
+        serializedVersion: 2
+        x: 604
+        y: 2361
+        width: 600
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea9446df60f129a47b07dd38402353f2
+      internalID: -762545793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: foreground_11_2
+      rect:
+        serializedVersion: 2
+        x: 1206
+        y: 2361
+        width: 600
+        height: 320
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8f4415efc91356449aa847a1c5eb51e
+      internalID: 1908433340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: foreground_11_3
+      rect:
+        serializedVersion: 2
+        x: 1892
+        y: 2698
+        width: 599
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2851ff0fd53a384393570d236bf1beb
+      internalID: 442648807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -371,10 +455,14 @@ TextureImporter:
     nameFileIdTable:
       backgounrd_0: -970193951
       background_1: -2057717544
+      background_11: -1514457945
       background_2: 873556427
       background_3: 86728960
       foreground_0: 910847302
       foreground_1: 2137675363
+      foreground_11_1: -762545793
+      foreground_11_2: 1908433340
+      foreground_11_3: 442648807
       foreground_2_0: 1475372961
       foreground_2_1: 361665333
       foreground_2_2: -133300138
