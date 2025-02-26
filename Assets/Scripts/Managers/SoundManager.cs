@@ -16,6 +16,13 @@ public class SoundManager : Singleton<SoundManager>
     string MIXER_BGM = "BGM";//배경 볼륨
     string MIXER_SFX = "SFX";//효과음 볼륨
 
+    private void Awake()
+    {
+        base.Awake();
+
+        LoadVolume();
+    }
+
     public void PlayBGM(string name)//배경음악 재생
     {
         foreach (AudioClip clip in BGM)
@@ -85,21 +92,59 @@ public class SoundManager : Singleton<SoundManager>
         StopAllSFX();
     }
 
+    public float GetMasterVolume()
+    {
+        audioMixer.GetFloat(MIXER_MASTER, out float volume);
+        return volume;
+    }
+
     public void SetMasterVolume(float volume)//전체 볼륨 조절(0~1)
     {
         volume = Mathf.Max(volume, 0.0001f);
         audioMixer.SetFloat(MIXER_MASTER, Mathf.Log10(volume) * 20);
+
+        SaveVolume();
+    }
+
+    public float GetBGMVolume()
+    {
+        audioMixer.GetFloat(MIXER_BGM, out float volume);
+        return volume;
     }
 
     public void SetBGMVolume(float volume)//배경음악 볼륨 조절(0~1)
     {
         volume = Mathf.Max(volume, 0.0001f);
         audioMixer.SetFloat(MIXER_BGM, Mathf.Log10(volume) * 20);
+
+        SaveVolume();
+    }
+
+    public float GetSFXVolume()
+    {
+        audioMixer.GetFloat(MIXER_SFX, out float volume);
+        return volume;
     }
 
     public void SetSFXVolume(float volume)//효과음 볼륨 조절(0~1)
     {
         volume = Mathf.Max(volume, 0.0001f);
         audioMixer.SetFloat(MIXER_SFX, Mathf.Log10(volume) * 20);
+
+        SaveVolume();
+    }
+
+    public void SaveVolume()
+    {
+        PlayerPrefs.SetFloat("MasterVolume", GetMasterVolume());
+        PlayerPrefs.SetFloat("BGMVolume", GetBGMVolume());
+        PlayerPrefs.SetFloat("SFXVolume", GetSFXVolume());
+    }
+
+    public void LoadVolume()
+    {
+        SetMasterVolume(PlayerPrefs.GetFloat("MasterVolume", 0.5f));
+        SetBGMVolume(PlayerPrefs.GetFloat("BGMVolume", 0.5f));
+        SetSFXVolume(PlayerPrefs.GetFloat("SFXVolume", 0.5f));
     }
 }

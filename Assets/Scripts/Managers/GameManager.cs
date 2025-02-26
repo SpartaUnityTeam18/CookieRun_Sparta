@@ -22,6 +22,8 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+        totalCoin = PlayerPrefs.GetInt("Coin", 0);
+
         UpdateTutorialState();
     }
 
@@ -61,6 +63,7 @@ public class GameManager : Singleton<GameManager>
         timePassed = 0;
         totalScore = 0;
         SoundManager.Instance.PlayBGM($"Bgm_Map_{sceneName.Split('_')[1]}");
+        Debug.Log($"Bgm_Map_{sceneName.Split('_')[1]}");
     }
 
     public void AddScore(int score)
@@ -91,6 +94,8 @@ public class GameManager : Singleton<GameManager>
         {
            PlayerPrefs.SetInt($"Map_{GameManager.Instance.sceneName.Split('_')[1]}_HighScore",totalScore);
         }
+
+        PlayerPrefs.SetInt("Coin", totalCoin);
 
         uiManager.ChangeState(UIState.Score);
 

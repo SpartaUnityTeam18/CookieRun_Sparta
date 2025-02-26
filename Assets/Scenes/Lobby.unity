@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 40650315}
   - component: {fileID: 40650314}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: BGMText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -886,7 +886,7 @@ GameObject:
   - component: {fileID: 292256692}
   - component: {fileID: 292256691}
   m_Layer: 5
-  m_Name: Text (TMP) (3)
+  m_Name: MasterText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1466,8 +1466,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000020981, y: 0}
-  m_SizeDelta: {x: 899.5967, y: 603.3964}
+  m_AnchoredPosition: {x: -0.000020981, y: 49.5153}
+  m_SizeDelta: {x: 899.5967, y: 504.3659}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &419770914
 MonoBehaviour:
@@ -2218,6 +2218,7 @@ GameObject:
   - component: {fileID: 603639581}
   - component: {fileID: 603639583}
   - component: {fileID: 603639582}
+  - component: {fileID: 603639584}
   m_Layer: 5
   m_Name: UI_LevelUp
   m_TagString: Untagged
@@ -2287,6 +2288,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 603639580}
   m_CullTransparentMesh: 1
+--- !u!114 &603639584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603639580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9e1a365dfbae1942af98dd2ecf9fa46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &636878743
 GameObject:
   m_ObjectHideFlags: 0
@@ -2488,7 +2501,7 @@ GameObject:
   - component: {fileID: 694061848}
   - component: {fileID: 694061847}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: SFXText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3002,7 +3015,7 @@ GameObject:
   - component: {fileID: 933289650}
   - component: {fileID: 933289651}
   m_Layer: 5
-  m_Name: Slider (2)
+  m_Name: SFXSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3167,7 +3180,7 @@ GameObject:
   - component: {fileID: 959389078}
   - component: {fileID: 959389079}
   m_Layer: 5
-  m_Name: Slider (1)
+  m_Name: BGMSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3257,6 +3270,7 @@ GameObject:
   - component: {fileID: 992325558}
   - component: {fileID: 992325560}
   - component: {fileID: 992325559}
+  - component: {fileID: 992325561}
   m_Layer: 5
   m_Name: UI_Option
   m_TagString: Untagged
@@ -3329,6 +3343,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 992325557}
   m_CullTransparentMesh: 1
+--- !u!114 &992325561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992325557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e8b71ee2c0a2554f86d4884f0aa031d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MasterSlider: {fileID: 1438063498}
+  BGMSlider: {fileID: 959389079}
+  SFXSlider: {fileID: 933289651}
 --- !u!1 &998591802
 GameObject:
   m_ObjectHideFlags: 0
@@ -5060,7 +5089,7 @@ GameObject:
   - component: {fileID: 1438063497}
   - component: {fileID: 1438063498}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: MasterSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5419,7 +5448,7 @@ MonoBehaviour:
   m_Padding:
     m_Left: 20
     m_Right: 20
-    m_Top: 60
+    m_Top: 20
     m_Bottom: 20
   m_ChildAlignment: 0
   m_Spacing: 20
@@ -5623,8 +5652,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -62}
+  m_SizeDelta: {x: 0, y: -62}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1506866469
 MonoBehaviour:
