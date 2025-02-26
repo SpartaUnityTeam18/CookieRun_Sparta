@@ -42,9 +42,13 @@ public class Cookie : MonoBehaviour
     bool isRunning;
     bool isSliding;
     bool isHit;
-    public bool isGiant = false;
     public bool isDead;
+
+    // 파괴 대상 타일맵
     public Tilemap obstacle;
+    public GameObject breakEffectPrefab;
+    // 거대화 한지 체크
+    public bool isGiant = false;
 
     float t;
     float invincibleTime = 1f;
@@ -314,14 +318,18 @@ public class Cookie : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // 충돌한 태그가 장애물이고 거대화 상태일때
         if (collision.CompareTag("Obstacle") && isGiant)
         {
+            // ClosestPoint를 사용해서 가장 가까운 충돌체의 지점을 저장
             Vector3 hitPosition = collision.ClosestPoint(transform.position);
+            // 월드의 셀 위치로 타일의 포시션을 저장(Vector3Int를 사용해야 나중에 setTile 가능)
             Vector3Int tilePosition = obstacle.WorldToCell(hitPosition);
 
+            // 여기서 부터 좌표 보정 > 원래 안했는데 이거 안해주면 좌표가 불일치해서 파괴가 안됨...
             if (!obstacle.HasTile(tilePosition))
             {
-                tilePosition.x += 1; 
+                tilePosition.x += 1;
                 tilePosition.y += 1;
             }
             if (!obstacle.HasTile(tilePosition))
@@ -329,21 +337,16 @@ public class Cookie : MonoBehaviour
                 tilePosition.y += 1;
             }
 
-            if (!obstacle.HasTile(tilePosition))
-            {
-                tilePosition.x -= 2;
-                tilePosition.y -= 2;
-            }
-            if (!obstacle.HasTile(tilePosition))
-            {
-                tilePosition.y -= 1;
-            }
-
-            // 타일이 존재하는지 체크
+            // 타일이 존재하는지 체크 후 파괴
             if (obstacle.HasTile(tilePosition))
             {
                 SoundManager.Instance.PlaySFX("Destroy");
                 obstacle.SetTile(tilePosition, null);
+
+                // 파티클 이펙트 추가 (충돌 위치에 생성)
+                GameObject effect = Instantiate(breakEffectPrefab, hitPosition, Quaternion.identity);
+                Destroy(effect, 0.6f);
+
                 obstacle.RefreshTile(tilePosition);
             }
             else
