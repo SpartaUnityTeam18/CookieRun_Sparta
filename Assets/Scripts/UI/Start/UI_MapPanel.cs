@@ -8,20 +8,19 @@ public class UI_MapPanel : MonoBehaviour
 {
     public string sceneName;
 
-    Button mapButton;
+    public Button mapButton;
 
-    Image mapImage;
+    public GameObject mapLocked;
+
+    public Image mapImage;
     public Sprite mapSprite;
     public TextMeshProUGUI mapNameText;
 
     private void Start()
     {
-        mapImage = GetComponent<Image>();
-
-        mapButton = GetComponent<Button>();
         mapButton.onClick.AddListener(PassMap);
 
-        mapSprite = mapImage.sprite;
+        mapImage.sprite = mapSprite;
         mapNameText.text = sceneName;
     }
 

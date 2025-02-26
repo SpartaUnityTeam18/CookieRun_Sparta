@@ -7,14 +7,15 @@ using UnityEngine.UI;
 public class UI_CookiePanel : MonoBehaviour
 {
     public GameObject cookiePrefab;
-    Button cookieButton;
+    public Button cookieButton;
+
+    public GameObject cookieLocked;
 
     public Image cookieImage;
     public TextMeshProUGUI cookieName;
 
     private void Start()
     {
-        cookieButton = GetComponent<Button>();
         cookieButton.onClick.AddListener(PassCookie);
 
         cookieImage.sprite = cookiePrefab.GetComponent<Cookie>().cookieSprite;
