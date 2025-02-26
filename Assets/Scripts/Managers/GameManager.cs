@@ -25,6 +25,7 @@ public class GameManager : Singleton<GameManager>
 
     public GameObject cookiePrefab;
     public string sceneName = "stage_1";
+    public Sprite sceneSprite;
 
     private void Update()
     {
@@ -88,8 +89,9 @@ public class GameManager : Singleton<GameManager>
         cookiePrefab = cookie;
     }
 
-    public void SetMap(string name)
+    public void SetMap(UI_MapPanel map)
     {
-        sceneName = name;
+        sceneName = map.sceneName;
+        sceneSprite = map.mapSprite;
     }
 }
