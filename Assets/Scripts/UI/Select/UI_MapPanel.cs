@@ -28,4 +28,9 @@ public class UI_MapPanel : MonoBehaviour
     {
         GameManager.Instance.SetMap(this);
     }
+
+    public void SetLock(bool flag)
+    {
+        mapLocked.SetActive(!flag);
+    }
 }

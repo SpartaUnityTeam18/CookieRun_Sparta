@@ -26,4 +26,9 @@ public class UI_CookiePanel : MonoBehaviour
     {
         GameManager.Instance.SetCookie(cookiePrefab);
     }
+
+    public void SetLock(bool flag)
+    {
+        cookieLocked.SetActive(!flag);
+    }
 }

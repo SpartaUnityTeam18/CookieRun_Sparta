@@ -26,7 +26,7 @@ public class GameManager : Singleton<GameManager>
     }
 
     public GameObject cookiePrefab;
-    public string sceneName = "stage_1";
+    public string sceneName = "Stage_1";
     public Sprite sceneSprite;
 
     private void Update()
@@ -87,9 +87,9 @@ public class GameManager : Singleton<GameManager>
     {
         isPlaying = false;
 
-        if (PlayerPrefs.GetInt("Map1_HighScore", 0) < totalScore) //최고 점수 교체.
+        if (PlayerPrefs.GetInt($"Map_{GameManager.Instance.sceneName.Split('_')[1]}_HighScore", 0) < totalScore) //최고 점수 교체.
         {
-           PlayerPrefs.SetInt("Map1_HighScore",totalScore);
+           PlayerPrefs.SetInt($"Map_{GameManager.Instance.sceneName.Split('_')[1]}_HighScore",totalScore);
         }
 
         uiManager.ChangeState(UIState.Score);

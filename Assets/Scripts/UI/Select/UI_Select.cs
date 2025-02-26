@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class UI_Start : MonoBehaviour
+public class UI_Select : MonoBehaviour
 {
     public Image cookieImage;
     public Image mapImage;
@@ -44,8 +44,14 @@ public class UI_Start : MonoBehaviour
         mapExitButton.onClick.AddListener(MapExitButton);
         startButton.onClick.AddListener(StartButton);
 
+        //쿠키, 맵 목록 찾기
         FindCookiePanels();
         FindMapPanels();
+
+        //천사맛, 맵 2, 3 잠금 확인
+        cookiePanelsList[1].SetLock(AchievementManager.Instance.isAchievementComplete("Jelly"));
+        mapPanelsList[1].SetLock(AchievementManager.Instance.isAchievementComplete("Dodge"));
+        mapPanelsList[1].SetLock(AchievementManager.Instance.isAchievementComplete("Score"));
     }
 
     void FindCookiePanels()//쿠키 목록 찾아서 버튼 할당
