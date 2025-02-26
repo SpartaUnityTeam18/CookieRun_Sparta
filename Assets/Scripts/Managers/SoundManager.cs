@@ -54,6 +54,7 @@ public class SoundManager : Singleton<SoundManager>
                 sfx.transform.SetParent(transform);
                 AudioSource newSource = sfx.AddComponent<AudioSource>();
                 newSource.clip = SFX[i];
+                newSource.outputAudioMixerGroup = audioMixer.FindMatchingGroups(MIXER_SFX)[0];
                 newSource.loop = false;
                 newSource.Play();
                 sfxPlayer.Add(newSource);

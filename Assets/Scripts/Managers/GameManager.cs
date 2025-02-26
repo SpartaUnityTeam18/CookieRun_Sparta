@@ -36,5 +36,6 @@ public class GameManager : Singleton<GameManager>
     public void AddScore(int score)
     {
         totalScore += score;
+        AchievementManager.Instance.UpdateAchievement("Score", totalScore);
     }
 }
