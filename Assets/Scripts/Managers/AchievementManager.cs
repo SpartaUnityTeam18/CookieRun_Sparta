@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-// 도전 과제 매니저
+// 도전 과제 매니저   현재 씬이름 받아와서 작동 여부 해보기
 public class AchievementManager : Singleton<AchievementManager>
 {
     public class Achievement
@@ -70,8 +71,8 @@ public class AchievementManager : Singleton<AchievementManager>
 
     public void UpdateAchievement(string name, int amount = 1)
     {
-        // 도전 과제 진행 사항 업데이트, 지정된 키가 있을때만 AddCurrent
-        if (achievements.ContainsKey(name))
+        // 도전 과제 진행 사항 업데이트, 지정된 키가 있을때 isTutorialScene이 false 일때
+        if (achievements.ContainsKey(name) && !GameManager.Instance.isTutorialScene)
         {
             achievements[name].AddCurrent(amount);
         }
@@ -85,8 +86,8 @@ public class AchievementManager : Singleton<AchievementManager>
 
     public void RestDodgeAchievement()
     {
-        // 피격 시 회피 도전 과제 리셋, 지정된 키가 있을 때만 Reset
-        if (achievements.ContainsKey("Dodge"))
+        // 피격 시 회피 도전 과제 리셋, 지정된 키가 있을 때 isTutorialScene이 false 일때 Reset
+        if (achievements.ContainsKey("Dodge") && !GameManager.Instance.isTutorialScene)
         {
             achievements["Dodge"].Reset();
         }
