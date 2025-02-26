@@ -23,13 +23,16 @@ public class UI_Option : MonoBehaviour
     void OnMasterSliderChanged(float value)
     {
         masterSlider.value = value;
+        SoundManager.Instance.SetMasterVolume(masterSlider.value);
     }
     void OnBGMSliderChanged(float value)
     {
         bgmSlider.value = value;
+        SoundManager.Instance.SetBGMVolume(bgmSlider.value);
     }
     void OnSFXSliderChanged(float value)
     {
         sfxSlider.value = value;
+        SoundManager.Instance.SetSFXVolume(sfxSlider.value);
     }
 }

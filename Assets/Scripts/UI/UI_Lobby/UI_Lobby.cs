@@ -33,6 +33,9 @@ public class UI_Lobby : MonoBehaviour
         optionCloseButton.onClick.AddListener(OnOptionCloseButtonClicked);
 
         UpdateCoin();
+
+        SoundManager.Instance.StopAllSound();
+        SoundManager.Instance.PlayBGM("Bgm_Lobby_0");
     }
 
     void UpdateCoin()

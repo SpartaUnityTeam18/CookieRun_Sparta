@@ -16,10 +16,13 @@ public class SoundManager : Singleton<SoundManager>
     string MIXER_BGM = "BGM";//¹è°æ º¼·ý
     string MIXER_SFX = "SFX";//È¿°úÀ½ º¼·ý
 
-    private void Awake()
+    public override void Awake()
     {
         base.Awake();
+    }
 
+    private void Start()
+    {
         LoadVolume();
     }
 
@@ -95,7 +98,7 @@ public class SoundManager : Singleton<SoundManager>
     public float GetMasterVolume()
     {
         audioMixer.GetFloat(MIXER_MASTER, out float volume);
-        return volume;
+        return Mathf.Pow(10, volume / 20);
     }
 
     public void SetMasterVolume(float volume)//ÀüÃ¼ º¼·ý Á¶Àý(0~1)
@@ -103,13 +106,13 @@ public class SoundManager : Singleton<SoundManager>
         volume = Mathf.Max(volume, 0.0001f);
         audioMixer.SetFloat(MIXER_MASTER, Mathf.Log10(volume) * 20);
 
-        SaveVolume();
+        PlayerPrefs.SetFloat("MasterVolume", GetMasterVolume());
     }
 
     public float GetBGMVolume()
     {
         audioMixer.GetFloat(MIXER_BGM, out float volume);
-        return volume;
+        return Mathf.Pow(10, volume / 20);
     }
 
     public void SetBGMVolume(float volume)//¹è°æÀ½¾Ç º¼·ý Á¶Àý(0~1)
@@ -117,13 +120,13 @@ public class SoundManager : Singleton<SoundManager>
         volume = Mathf.Max(volume, 0.0001f);
         audioMixer.SetFloat(MIXER_BGM, Mathf.Log10(volume) * 20);
 
-        SaveVolume();
+        PlayerPrefs.SetFloat("BGMVolume", GetBGMVolume());
     }
 
     public float GetSFXVolume()
     {
         audioMixer.GetFloat(MIXER_SFX, out float volume);
-        return volume;
+        return Mathf.Pow(10, volume / 20);
     }
 
     public void SetSFXVolume(float volume)//È¿°úÀ½ º¼·ý Á¶Àý(0~1)
@@ -131,20 +134,13 @@ public class SoundManager : Singleton<SoundManager>
         volume = Mathf.Max(volume, 0.0001f);
         audioMixer.SetFloat(MIXER_SFX, Mathf.Log10(volume) * 20);
 
-        SaveVolume();
-    }
-
-    public void SaveVolume()
-    {
-        PlayerPrefs.SetFloat("MasterVolume", GetMasterVolume());
-        PlayerPrefs.SetFloat("BGMVolume", GetBGMVolume());
         PlayerPrefs.SetFloat("SFXVolume", GetSFXVolume());
     }
 
     public void LoadVolume()
     {
-        SetMasterVolume(PlayerPrefs.GetFloat("MasterVolume", 0.5f));
-        SetBGMVolume(PlayerPrefs.GetFloat("BGMVolume", 0.5f));
-        SetSFXVolume(PlayerPrefs.GetFloat("SFXVolume", 0.5f));
+        SetMasterVolume(PlayerPrefs.GetFloat("MasterVolume", 1f));
+        SetBGMVolume(PlayerPrefs.GetFloat("BGMVolume", 1f));
+        SetSFXVolume(PlayerPrefs.GetFloat("SFXVolume", 1f));
     }
 }
