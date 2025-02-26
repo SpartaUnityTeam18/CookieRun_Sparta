@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8965028535812359187}
   - component: {fileID: 7182033085666123818}
   - component: {fileID: 4112889084589574009}
-  - component: {fileID: 7617552240185961547}
+  - component: {fileID: 4532917886236123935}
   m_Layer: 7
   m_Name: Large_GoldCoin
   m_TagString: Untagged
@@ -153,7 +153,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.61, y: 1.61}
   m_EdgeRadius: 0
---- !u!114 &7617552240185961547
+--- !u!114 &4532917886236123935
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,7 +162,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 5380771599125096530}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4db1ed271e4d461439e6e7c535fb653d, type: 3}
+  m_Script: {fileID: 11500000, guid: 3ed1bd446926b5844905ec39fd5e58e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   addScore: 30
+  coin: 50

@@ -12491,6 +12491,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -483900485414236223, guid: 7489bc3bab07393469edd1e3ffb97a99, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1930727044}
+    - target: {fileID: -483900485414236223, guid: 7489bc3bab07393469edd1e3ffb97a99, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -12711,6 +12715,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!20 &1930727044 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 493122058306899707, guid: f6831b2f4131243439fecbad19ff8cb8, type: 3}
+  m_PrefabInstance: {fileID: 952101698}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1932803231
 PrefabInstance:
   m_ObjectHideFlags: 0

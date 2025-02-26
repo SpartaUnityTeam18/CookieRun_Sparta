@@ -14,6 +14,9 @@ public class GameManager : Singleton<GameManager>
     public int totalScore;
     public bool isPlaying;
 
+    public int totalCoin;
+
+
     private void Update()
     {
         if (!isPlaying) return;
@@ -22,6 +25,12 @@ public class GameManager : Singleton<GameManager>
 
         totalScore = totalScore + 1;
     }
+
+    //private void Awake()
+    //{
+    //    coin = PlayerPrefs.GetInt("coin_Save", 0);
+    //    PlayerPrefs.Save(); //(SetInt)
+    //}
 
     public void StartGame()//게임 시작
     {
@@ -35,6 +44,14 @@ public class GameManager : Singleton<GameManager>
     {
         totalScore += score;
         AchievementManager.Instance.UpdateAchievement("Score", totalScore);
+    }
+
+    public void AddCoin(int coin)
+    {
+        totalCoin += coin;
+        PlayerPrefs.SetInt("TotalCoin", totalCoin);
+        PlayerPrefs.Save();
+        Debug.Log($"코인 {coin} 누적");
     }
 
     public void GameOver()
