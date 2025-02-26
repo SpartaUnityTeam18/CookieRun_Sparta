@@ -2546,7 +2546,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD6A8\uACFC\uC74C \uBCFC"
+  m_text: "\uD6A8\uACFC\uC74C \uBCFC\uB968"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 20b3fd4e5b2b3514a93f268561d5ddfd, type: 2}
   m_sharedMaterial: {fileID: 2780152771142769943, guid: 20b3fd4e5b2b3514a93f268561d5ddfd, type: 2}
@@ -3355,9 +3355,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e8b71ee2c0a2554f86d4884f0aa031d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MasterSlider: {fileID: 1438063498}
-  BGMSlider: {fileID: 959389079}
-  SFXSlider: {fileID: 933289651}
+  masterSlider: {fileID: 0}
+  bgmSlider: {fileID: 0}
+  sfxSlider: {fileID: 0}
 --- !u!1 &998591802
 GameObject:
   m_ObjectHideFlags: 0
