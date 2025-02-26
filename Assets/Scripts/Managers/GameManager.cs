@@ -26,7 +26,7 @@ public class GameManager : Singleton<GameManager>
     }
 
     public GameObject cookiePrefab;
-    public string sceneName = "stage_1";
+    public string sceneName = "Stage_1";
     public Sprite sceneSprite;
 
     private void Update()
@@ -56,10 +56,11 @@ public class GameManager : Singleton<GameManager>
 
     public void StartGame()//게임 시작
     {
+        SoundManager.Instance.StopBGM();
         isPlaying = true;
         timePassed = 0;
         totalScore = 0;
-        SoundManager.Instance.PlayBGM("Bgm_Map_0");
+        SoundManager.Instance.PlayBGM($"Bgm_Map_{sceneName.Split('_')[1]}");
     }
 
     public void AddScore(int score)
@@ -86,12 +87,14 @@ public class GameManager : Singleton<GameManager>
     {
         isPlaying = false;
 
-        if (PlayerPrefs.GetInt("Map1_HighScore", 0) < totalScore) //최고 점수 교체.
+        if (PlayerPrefs.GetInt($"Map_{GameManager.Instance.sceneName.Split('_')[1]}_HighScore", 0) < totalScore) //최고 점수 교체.
         {
-           PlayerPrefs.SetInt("Map1_HighScore",totalScore);
+           PlayerPrefs.SetInt($"Map_{GameManager.Instance.sceneName.Split('_')[1]}_HighScore",totalScore);
         }
 
         uiManager.ChangeState(UIState.Score);
+
+        SoundManager.Instance.StopBGM();
     }
 
     public void SetCookie(GameObject cookie)
