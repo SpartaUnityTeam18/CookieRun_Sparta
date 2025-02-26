@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Tilemaps;
 
 public class Cookie : MonoBehaviour
 {
@@ -41,8 +42,9 @@ public class Cookie : MonoBehaviour
     bool isRunning;
     bool isSliding;
     bool isHit;
-    bool isGiant = false;
+    public bool isGiant = false;
     public bool isDead;
+    public Tilemap obstacle;
 
     float t;
     float invincibleTime = 1f;
@@ -257,7 +259,7 @@ public class Cookie : MonoBehaviour
 
     public void Giant()
     {
-        StartCoroutine(GiantCoroutine(2f, 0.5f, 5f, 0.5f));
+        StartCoroutine(GiantCoroutine(2f, 0.5f, 50f, 0.5f));
     }
 
     IEnumerator GiantCoroutine(float maxScale, float giantPeriod, float giantDuration, float resetPeriod)
@@ -308,5 +310,46 @@ public class Cookie : MonoBehaviour
 
         // 거대화 끝 > isGiant false로 해서 다시 먹으면 작동하게 해줌
         isGiant = false;
-    }  
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Obstacle") && isGiant)
+        {
+            Vector3 hitPosition = collision.ClosestPoint(transform.position);
+            Vector3Int tilePosition = obstacle.WorldToCell(hitPosition);
+
+            if (!obstacle.HasTile(tilePosition))
+            {
+                tilePosition.x += 1; 
+                tilePosition.y += 1;
+            }
+            if (!obstacle.HasTile(tilePosition))
+            {
+                tilePosition.y += 1;
+            }
+
+            if (!obstacle.HasTile(tilePosition))
+            {
+                tilePosition.x -= 2;
+                tilePosition.y -= 2;
+            }
+            if (!obstacle.HasTile(tilePosition))
+            {
+                tilePosition.y -= 1;
+            }
+
+            // 타일이 존재하는지 체크
+            if (obstacle.HasTile(tilePosition))
+            {
+                SoundManager.Instance.PlaySFX("Destroy");
+                obstacle.SetTile(tilePosition, null);
+                obstacle.RefreshTile(tilePosition);
+            }
+            else
+            {
+                Debug.LogError("타일이 존재하지 않음!");
+            }
+        }
+    }
 }
