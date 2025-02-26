@@ -20,17 +20,15 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
-        StartGame();
         UpdateTutorialState();
+        StartGame();
     }
 
     private void Update()
     {
         if (!isPlaying) return;
-        totalScore++;
-        timePassed += Time.deltaTime; //시간 최신화
 
-        totalScore = totalScore + 1;
+        timePassed += Time.deltaTime; //시간 최신화
     }
 
     private void OnEnable()

@@ -15,13 +15,13 @@ public class StartUI : BaseUI
     {
         return UIState.Start;
     }
+
     public override void Init(UIManager uiManager)
     {
         base.Init(uiManager);
 
         StartButton.onClick.AddListener(OnClickStartButton);
         Debug.Log("¹öÆ° ÇÒ´çµÊ");
-
     }
     void OnClickStartButton()
     {
