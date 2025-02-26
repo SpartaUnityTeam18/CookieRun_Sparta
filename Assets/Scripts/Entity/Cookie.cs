@@ -15,9 +15,12 @@ public class Cookie : MonoBehaviour
     Vector2 _slideOffset;
     Vector2 _slideColSize;
 
+    public Sprite cookieSprite;
+
     public int cookieId;
     //이름
-    public string coookieName;
+    public string cookieName;
+
     //최대체력
     public float _maxHp = 162f;
     public float MaxHP { get { return _maxHp; } }

@@ -25,6 +25,8 @@ public class UIManager : Singleton<UIManager>
     ScoreUI scoreUI;
     InGameUI ingameUI;
 
+    public Cookie cookie;
+
     public override void Awake()
     {
         isGlobal = false;

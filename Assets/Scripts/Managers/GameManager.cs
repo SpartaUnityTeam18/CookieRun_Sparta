@@ -14,15 +14,20 @@ public class GameManager : Singleton<GameManager>
 
     public int totalScore;
     public bool isPlaying;
-    
+
+    public int totalCoin;
+
     // 튜토리얼 씬 체크
     public bool isTutorialScene;
 
     private void Start()
     {
         UpdateTutorialState();
-        StartGame();
     }
+
+    public GameObject cookiePrefab;
+    public string sceneName = "stage_1";
+    public Sprite sceneSprite;
 
     private void Update()
     {
@@ -63,6 +68,14 @@ public class GameManager : Singleton<GameManager>
         AchievementManager.Instance.UpdateAchievement("Score", totalScore);
     }
 
+    public void AddCoin(int coin)
+    {
+        totalCoin += coin;
+        PlayerPrefs.SetInt("TotalCoin", totalCoin);
+        PlayerPrefs.Save();
+        Debug.Log($"코인 {totalCoin} 누적");
+    }
+
     private void UpdateTutorialState()
     {
         // 현재 씬이 튜토리얼이 아니면 false, 맞으면 true
@@ -79,5 +92,16 @@ public class GameManager : Singleton<GameManager>
         }
 
         uiManager.ChangeState(UIState.Score);
+    }
+
+    public void SetCookie(GameObject cookie)
+    {
+        cookiePrefab = cookie;
+    }
+
+    public void SetMap(UI_MapPanel map)
+    {
+        sceneName = map.sceneName;
+        sceneSprite = map.mapSprite;
     }
 }
