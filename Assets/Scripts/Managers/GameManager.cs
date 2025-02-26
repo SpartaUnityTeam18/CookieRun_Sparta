@@ -23,8 +23,11 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         UpdateTutorialState();
-        StartGame();
     }
+
+    public GameObject cookiePrefab;
+    public string sceneName = "stage_1";
+    public Sprite sceneSprite;
 
     private void Update()
     {
@@ -89,5 +92,16 @@ public class GameManager : Singleton<GameManager>
         }
 
         uiManager.ChangeState(UIState.Score);
+    }
+
+    public void SetCookie(GameObject cookie)
+    {
+        cookiePrefab = cookie;
+    }
+
+    public void SetMap(UI_MapPanel map)
+    {
+        sceneName = map.sceneName;
+        sceneSprite = map.mapSprite;
     }
 }
