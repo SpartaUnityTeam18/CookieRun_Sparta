@@ -21,7 +21,7 @@ public class InGameUI : BaseUI
 
     private void Start()
     {
-        cookie = FindObjectOfType<Cookie>().GetComponent<Cookie>();
+       
     }
 
     public void Update()
@@ -55,8 +55,14 @@ public class InGameUI : BaseUI
 
     public void healthBarUpdate()
     {
+        if(cookie == null )
+        {
+            cookie = FindObjectOfType<Cookie>();
+            return;
+        }
         float rate = (cookie._hp / cookie._maxHp); //value 값 나온거를 slider에 대입
         healthBar.value = rate;
+       
         
     }
 

@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        _target = FindObjectOfType<Cookie>().GetComponent<Transform>();
+        
         if (_target == null) return;
 
         // 오프셋 설정(카메라 위치와 쿠키의 위치의 차)
@@ -22,7 +22,18 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        if (_target == null) return;
+
+        if (_target == null)
+        {
+            Cookie cookie = FindObjectOfType<Cookie>();
+            if(cookie != null)
+            {
+                _target = cookie.transform;
+            }
+            
+            return;
+        }
+        
 
         // 카메라 위치
         Vector3 pos = transform.position;

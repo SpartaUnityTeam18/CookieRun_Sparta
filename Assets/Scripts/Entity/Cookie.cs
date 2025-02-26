@@ -111,7 +111,7 @@ public class Cookie : MonoBehaviour
         } 
     }
 
-    void Jump()//점프
+    public void Jump()//점프
     {
         SoundManager.Instance.PlaySFX($"Cookie_{cookieId}_Jump");
         isJumping = true;
