@@ -20,6 +20,9 @@ public class InGameUI : BaseUI
     public InputAction inputAction;
     public Button slideButton;
 
+    public Button jumpButton;
+
+
     public void Update()
     {
         if (!GameManager.Instance.isPlaying) return;
@@ -27,6 +30,36 @@ public class InGameUI : BaseUI
         scoreUpdate();
         highscoreUpdate();
         healthBarUpdate();
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SimulateButtonPress(jumpButton);
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            SimulateButtonPress(slideButton);
+        }
+        void SimulateButtonPress(Button button)
+        {
+            // 버튼 클릭 시각 효과
+            button.onClick.Invoke();  // 실제 버튼 클릭 이벤트 실행
+            StartCoroutine(PressEffect(button));
+        }
+
+        System.Collections.IEnumerator PressEffect(Button button)
+        {
+            var originalColor = button.colors;
+            ColorBlock cb = button.colors;
+            cb.normalColor = cb.pressedColor;
+            button.colors = cb;
+
+            yield return new WaitForSeconds(0.1f); // 눌린 상태 유지 시간
+
+            cb.normalColor = originalColor.normalColor;
+            button.colors = cb;
+        }
+    
     }
 
     protected override UIState GetUIState()
@@ -53,6 +86,8 @@ public class InGameUI : BaseUI
         float rate = (UIManager.Instance.cookie._hp / UIManager.Instance.cookie._maxHp); //value 값 나온거를 slider에 대입
         healthBar.value = rate;
     }
+
+
 }
 
 
@@ -60,75 +95,5 @@ public class InGameUI : BaseUI
 
 
 
-
-//public class SlideButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
-//{
-//    public static event Action SlideButtonDown;
-//    public static event Action SlideButtonUp;
-
-//    private Button _slideButton;
-
-//    private void Awake()
-//    {
-//        _slideButton = GetComponent<Button>();
-//    }
-
-//    public void OnPointerDown(PointerEventData eventData)
-//    {
-//        SlideButtonDown?.Invoke();
-//    }
-
-//    public void OnPointerUp(PointerEventData eventData)
-//    {
-//        SlideButtonUp?.Invoke();
-//    }
-//}
-
-
-
-//public class JumpButton : MonoBehaviour
-//{
-//    public static event Action OnClickJumpButton;
-
-//    public void JumpClick()
-//    {
-//        OnClickJumpButton?.Invoke();
-//    }
-//}
-
-//public class TotalScore : MonoBehaviour
-//{
-//    private Text _totalScoreText;
-//    private IEnumerator _raiseScore;
-
-//    private void Awake()
-//    {
-//        _totalScoreText = GetComponent<Text>();
-//    }
-
-
-//    private void Start()
-//    {
-//        _raiseScore = CountingScore(Cookie.ScoreUI, 0);
-//        StartCoroutine(_raiseScore);
-//    }
-
-//    IEnumerator CountingScore(float maxScore, float initialScore)
-//    {
-//        float duration = 0.9f;
-//        float offset = maxScore / duration;
-
-//        while (initialScore < maxScore)
-//        { 
-
-//            initialScore += offset * Time.deltaTime;
-//            _totalScoreText.text = $"{initialScore: #,0}";
-//            yield return null;
-//        }
-
-//        initialScore = maxScore;
-//        _totalScoreText.text = $"{initialScore: #,0}";
-//    }
-//}
 
 
