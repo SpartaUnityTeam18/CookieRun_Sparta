@@ -1,7 +1,8 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 
-public enum UIState //enum : ���������̸��� ������ ��� ������ ��Ÿ���� �� ����
+public enum UIState
 {
     Start,
     Score,
@@ -68,12 +69,11 @@ public class UIManager : Singleton<UIManager>
 
     public void OnClickExit()
     {
-        GameManager.Instance.GameOver();
-        ChangeState(UIState.Score);
-#if UNITY_EDITOR //����Ƽ �����Ϳ��� ���� �ǰ� ���� �� �� �ֵ���.
-        UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit(); // ���ø����̼� ����
-#endif
+        SceneManager.LoadScene("Start");
+//#if UNITY_EDITOR
+//        UnityEditor.EditorApplication.isPlaying = false;
+//#else
+//        Application.Quit();
+//#endif
     }
 }

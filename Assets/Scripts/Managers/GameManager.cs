@@ -56,10 +56,11 @@ public class GameManager : Singleton<GameManager>
 
     public void StartGame()//게임 시작
     {
+        SoundManager.Instance.StopBGM();
         isPlaying = true;
         timePassed = 0;
         totalScore = 0;
-        SoundManager.Instance.PlayBGM("Bgm_Map_0");
+        SoundManager.Instance.PlayBGM($"Bgm_Map_{sceneName.Split('_')[1]}");
     }
 
     public void AddScore(int score)
@@ -92,6 +93,8 @@ public class GameManager : Singleton<GameManager>
         }
 
         uiManager.ChangeState(UIState.Score);
+
+        SoundManager.Instance.StopBGM();
     }
 
     public void SetCookie(GameObject cookie)
