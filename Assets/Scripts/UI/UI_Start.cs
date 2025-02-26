@@ -19,12 +19,16 @@ public class UI_Start : MonoBehaviour
 
     public GameObject cookieSelection;
     public GameObject mapSelection;
+    public GameObject cookiePanels;
 
     public Button cookieExitButton;
     public Button mapExitButton;
 
     void Start()
     {
+        cookieImage.sprite = GameManager.Instance.cookiePrefab.GetComponent<Cookie>().cookieSprite;
+        cookieText.text = GameManager.Instance.cookiePrefab.GetComponent<Cookie>().cookieName;
+
         cookieSelection.SetActive(false);
         mapSelection.SetActive(false);
 
@@ -34,7 +38,24 @@ public class UI_Start : MonoBehaviour
         mapExitButton.onClick.AddListener(MapExitButton);
         startButton.onClick.AddListener(StartButton);
 
+        FindCookiePanels();
+    }
 
+    void FindCookiePanels()
+    {
+        for (int i = 0; i < cookiePanels.transform.childCount; i++) 
+        {
+            Button button = cookiePanels.transform.GetChild(i).GetComponent<Button>();
+            button.onClick.AddListener(() => OnClickCookiePanelClicked(button));
+        }
+    }
+
+    void OnClickCookiePanelClicked(Button btn)
+    {
+        Cookie cookie = btn.gameObject.GetComponent<UI_CookiePanel>().cookiePrefab.GetComponent<Cookie>();
+        cookieImage.sprite = cookie.cookieSprite;
+        cookieText.text = cookie.cookieName;
+        CookieExitButton();
     }
 
     void CookieButton()

@@ -19,7 +19,8 @@ public class Cookie : MonoBehaviour
 
     public int cookieId;
     //이름
-    public string coookieName;
+    public string cookieName;
+
     //최대체력
     private float _maxHp = 162f;
     public float MaxHP { get { return _maxHp; } }

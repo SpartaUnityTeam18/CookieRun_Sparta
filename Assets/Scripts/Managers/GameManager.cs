@@ -11,13 +11,8 @@ public class GameManager : Singleton<GameManager>
 
     public bool isPlaying;
 
-    GameObject cookiePrefab;
-    string sceneName = "stage_1";
-
-    private void Start()
-    {
-        StartGame();
-    }
+    public GameObject cookiePrefab;
+    public string sceneName = "stage_1";
 
     private void Update()
     {
