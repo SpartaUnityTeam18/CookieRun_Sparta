@@ -67,9 +67,9 @@ public class AchievementManager : Singleton<AchievementManager>
     private void Start()
     {
         // 초기화 진행
-        achievements["Dodge"] = new Achievement("Dodge", "10연속 장애물 회피 업적 달성 : 천사맛 쿠키 해금 완료", 10);
-        achievements["Jelly"] = new Achievement("Jelly", "젤리 30개 먹기 업적 달성 : 스테이지 2 해금 완료", 30);
-        achievements["Score"] = new Achievement("Score", "점수 500점 얻기 업적 달성 : 스테이지 3 해금 완료", 500);
+        achievements["Dodge"] = new Achievement("Dodge", "10회 연속 장애물 회피 업적 달성 : 스테이지 2 해금 완료", 10);
+        achievements["Jelly"] = new Achievement("Jelly", "젤리 100개 먹기 업적 달성 : 천사맛 쿠키 해금 완료", 100);
+        achievements["Score"] = new Achievement("Score", "600점 달성 업적 달성 : 스테이지 3 해금 완료", 600);
     }
 
     public void UpdateAchievement(string name, int amount = 1)

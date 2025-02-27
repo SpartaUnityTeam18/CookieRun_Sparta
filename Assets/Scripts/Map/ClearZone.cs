@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static UnityEngine.PlayerLoop.EarlyUpdate;
 
 public class ClearZone : MonoBehaviour
@@ -29,13 +30,19 @@ public class ClearZone : MonoBehaviour
     {
         UIManager.Instance.ChangeState(UIState.Clear); // UI 활성화
 
-        if(GameManager.Instance.stageNumber == 3)
+        nextButton.SetActive(false); // Next 버튼 숨기기
+
+        if (GameManager.Instance.stageNumber == 1 && GameManager.Instance.LoadAchievement("Dodge"))
+        {
+            nextButton.SetActive(true);
+        }
+        else if (GameManager.Instance.stageNumber == 2 && GameManager.Instance.LoadAchievement("Score"))
+        {
+            nextButton.SetActive(true);
+        }
+        else if (GameManager.Instance.stageNumber == 3)
         {
             nextButton.SetActive(false); // Next 버튼 숨기기
-        }
-        else
-        {
-            nextButton.SetActive(true); // 다른 스테이지에서는 Next 버튼 보이기
         }
 
         exitButton.SetActive(true);

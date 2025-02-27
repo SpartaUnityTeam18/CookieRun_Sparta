@@ -74,15 +74,19 @@ public class GameManager : Singleton<GameManager>
     public void AddScore(int score)
     {
         totalScore += score;
-        AchievementManager.Instance.UpdateAchievement("Score", totalScore);
+
+        if(totalScore >= 600)
+            AchievementManager.Instance.UpdateAchievement("Score", totalScore);
     }
 
     public void AddCoin(int coin)
     {
-        totalCoin += coin;
-        PlayerPrefs.SetInt("Coin", totalCoin);
-        PlayerPrefs.Save();
-        Debug.Log($"코인 {totalCoin} 누적");
+        if (!isTutorialScene)
+        {
+            totalCoin += coin;
+            PlayerPrefs.SetInt("Coin", totalCoin);
+            PlayerPrefs.Save();
+        }
     }
 
     private void UpdateSceneState()
@@ -124,17 +128,15 @@ public class GameManager : Singleton<GameManager>
 
     public void NextStage()
     {
-        if (stageNumber == 3)
+        if (stageNumber == 1 && LoadAchievement("Dodge"))
         {
-            // 마지막 스테이지 도달 시 로비로 이동
-            SceneManager.LoadScene("Lobby");
-        }
-        else
-        {
-            // 새로운 씬 이름 만들기
             string nextSceneName = "Stage_" + (stageNumber + 1);
+            SceneManager.LoadScene(nextSceneName);
+        }
 
-            // 씬 이동
+        if (stageNumber == 2 && LoadAchievement("Score"))
+        {
+            string nextSceneName = "Stage_" + (stageNumber + 1);
             SceneManager.LoadScene(nextSceneName);
         }
     }
