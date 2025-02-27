@@ -108,4 +108,10 @@ public class GameManager : Singleton<GameManager>
         sceneName = map.sceneName;
         sceneSprite = map.mapSprite;
     }
+
+    [ContextMenu("DeletePlayerPrefs")]
+    public void DeletePlayerPrefs()
+    {
+        PlayerPrefs.DeleteAll();
+    }
 }

@@ -15,7 +15,6 @@ public class TitleGroup : MonoBehaviour
 
     void OnClick()
     {
-        PlayerPrefs.DeleteAll();
         SoundManager.Instance.StopAllSound();
         if (!PlayerPrefs.HasKey("FirstPlay"))
         {
