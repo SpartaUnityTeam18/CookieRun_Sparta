@@ -12,6 +12,8 @@ public class AchievementManager : Singleton<AchievementManager>
     {
         // 도전 과제 이름
         public string name;
+        // 도전 과제 달성 시 텍스트
+        public string message;
         // 목표 값
         public int total;
         // 현재 값
@@ -21,9 +23,10 @@ public class AchievementManager : Singleton<AchievementManager>
         // 목표 달성 여부 (current >= total 이면 true)
         public bool isComplete => current >= total;
 
-        public Achievement(string _name, int _total)
+        public Achievement(string _name, string message, int _total)
         {
             this.name = _name;
+            this.message = message;
             this.total = _total;
             this.current = 0;
             this.Completed = false;
@@ -32,7 +35,7 @@ public class AchievementManager : Singleton<AchievementManager>
         public void AddCurrent(int amount = 1)
         {
             // 완료된 거면 리턴
-            if (Completed) return;
+            if (PlayerPrefs.GetInt(name, 0) == 1) return;
 
             // current 증가
             current += amount;
@@ -40,9 +43,9 @@ public class AchievementManager : Singleton<AchievementManager>
             // 달성 여부가 true일때
             if (isComplete)
             {
-                // 도전 과제 완료
+                // 도전 과제 완료 시
                 Completed = true;
-                Debug.Log($"{name} 업적 달성!");
+                UIManager.Instance.ShowAchievement(message);
                 GameManager.Instance.SaveAchievement(name, isComplete);
             }
         }
@@ -64,9 +67,9 @@ public class AchievementManager : Singleton<AchievementManager>
     private void Start()
     {
         // 초기화 진행
-        achievements["Dodge"] = new Achievement("Dodge", 10);
-        achievements["Jelly"] = new Achievement("Jelly", 10);
-        achievements["Score"] = new Achievement("Score", 10);
+        achievements["Dodge"] = new Achievement("Dodge", "10연속 장애물 회피 업적 달성 : 천사맛 쿠키 해금 완료", 10);
+        achievements["Jelly"] = new Achievement("Jelly", "젤리 30개 먹기 업적 달성 : 스테이지 2 해금 완료", 30);
+        achievements["Score"] = new Achievement("Score", "점수 500점 얻기 업적 달성 : 스테이지 3 해금 완료", 500);
     }
 
     public void UpdateAchievement(string name, int amount = 1)

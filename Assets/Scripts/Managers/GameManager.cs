@@ -164,12 +164,14 @@ public class GameManager : Singleton<GameManager>
         return true;
     }
 
+    // 업적 진행 사항 저장
     public void SaveAchievement(string achievementKey, bool isComplete)
     {
         PlayerPrefs.SetInt(achievementKey, isComplete ? 1 : 0);
         PlayerPrefs.Save();
     }
 
+    // 업적 진행 사항 불러오기
     public bool LoadAchievement(string achievementKey)
     {
         return PlayerPrefs.GetInt(achievementKey, 0) == 1;
