@@ -7,8 +7,8 @@ public class TutorialZone : MonoBehaviour
 {
     // 튜토리얼 ui 연결 > tutorialzone에서 연결해서 사용
     public GameObject tutorialUI;
-    // 다음 씬 지정 > 임시로 Stage_1로 해두었지만 메인화면 씬이 있다면 그게 더 좋을듯
-    public string nextSceneName = "Stage_1";
+    // 다음 씬 지정 > 선택 씬으로 변경
+    public string nextSceneName = "Select";
     // ui 번호
     private int number = 0;
     // ui Active 여부

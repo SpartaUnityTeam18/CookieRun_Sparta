@@ -23,11 +23,20 @@ public class TitleGroup : MonoBehaviour
     }
     void ChangeScene()
     {
+        PlayerPrefs.DeleteAll();
         if (Input.GetMouseButtonDown(0))
         {
             SoundManager.Instance.StopAllSound();
-            SceneManager.LoadScene("Stage_1");
+            if (!PlayerPrefs.HasKey("FirstPlay"))
+            {
+                PlayerPrefs.SetInt("FirstPlay", 1);  // 첫 실행 저장
+                PlayerPrefs.Save();  // 저장 (필수)
+                SceneManager.LoadScene("Tutorial");  // 튜토리얼 씬으로 이동
+            }
+            else
+            {
+                SceneManager.LoadScene("Select");  // 선택화면 씬으로 이동
+            }
         }
-        Debug.Log("다음 씬이 설정되지 않았습니다.");
     }
 }

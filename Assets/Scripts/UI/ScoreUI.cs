@@ -36,7 +36,9 @@ public class ScoreUI : BaseUI
     }
     void OnClickRestartButton()
     {
-        SceneManager.LoadScene("Stage_1");
+        string currentScene = SceneManager.GetActiveScene().name;
+
+        SceneManager.LoadScene(currentScene);
     }
 
     private void Update()

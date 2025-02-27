@@ -71,6 +71,16 @@ public class Cookie : MonoBehaviour
         _standColSize.y = _boxCollider.bounds.size.y;
         _slideOffset = new Vector2(_standOffset.x, 0.45f);
         _slideColSize = new Vector2(_standColSize.x, 0.89f);
+
+        GameObject mapObject = GameObject.FindGameObjectWithTag("Obstacle");
+        if (mapObject != null)
+        {
+            obstacle = mapObject.GetComponent<Tilemap>();
+        }
+        else
+        {
+            Debug.LogError("장애물 타일맵을 찾을 수 없습니다!");
+        }
     }
 
     private void FixedUpdate()

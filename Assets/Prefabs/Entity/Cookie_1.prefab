@@ -79,8 +79,14 @@ MonoBehaviour:
   cookieSprite: {fileID: 21300000, guid: 78b6aab3e4f74d14ea17e09c97944814, type: 3}
   cookieId: 1
   cookieName: "\uCC9C\uC0AC\uB9DB \uCFE0\uD0A4"
+  _maxHp: 162
+  _hp: 0
   hpDecrease: 3
   isDead: 0
+  obstacle: {fileID: 0}
+  breakEffectPrefab: {fileID: 5407792866184378661, guid: 4f96acda923918548a1ee5a217519a06, type: 3}
+  isGiant: 0
+  isRunning: 0
 --- !u!61 &5105865636413776412
 BoxCollider2D:
   m_ObjectHideFlags: 0

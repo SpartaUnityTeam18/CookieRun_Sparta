@@ -52,6 +52,7 @@ public class GameManager : Singleton<GameManager>
     {
         // 씬 변경 시 실행 되는 함수 > 튜토리얼 상태 갱신
         UpdateTutorialState();
+        isPlaying = true;
     }
 
     public void StartGame()//게임 시작

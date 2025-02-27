@@ -49,9 +49,8 @@ public class UIManager : Singleton<UIManager>
 
     private void Start()
     {
-        // awake에서 변경 시 튜토리얼에서도 바로 떠버려서 start로 변경했음 > 1단 빼둠
-        //if (!GameManager.Instance.isTutorialScene)
-        //    ChangeState(UIState.Start);
+        if (GameManager.Instance.isTutorialScene)
+            ChangeState(UIState.Start);
 
         GameManager.Instance.uiManager = this;
     }
@@ -71,7 +70,7 @@ public class UIManager : Singleton<UIManager>
 
     public void OnClickExit()
     {
-        SceneManager.LoadScene("Start");
+        SceneManager.LoadScene("Select");
 //#if UNITY_EDITOR
 //        UnityEditor.EditorApplication.isPlaying = false;
 //#else

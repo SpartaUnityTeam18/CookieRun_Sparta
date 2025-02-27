@@ -75,8 +75,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cb35cf39522d784faa26acc7b12a67a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cookieSprite: {fileID: 21300000, guid: d15c35bc8d944ee459d78cc3c3e5e64f, type: 3}
   cookieId: 0
-  coookieName: "\uC6A9\uAC10\uD55C \uCFE0\uD0A4"
+  cookieName: "\uC6A9\uAC10\uD55C \uCFE0\uD0A4"
   _maxHp: 162
   _hp: 0
   hpDecrease: 3
@@ -84,6 +85,7 @@ MonoBehaviour:
   obstacle: {fileID: 0}
   breakEffectPrefab: {fileID: 5407792866184378661, guid: 4f96acda923918548a1ee5a217519a06, type: 3}
   isGiant: 0
+  isRunning: 0
 --- !u!61 &5105865636413776412
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -186,6 +188,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 301f15b8-e078-4b26-9d4c-cb397cf728c9
     m_ActionName: Cookie/Slide[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 54f91889-cf2c-407e-af89-81b13082a291
+    m_ActionName: TT/enter[/Keyboard/enter]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Cookie
