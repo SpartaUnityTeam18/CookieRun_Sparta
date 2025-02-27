@@ -30,6 +30,7 @@ public class InGameUI : BaseUI
         scoreUpdate();
         highscoreUpdate();
         healthBarUpdate();
+        
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -83,12 +84,24 @@ public class InGameUI : BaseUI
 
     public void healthBarUpdate()
     {
+        float maxHealth = UIManager.Instance.cookie._maxHp;
         float rate = (UIManager.Instance.cookie._hp / UIManager.Instance.cookie._maxHp); //value 값 나온거를 slider에 대입
+        healthBar.value = rate;
+        gameObject.GetComponent<Image>().fillAmount = 0.5f;
+
+        // 만약 maxHealth가 0이면 나누기 오류가 나므로 1로 설정
+        if (maxHealth <= 0)
+        {
+            maxHealth = 1;
+        }
+
+        // Slider 값에 체력 비율을 설정
         healthBar.value = rate;
     }
 
-
 }
+
+
 
 
 
