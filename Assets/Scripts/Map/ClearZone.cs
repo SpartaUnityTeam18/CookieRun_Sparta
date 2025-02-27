@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using static UnityEngine.PlayerLoop.EarlyUpdate;
 
 public class ClearZone : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class ClearZone : MonoBehaviour
     {
         if (collision != null && collision.CompareTag("Cookie"))
         {
+            GameManager.Instance.ScoreUpdate();
             ShowClearUI();
         }
     }
@@ -17,6 +20,5 @@ public class ClearZone : MonoBehaviour
     void ShowClearUI()
     {
         clearUI.SetActive(true); // UI 활성화
-        Time.timeScale = 0f; // 게임 멈춤 (선택 사항)
     }
 }
