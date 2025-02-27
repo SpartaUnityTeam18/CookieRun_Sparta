@@ -10,7 +10,7 @@ public class TitleGroup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SoundManager.Instance.PlayBGM("Bgm_Title");
+        SoundManager.Instance.PlaySFX("Title");
     }
 
     void OnClick()

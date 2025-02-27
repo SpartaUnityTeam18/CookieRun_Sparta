@@ -21,6 +21,12 @@ public class InGameUI : BaseUI
     public Button slideButton;
     public Button jumpButton;
 
+
+    public void Start()
+    {
+        currentScoreText.text = "0";
+    }
+
     public void Update()
     {
         if (!GameManager.Instance.isPlaying) return;
@@ -78,7 +84,8 @@ public class InGameUI : BaseUI
 
     public void highscoreUpdate()
     {
-        highScoreText.text = PlayerPrefs.GetInt($"Map_{GameManager.Instance.sceneName.Split('_')[1]}_HighScore", 0).ToString();
+        if(GameManager.Instance.sceneName != "Tutorial")
+            highScoreText.text = PlayerPrefs.GetInt($"Map_{GameManager.Instance.sceneName.Split('_')[1]}_HighScore", 0).ToString();
     }
 
     public void healthBarUpdate()

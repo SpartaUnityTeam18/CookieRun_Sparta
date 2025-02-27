@@ -26,7 +26,6 @@ public class StartUI : BaseUI
     void OnClickStartButton()
     {
         Debug.Log("버튼 클릭");
-        GameManager.Instance.StartGame();
         SetActive(UIState.InGame);
         uiManager.OnClickStart();
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem.Processors;
+using static UnityEngine.PlayerLoop.EarlyUpdate;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -18,6 +19,8 @@ public class GameManager : Singleton<GameManager>
 
     // 튜토리얼 씬 체크
     public bool isTutorialScene;
+    public bool isSelectScene;
+    int stageNumber;
 
     public GameObject cookiePrefab;
     public string sceneName = "Stage_1";
@@ -27,7 +30,7 @@ public class GameManager : Singleton<GameManager>
     {
         totalCoin = PlayerPrefs.GetInt("Coin", 0);
 
-        UpdateTutorialState();
+        UpdateSceneState();
     }
 
     private void Update()
@@ -35,6 +38,8 @@ public class GameManager : Singleton<GameManager>
         if (!isPlaying) return;
 
         timePassed += Time.deltaTime; //시간 최신화
+
+        
     }
 
     private void OnEnable()
@@ -51,19 +56,21 @@ public class GameManager : Singleton<GameManager>
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // 씬 변경 시 실행 되는 함수 > 튜토리얼 상태 갱신
-        UpdateTutorialState();
-        SoundManager.Instance.StopBGM();
+        sceneName = scene.name;
+
+        // 씬 변경 시 실행 되는 함수 > 튜토리얼 상태 갱신, 선택 화면인지 체크
+        UpdateSceneState();
+
         Time.timeScale = 1.0f;
         isPlaying = true;
         timePassed = 0;
         totalScore = 0;
-        SoundManager.Instance.PlayBGM($"Bgm_Map_{sceneName.Split('_')[1]}");
-    }
 
-    public void StartGame()//게임 시작
-    {
-
+        if (sceneName.StartsWith("Stage_"))
+        {
+            SoundManager.Instance.StopBGM();
+            SoundManager.Instance.PlayBGM($"Bgm_Map_{stageNumber}");
+        }
     }
 
     public void AddScore(int score)
@@ -80,20 +87,35 @@ public class GameManager : Singleton<GameManager>
         Debug.Log($"코인 {totalCoin} 누적");
     }
 
-    private void UpdateTutorialState()
+    private void UpdateSceneState()
     {
         // 현재 씬이 튜토리얼이 아니면 false, 맞으면 true
-        isTutorialScene = SceneManager.GetActiveScene().name == "Tutorial";
+        isTutorialScene = sceneName == "Tutorial";
+        isSelectScene = sceneName == "Select";
+
+        if (sceneName.StartsWith("Stage_"))
+        {
+            stageNumber = int.Parse(sceneName.Split('_')[1]);
+        }
+        else
+        {
+            stageNumber = 1;
+        }
+    }
+
+    public void ScoreUpdate()
+    {
+        if (PlayerPrefs.GetInt($"Map_{sceneName.Split('_')[1]}_HighScore", 0) < totalScore) //최고 점수 교체.
+        {
+            PlayerPrefs.SetInt($"Map_{sceneName.Split('_')[1]}_HighScore", totalScore);
+        }
     }
 
     public void GameOver()
     {
         isPlaying = false;
 
-        if (PlayerPrefs.GetInt($"Map_{GameManager.Instance.sceneName.Split('_')[1]}_HighScore", 0) < totalScore) //최고 점수 교체.
-        {
-           PlayerPrefs.SetInt($"Map_{GameManager.Instance.sceneName.Split('_')[1]}_HighScore",totalScore);
-        }
+        ScoreUpdate();
 
         PlayerPrefs.SetInt("Coin", totalCoin);
 
@@ -104,19 +126,19 @@ public class GameManager : Singleton<GameManager>
 
     public void NextStage()
     {
-        // 현재 씬 이름에서 숫자 부분만 추출 후 +1 하기
-        int nextStage = int.Parse(GameManager.Instance.sceneName.Split('_')[1]) + 1;
+        int maxStage = 3; // 마지막 스테이지 번호
+
+        if (stageNumber >= maxStage)
+        {
+            // 마지막 스테이지 도달 시 로비로 이동
+            SceneManager.LoadScene("Lobby");
+        }
 
         // 새로운 씬 이름 만들기
-        string nextSceneName = "Stage_" + nextStage;
+        string nextSceneName = "Stage_" + (stageNumber + 1);
 
         // 씬 이동
         SceneManager.LoadScene(nextSceneName);
-    }
-
-    public void Lobby()
-    {
-        SceneManager.LoadScene("Lobby");
     }
 
     public void SetCookie(GameObject cookie)

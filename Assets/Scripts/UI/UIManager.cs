@@ -7,6 +7,7 @@ public enum UIState
     Start,
     Score,
     InGame,
+    Clear
 }
 
 public class UIManager : Singleton<UIManager>
@@ -25,6 +26,7 @@ public class UIManager : Singleton<UIManager>
     StartUI startUI;
     ScoreUI scoreUI;
     InGameUI ingameUI;
+    ClearUI clearUI;
 
     public Cookie cookie;
 
@@ -44,6 +46,9 @@ public class UIManager : Singleton<UIManager>
         ingameUI = GetComponentInChildren<InGameUI>(true);
         ingameUI?.Init(this);
 
+        clearUI = GetComponentInChildren<ClearUI>(true); 
+        clearUI?.Init(this);
+
         ChangeState(UIState.InGame);
     }
 
@@ -61,6 +66,7 @@ public class UIManager : Singleton<UIManager>
         startUI?.SetActive(currentState);
         scoreUI?.SetActive(currentState);
         ingameUI?.SetActive(currentState);
+        clearUI?.SetActive(currentState);
     }
 
     public void OnClickStart()
@@ -70,7 +76,7 @@ public class UIManager : Singleton<UIManager>
 
     public void OnClickExit()
     {
-        SceneManager.LoadScene("Select");
+        SceneManager.LoadScene("Lobby");
 //#if UNITY_EDITOR
 //        UnityEditor.EditorApplication.isPlaying = false;
 //#else
