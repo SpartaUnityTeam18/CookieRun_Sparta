@@ -43,7 +43,7 @@ public class AchievementManager : Singleton<AchievementManager>
                 // 도전 과제 완료
                 Completed = true;
                 Debug.Log($"{name} 업적 달성!");
-                // ui 연결, 보상 추가
+                GameManager.Instance.SaveAchievement(name, isComplete);
             }
         }
 
@@ -76,12 +76,6 @@ public class AchievementManager : Singleton<AchievementManager>
         {
             achievements[name].AddCurrent(amount);
         }
-    }
-
-    public bool isAchievementComplete(string name)
-    {
-        // 도전 과제 완료 되었는지 체크, 지정된 키가 있는지 그 녀석이 완료 되었는지 확인, 나중에 UI에 연결할 때 쓸 거 같음
-        return achievements.ContainsKey(name) && achievements[name].isComplete;
     }
 
     public void RestDodgeAchievement()
