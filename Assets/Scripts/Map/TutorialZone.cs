@@ -14,6 +14,11 @@ public class TutorialZone : MonoBehaviour
     // ui Active 여부
     private bool isActive = false;
 
+    void Start()
+    {
+        SoundManager.Instance.PlayBGM("Bgm_Title");
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 쿠키가 충돌했고  ui가 꺼져있을때 isTutorialScene이 true 일때

@@ -9,5 +9,6 @@ public class Coin : Item
     {
         base.ApplyEffect(cookie);
         GameManager.Instance.AddCoin(coin);
+        SoundManager.Instance.PlaySFX("Coin");
     }
 }

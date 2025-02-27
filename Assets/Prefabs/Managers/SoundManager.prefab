@@ -174,7 +174,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BGM:
+  - {fileID: 8300000, guid: 733594f14b5ac294996ab36960a0fe50, type: 3}
   - {fileID: 8300000, guid: 4d71bc24206986744a4fac98812ac597, type: 3}
+  - {fileID: 8300000, guid: 97233d2b3d20cf64b9902ea581ef36f6, type: 3}
   SFX:
   - {fileID: 8300000, guid: 2c38896a38cb6df4c9c2796fd4d4e274, type: 3}
   - {fileID: 8300000, guid: fd4b5cfb8c376a841bd4f5eedadea255, type: 3}

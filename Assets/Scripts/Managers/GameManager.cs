@@ -6,7 +6,6 @@ using UnityEngine.InputSystem.Processors;
 
 public class GameManager : Singleton<GameManager>
 {
-
     public UIManager uiManager;
 
     //게임 흐른 시간
@@ -52,16 +51,17 @@ public class GameManager : Singleton<GameManager>
     {
         // 씬 변경 시 실행 되는 함수 > 튜토리얼 상태 갱신
         UpdateTutorialState();
-        isPlaying = true;
-    }
-
-    public void StartGame()//게임 시작
-    {
         SoundManager.Instance.StopBGM();
         isPlaying = true;
         timePassed = 0;
         totalScore = 0;
         SoundManager.Instance.PlayBGM($"Bgm_Map_{sceneName.Split('_')[1]}");
+
+    }
+
+    public void StartGame()//게임 시작
+    {
+
     }
 
     public void AddScore(int score)

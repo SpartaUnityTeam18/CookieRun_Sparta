@@ -50,13 +50,22 @@
             ]
         },
         {
-            "name": "TT",
+            "name": "UI",
             "id": "203f5dcc-fea9-4fb8-8ef7-13fc4ebfac33",
             "actions": [
                 {
                     "name": "enter",
                     "type": "Button",
                     "id": "54f91889-cf2c-407e-af89-81b13082a291",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "49c531db-e82a-4537-9f03-3004154cc421",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -72,6 +81,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "enter",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "816120c5-d2ce-49a6-a0f7-df2f96717e5a",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
