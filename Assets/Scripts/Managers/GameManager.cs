@@ -20,7 +20,7 @@ public class GameManager : Singleton<GameManager>
     // 튜토리얼 씬 체크
     public bool isTutorialScene;
     public bool isSelectScene;
-    int stageNumber;
+    public int stageNumber;
 
     public GameObject cookiePrefab;
     public string sceneName = "Stage_1";
@@ -38,8 +38,6 @@ public class GameManager : Singleton<GameManager>
         if (!isPlaying) return;
 
         timePassed += Time.deltaTime; //시간 최신화
-
-        
     }
 
     private void OnEnable()
@@ -82,7 +80,7 @@ public class GameManager : Singleton<GameManager>
     public void AddCoin(int coin)
     {
         totalCoin += coin;
-        PlayerPrefs.SetInt("TotalCoin", totalCoin);
+        PlayerPrefs.SetInt("Coin", totalCoin);
         PlayerPrefs.Save();
         Debug.Log($"코인 {totalCoin} 누적");
     }
@@ -126,19 +124,19 @@ public class GameManager : Singleton<GameManager>
 
     public void NextStage()
     {
-        int maxStage = 3; // 마지막 스테이지 번호
-
-        if (stageNumber >= maxStage)
+        if (stageNumber == 3)
         {
             // 마지막 스테이지 도달 시 로비로 이동
             SceneManager.LoadScene("Lobby");
         }
+        else
+        {
+            // 새로운 씬 이름 만들기
+            string nextSceneName = "Stage_" + (stageNumber + 1);
 
-        // 새로운 씬 이름 만들기
-        string nextSceneName = "Stage_" + (stageNumber + 1);
-
-        // 씬 이동
-        SceneManager.LoadScene(nextSceneName);
+            // 씬 이동
+            SceneManager.LoadScene(nextSceneName);
+        }
     }
 
     public void SetCookie(GameObject cookie)
@@ -164,5 +162,16 @@ public class GameManager : Singleton<GameManager>
         totalCoin -= coin;
         PlayerPrefs.SetInt("Coin", totalCoin);
         return true;
+    }
+
+    public void SaveAchievement(string achievementKey, bool isComplete)
+    {
+        PlayerPrefs.SetInt(achievementKey, isComplete ? 1 : 0);
+        PlayerPrefs.Save();
+    }
+
+    public bool LoadAchievement(string achievementKey)
+    {
+        return PlayerPrefs.GetInt(achievementKey, 0) == 1;
     }
 }
