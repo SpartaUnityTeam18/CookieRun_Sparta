@@ -79,6 +79,8 @@ MonoBehaviour:
   cookieSprite: {fileID: 21300000, guid: 78b6aab3e4f74d14ea17e09c97944814, type: 3}
   cookieId: 1
   cookieName: "\uCC9C\uC0AC\uB9DB \uCFE0\uD0A4"
+  _maxHp: 150
+  _hp: 0
   hpDecrease: 3
   isDead: 0
 --- !u!61 &5105865636413776412
@@ -183,6 +185,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 301f15b8-e078-4b26-9d4c-cb397cf728c9
     m_ActionName: Cookie/Slide[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 54f91889-cf2c-407e-af89-81b13082a291
+    m_ActionName: TT/enter[/Keyboard/enter]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Cookie

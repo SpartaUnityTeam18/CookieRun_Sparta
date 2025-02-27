@@ -49,6 +49,11 @@ public class Cookie : MonoBehaviour
     float t;
     float invincibleTime = 1f;
 
+    private void Awake()
+    {
+        _maxHp += (PlayerPrefs.GetInt($"Cookie_{cookieId}_level", 1) - 1) * 5;
+    }
+
     private void Start()
     {
         _hp = _maxHp;
@@ -183,8 +188,6 @@ public class Cookie : MonoBehaviour
         if(!isDead) _speed = originalspeed;
         _animator.SetBool("isRunning", isRunning);
     }
-
-
 
     public void Hit(float damage)//피격 판정
     {

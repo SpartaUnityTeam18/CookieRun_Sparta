@@ -38,9 +38,14 @@ public class UI_Lobby : MonoBehaviour
         SoundManager.Instance.PlayBGM("Bgm_Lobby_0");
     }
 
+    private void Update()
+    {
+        UpdateCoin();
+    }
+
     void UpdateCoin()
     {
-        coin.text = PlayerPrefs.GetInt("Coin", 0).ToString();
+        coin.text = GameManager.Instance.totalCoin.ToString();
     }
 
     void OnPlayButtonClicked()

@@ -112,4 +112,12 @@ public class GameManager : Singleton<GameManager>
         sceneName = map.sceneName;
         sceneSprite = map.mapSprite;
     }
+
+    public bool UseCoin(int coin)
+    {
+        if (totalCoin < coin) return false;
+        totalCoin -= coin;
+        PlayerPrefs.SetInt("Coin", totalCoin);
+        return true;
+    }
 }
