@@ -16,6 +16,7 @@ public class UI_Select : MonoBehaviour
     public Button cookieButton;
     public Button mapButton;
     public Button startButton;
+    public Button lobbyButton;
 
     public GameObject cookieSelection;
     public GameObject cookiePanels;
@@ -43,6 +44,7 @@ public class UI_Select : MonoBehaviour
         mapButton.onClick.AddListener(MapButton);
         mapExitButton.onClick.AddListener(MapExitButton);
         startButton.onClick.AddListener(StartButton);
+        lobbyButton.onClick.AddListener(() => SceneManager.LoadScene("Lobby"));
 
         //ÄíÅ°, ¸Ê ¸ñ·Ï Ã£±â
         FindCookiePanels();
