@@ -69,7 +69,7 @@ public class UIManager : Singleton<UIManager>
 
     public void OnClickExit()
     {
-        SceneManager.LoadScene("Start");
+        SceneManager.LoadScene("Select");
 //#if UNITY_EDITOR
 //        UnityEditor.EditorApplication.isPlaying = false;
 //#else

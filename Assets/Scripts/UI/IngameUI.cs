@@ -19,9 +19,7 @@ public class InGameUI : BaseUI
 
     public InputAction inputAction;
     public Button slideButton;
-
     public Button jumpButton;
-
 
     public void Update()
     {
@@ -41,6 +39,7 @@ public class InGameUI : BaseUI
         {
             SimulateButtonPress(slideButton);
         }
+
         void SimulateButtonPress(Button button)
         {
             // 버튼 클릭 시각 효과
