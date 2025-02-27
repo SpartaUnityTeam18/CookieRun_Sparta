@@ -993,6 +993,10 @@ PrefabInstance:
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 1085851625}
+    - target: {fileID: 5205517364058122004, guid: 2b36679bf8602464da8422e8ca5f461f, type: 3}
+      propertyPath: m_UsedByEffector
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6999706883025022687, guid: 2b36679bf8602464da8422e8ca5f461f, type: 3}
       propertyPath: m_Name
       value: Map_3
