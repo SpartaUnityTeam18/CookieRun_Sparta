@@ -6,7 +6,6 @@ using UnityEngine.InputSystem.Processors;
 
 public class GameManager : Singleton<GameManager>
 {
-
     public UIManager uiManager;
 
     //게임 흐른 시간
@@ -20,16 +19,16 @@ public class GameManager : Singleton<GameManager>
     // 튜토리얼 씬 체크
     public bool isTutorialScene;
 
+    public GameObject cookiePrefab;
+    public string sceneName = "Stage_1";
+    public Sprite sceneSprite;
+
     private void Start()
     {
         totalCoin = PlayerPrefs.GetInt("Coin", 0);
 
         UpdateTutorialState();
     }
-
-    public GameObject cookiePrefab;
-    public string sceneName = "Stage_1";
-    public Sprite sceneSprite;
 
     private void Update()
     {
@@ -54,16 +53,17 @@ public class GameManager : Singleton<GameManager>
     {
         // 씬 변경 시 실행 되는 함수 > 튜토리얼 상태 갱신
         UpdateTutorialState();
-    }
-
-    public void StartGame()//게임 시작
-    {
         SoundManager.Instance.StopBGM();
+        Time.timeScale = 1.0f;
         isPlaying = true;
         timePassed = 0;
         totalScore = 0;
         SoundManager.Instance.PlayBGM($"Bgm_Map_{sceneName.Split('_')[1]}");
-        Debug.Log($"Bgm_Map_{sceneName.Split('_')[1]}");
+    }
+
+    public void StartGame()//게임 시작
+    {
+
     }
 
     public void AddScore(int score)
@@ -102,6 +102,23 @@ public class GameManager : Singleton<GameManager>
         SoundManager.Instance.StopBGM();
     }
 
+    public void NextStage()
+    {
+        // 현재 씬 이름에서 숫자 부분만 추출 후 +1 하기
+        int nextStage = int.Parse(GameManager.Instance.sceneName.Split('_')[1]) + 1;
+
+        // 새로운 씬 이름 만들기
+        string nextSceneName = "Stage_" + nextStage;
+
+        // 씬 이동
+        SceneManager.LoadScene(nextSceneName);
+    }
+
+    public void Lobby()
+    {
+        SceneManager.LoadScene("Lobby");
+    }
+
     public void SetCookie(GameObject cookie)
     {
         cookiePrefab = cookie;
@@ -111,6 +128,12 @@ public class GameManager : Singleton<GameManager>
     {
         sceneName = map.sceneName;
         sceneSprite = map.mapSprite;
+    }
+
+    [ContextMenu("DeletePlayerPrefs")]
+    public void DeletePlayerPrefs()
+    {
+        PlayerPrefs.DeleteAll();
     }
 
     public bool UseCoin(int coin)

@@ -44,3 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4d969c4c0f29334daf59a0a5e723de2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiManager: {fileID: 0}
+  timePassed: 0
+  totalScore: 0
+  isPlaying: 0
+  totalCoin: 0
+  isTutorialScene: 0
+  cookiePrefab: {fileID: 0}
+  sceneName: Stage_1
+  sceneSprite: {fileID: 0}

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Tilemaps;
 
 public class Cookie : MonoBehaviour
 {
@@ -41,10 +42,16 @@ public class Cookie : MonoBehaviour
 
     bool isJumping;
     bool isDoubleJumping;
-    bool isRunning;
     bool isSliding;
     bool isHit;
     public bool isDead;
+
+    // 파괴 대상 타일맵
+    public Tilemap obstacle;
+    public GameObject breakEffectPrefab;
+    // 거대화 한지 체크
+    public bool isGiant = false;
+    public bool isRunning;
 
     float t;
     float invincibleTime = 1f;
@@ -69,6 +76,16 @@ public class Cookie : MonoBehaviour
         _standColSize.y = _boxCollider.bounds.size.y;
         _slideOffset = new Vector2(_standOffset.x, 0.45f);
         _slideColSize = new Vector2(_standColSize.x, 0.89f);
+
+        GameObject mapObject = GameObject.FindGameObjectWithTag("Obstacle");
+        if (mapObject != null)
+        {
+            obstacle = mapObject.GetComponent<Tilemap>();
+        }
+        else
+        {
+            Debug.LogError("장애물 타일맵을 찾을 수 없습니다!");
+        }
     }
 
     private void FixedUpdate()
@@ -171,10 +188,10 @@ public class Cookie : MonoBehaviour
         _animator.SetBool("isSliding", isSliding);
     }
 
-    public void RunBoost(float t, float runSpeed)//부스터
+    public void RunBoost(float t, float runSpeed, float invincible)//부스터
     {
         StartCoroutine(Run(t, runSpeed));
-        StartCoroutine(Invincible(t));
+        StartCoroutine(Invincible(invincible));
     }
 
     public IEnumerator Run(float t, float RunSpeed)//t초 동안 달리기
@@ -209,11 +226,41 @@ public class Cookie : MonoBehaviour
     public IEnumerator Invincible(float t)//피격 시 일시 무적
     {
         isHit = true;
-        _spriteRenderer.color = new Color(1, 1, 1, 0.25f);
-        yield return new WaitForSeconds(t);
+        float boostTime = 0f;
 
-        isHit = false;
-        _spriteRenderer.color = new Color(1, 1, 1, 1);
+        if (!isRunning)
+        {
+            // 알파값 변경해서 반투명으로 해줌
+            _spriteRenderer.color = new Color(1, 1, 1, 0.25f);
+            yield return new WaitForSeconds(t);
+
+            isHit = false;
+
+            // 원래 색상 복귀
+            _spriteRenderer.color = new Color(1, 1, 1, 1);
+        }
+        else
+        {
+            while (boostTime < t * 0.6f)
+            { 
+                // 0 ~ 1 범위를 유지 > random으로 하려고 했는데 그냥 있는 변수를 이용하는 쪽으로 함
+                float hue = (boostTime / t) % 1f;
+
+                 // HSV -> RGB 변환
+                Color rainbowColor = Color.HSVToRGB(hue, 1f, 1f);
+                _spriteRenderer.color = rainbowColor;
+
+                // 0.1초마다 색상 변경
+                yield return new WaitForSeconds(0.1f);
+                boostTime += 0.1f;
+            }
+
+            _spriteRenderer.color = new Color(1, 1, 1, 0.25f);
+            yield return new WaitForSeconds(t * 0.4f);
+
+            isHit = false;
+            _spriteRenderer.color = new Color(1, 1, 1, 1);
+        }
     }
 
     public void Heal(float heal)//체력회복
@@ -260,5 +307,96 @@ public class Cookie : MonoBehaviour
     {
         _rb.AddForce(Vector2.up * 30f, ForceMode2D.Impulse);
         GameManager.Instance.isPlaying = true;
+    }
+
+    public void Giant()
+    {
+        StartCoroutine(GiantCoroutine(2f, 0.5f, 5f, 0.5f));
+    }
+
+    IEnumerator GiantCoroutine(float maxScale, float giantPeriod, float giantDuration, float resetPeriod)
+    {
+        // 코루틴 사용해서 일정 시간동안 커지고 다시 작아지게 함    GiantCoroutine( 최대 크기, 커지는 기간, 거대화 지속 시간, 줄어드는 기간 )
+        // isGiant가 false일때만 작동 > 이미 거대화 했으면 중복 안되게 했음
+        if (isGiant) yield break;
+
+        isGiant = true;
+
+        // 처음 크기 저장
+        Vector3 startScale = transform.localScale;
+        // 다 커졌을때 크기
+        Vector3 endScale = new Vector3(maxScale, maxScale, 1f);
+
+        // 점점 커질수 있게 만들려고  time 선언 후 giantPeriod 보다 작을때 반복
+        float time = 0f;
+
+        while(time < giantPeriod)
+        {
+            // lerp를 통해 점점 커지는 느낌을 줌        (   시작 크기,      목표 크기,      보간 비율 (나눈 이유 : 다 넣어보고 해봤는데 이게 젤 자연스러웠음)  )
+            transform.localScale = Vector3.Lerp(startScale, endScale, time / giantPeriod);
+            // time 갱신
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        // 반복문 끝났으면 다 커졌을때 크기로 
+        transform.localScale = endScale;
+
+        // 지속시간 만큼 기다렸다가 아래 실행
+        yield return new WaitForSeconds(giantDuration);
+
+        // 마찬가지로 점점 줄어들게 하려고 다시 time 초기화
+        time = 0f;
+        
+        while (time < resetPeriod)
+        {
+            // lerp를 통해 점점 작아짐      (시작 크기 (다 커졌을때),  목표 크기(처음 크기),  보간 비율)
+            transform.localScale = Vector3.Lerp(endScale, startScale, time / resetPeriod);
+            // time 갱신
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        // 반복문 끝났으면 다시 처음 크기로
+        transform.localScale = startScale;
+
+        // 거대화 끝 > isGiant false로 해서 다시 먹으면 작동하게 해줌
+        isGiant = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // 충돌한 태그가 장애물이고 거대화 상태일때
+        if (collision.CompareTag("Obstacle") && (isGiant || isRunning))
+        {
+            // ClosestPoint를 사용해서 가장 가까운 충돌체의 지점을 저장
+            Vector3 hitPosition = collision.ClosestPoint(transform.position);
+            // 월드의 셀 위치로 타일의 포시션을 저장(Vector3Int를 사용해야 나중에 setTile 가능)
+            Vector3Int tilePosition = obstacle.WorldToCell(hitPosition);
+
+            // 여기서 부터 좌표 보정 > 원래 안했는데 이거 안해주면 좌표가 불일치해서 파괴가 안됨...
+            if (!obstacle.HasTile(tilePosition))
+            {
+                tilePosition.x += 1;
+                tilePosition.y += 1;
+            }
+            if (!obstacle.HasTile(tilePosition))
+            {
+                tilePosition.y += 1;
+            }
+
+            // 타일이 존재하는지 체크 후 파괴
+            if (obstacle.HasTile(tilePosition))
+            {
+                SoundManager.Instance.PlaySFX("Destroy");
+                obstacle.SetTile(tilePosition, null);
+
+                // 파티클 이펙트 추가 (충돌 위치에 생성)
+                GameObject effect = Instantiate(breakEffectPrefab, hitPosition, Quaternion.identity);
+                Destroy(effect, 0.6f);
+
+                obstacle.RefreshTile(tilePosition);
+            }
+        }
     }
 }

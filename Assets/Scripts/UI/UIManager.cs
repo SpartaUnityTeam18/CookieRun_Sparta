@@ -43,12 +43,13 @@ public class UIManager : Singleton<UIManager>
         
         ingameUI = GetComponentInChildren<InGameUI>(true);
         ingameUI?.Init(this);
+
+        ChangeState(UIState.InGame);
     }
 
     private void Start()
     {
-        // awake에서 변경 시 튜토리얼에서도 바로 떠버려서 start로 변경했음
-        if (!GameManager.Instance.isTutorialScene)
+        if (GameManager.Instance.isTutorialScene)
             ChangeState(UIState.Start);
 
         GameManager.Instance.uiManager = this;

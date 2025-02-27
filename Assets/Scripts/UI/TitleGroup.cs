@@ -13,21 +13,18 @@ public class TitleGroup : MonoBehaviour
         SoundManager.Instance.PlayBGM("Bgm_Title");
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnClick()
     {
-        if (Input.GetMouseButtonDown(0)) // 마우스 왼쪽 버튼 클릭
+        SoundManager.Instance.StopAllSound();
+        if (!PlayerPrefs.HasKey("FirstPlay"))
         {
-            ChangeScene();
+            PlayerPrefs.SetInt("FirstPlay", 1);  // 첫 실행 저장
+            PlayerPrefs.Save();  // 저장 (필수)
+            SceneManager.LoadScene("Tutorial");  // 튜토리얼 씬으로 이동
         }
-    }
-    void ChangeScene()
-    {
-        if (Input.GetMouseButtonDown(0))
+        else
         {
-            SoundManager.Instance.StopAllSound();
-            SceneManager.LoadScene("Stage_1");
+            SceneManager.LoadScene("Lobby");  // 로비화면 씬으로 이동
         }
-        Debug.Log("다음 씬이 설정되지 않았습니다.");
     }
 }

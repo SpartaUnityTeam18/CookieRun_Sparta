@@ -37,10 +37,10 @@ public class UI_LevelUp : MonoBehaviour
 
     void LevelUp()
     {
+        if (level >= 15) return;
         if (GameManager.Instance.UseCoin(GetRequiredCoin()) == false) return;
         PlayerPrefs.SetInt($"Cookie_{cookieId}_level", ++level);
         levelText.text = level.ToString();
-
         UpdateLevel();
         UpdateCoin();
         UpdateHPText();
@@ -53,7 +53,8 @@ public class UI_LevelUp : MonoBehaviour
 
     void UpdateLevel()
     {
-        levelText.text = level.ToString();
+        if (level >= 15) levelText.text = "Max";
+        else levelText.text = level.ToString();
     }
 
     void UpdateCoin()
