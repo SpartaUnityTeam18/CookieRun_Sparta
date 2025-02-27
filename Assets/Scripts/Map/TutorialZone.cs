@@ -8,7 +8,7 @@ public class TutorialZone : MonoBehaviour
     // 튜토리얼 ui 연결 > tutorialzone에서 연결해서 사용
     public GameObject tutorialUI;
     // 다음 씬 지정 > 선택 씬으로 변경
-    public string nextSceneName = "Select";
+    public string nextSceneName = "Lobby";
     // ui 번호
     private int number = 0;
     // ui Active 여부

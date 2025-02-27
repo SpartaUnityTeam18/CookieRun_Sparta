@@ -19,16 +19,16 @@ public class GameManager : Singleton<GameManager>
     // 튜토리얼 씬 체크
     public bool isTutorialScene;
 
+    public GameObject cookiePrefab;
+    public string sceneName = "Stage_1";
+    public Sprite sceneSprite;
+
     private void Start()
     {
         totalCoin = PlayerPrefs.GetInt("Coin", 0);
 
         UpdateTutorialState();
     }
-
-    public GameObject cookiePrefab;
-    public string sceneName = "Stage_1";
-    public Sprite sceneSprite;
 
     private void Update()
     {
@@ -54,6 +54,7 @@ public class GameManager : Singleton<GameManager>
         // 씬 변경 시 실행 되는 함수 > 튜토리얼 상태 갱신
         UpdateTutorialState();
         SoundManager.Instance.StopBGM();
+        Time.timeScale = 1.0f;
         isPlaying = true;
         timePassed = 0;
         totalScore = 0;
@@ -99,6 +100,23 @@ public class GameManager : Singleton<GameManager>
         uiManager.ChangeState(UIState.Score);
 
         SoundManager.Instance.StopBGM();
+    }
+
+    public void NextStage()
+    {
+        // 현재 씬 이름에서 숫자 부분만 추출 후 +1 하기
+        int nextStage = int.Parse(GameManager.Instance.sceneName.Split('_')[1]) + 1;
+
+        // 새로운 씬 이름 만들기
+        string nextSceneName = "Stage_" + nextStage;
+
+        // 씬 이동
+        SceneManager.LoadScene(nextSceneName);
+    }
+
+    public void Lobby()
+    {
+        SceneManager.LoadScene("Lobby");
     }
 
     public void SetCookie(GameObject cookie)

@@ -24,7 +24,7 @@ public class TitleGroup : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene("Select");  // 선택화면 씬으로 이동
+            SceneManager.LoadScene("Lobby");  // 로비화면 씬으로 이동
         }
     }
 }
