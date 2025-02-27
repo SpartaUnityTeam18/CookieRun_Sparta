@@ -11,25 +11,18 @@ using JetBrains.Annotations;
 
 public class InGameUI : BaseUI
 {
-
     public TextMeshProUGUI currentScoreText;
     public TextMeshProUGUI highScoreText;
     public Slider healthBar;
     public float decreaseRate = 2f;
 
-    Cookie cookie;
-
-    private void Start()
-    {
-        cookie = FindObjectOfType<Cookie>().GetComponent<Cookie>();
-    }
-
     public void Update()
     {
+        if (!GameManager.Instance.isPlaying) return;
+
         scoreUpdate();
         highscoreUpdate();
         healthBarUpdate();
-
     }
 
     protected override UIState GetUIState()
@@ -39,27 +32,23 @@ public class InGameUI : BaseUI
     public override void Init(UIManager uiManager)
     {
         base.Init(uiManager);
-
     }
 
     public void scoreUpdate()
     {
         currentScoreText.text = GameManager.Instance.totalScore.ToString();
-
     }
 
     public void highscoreUpdate()
     {
-        highScoreText.text = PlayerPrefs.GetInt("Map_1_highScore", 0).ToString();
+        highScoreText.text = PlayerPrefs.GetInt($"Map_{GameManager.Instance.sceneName.Split('_')[1]}_HighScore", 0).ToString();
     }
 
     public void healthBarUpdate()
     {
-        float rate = (cookie._hp / cookie._maxHp); //value 값 나온거를 slider에 대입
+        float rate = (UIManager.Instance.cookie._hp / UIManager.Instance.cookie._maxHp); //value 값 나온거를 slider에 대입
         healthBar.value = rate;
-        
     }
-
 }
 
 
