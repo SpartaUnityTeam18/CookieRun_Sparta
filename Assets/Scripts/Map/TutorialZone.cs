@@ -16,7 +16,7 @@ public class TutorialZone : MonoBehaviour
 
     void Start()
     {
-        SoundManager.Instance.PlayBGM("Bgm_Title");
+        SoundManager.Instance.PlayBGM("Bgm_Map_1");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

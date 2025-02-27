@@ -196,7 +196,10 @@ public class Cookie : MonoBehaviour
 
     public IEnumerator Run(float t, float RunSpeed)//t초 동안 달리기
     {
+        if (isRunning) yield break;
+
         isRunning = true;
+
         _animator.SetBool("isRunning", isRunning);
         float originalspeed = Speed;
         _speed = RunSpeed;
@@ -225,6 +228,8 @@ public class Cookie : MonoBehaviour
 
     public IEnumerator Invincible(float t)//피격 시 일시 무적
     {
+        if (isHit) yield break;
+
         isHit = true;
         float boostTime = 0f;
 
