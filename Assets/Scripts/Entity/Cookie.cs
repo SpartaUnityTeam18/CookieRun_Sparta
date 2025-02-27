@@ -56,6 +56,11 @@ public class Cookie : MonoBehaviour
     float t;
     float invincibleTime = 1f;
 
+    private void Awake()
+    {
+        _maxHp += (PlayerPrefs.GetInt($"Cookie_{cookieId}_level", 1) - 1) * 5;
+    }
+
     private void Start()
     {
         _hp = _maxHp;
@@ -122,8 +127,8 @@ public class Cookie : MonoBehaviour
 
         if (context.started && !isJumping)
         {
-            Jump();
             EndSlide();
+            Jump();
         }
         else if (context.started && isJumping && !isDoubleJumping)
         {
@@ -131,7 +136,7 @@ public class Cookie : MonoBehaviour
         } 
     }
 
-    void Jump()//점프
+    public void Jump()//점프
     {
         SoundManager.Instance.PlaySFX($"Cookie_{cookieId}_Jump");
         isJumping = true;
@@ -162,16 +167,16 @@ public class Cookie : MonoBehaviour
 
         if (context.started) StartSlide();
         else if (context.canceled) EndSlide();
-
-        _animator.SetBool("isSliding", isSliding);
     }
 
-    void StartSlide()//슬라이드 시작
+    public void StartSlide()//슬라이드 시작
     {
         SoundManager.Instance.PlaySFX($"Cookie_{cookieId}_Slide");
         isSliding = true;
         _boxCollider.offset = _slideOffset;
         _boxCollider.size = _slideColSize;
+
+        _animator.SetBool("isSliding", isSliding);
     }
 
     void EndSlide()//슬라이드 끝
@@ -179,6 +184,8 @@ public class Cookie : MonoBehaviour
         isSliding = false;
         _boxCollider.offset = _standOffset;
         _boxCollider.size = _standColSize;
+
+        _animator.SetBool("isSliding", isSliding);
     }
 
     public void RunBoost(float t, float runSpeed, float invincible)//부스터
@@ -200,8 +207,6 @@ public class Cookie : MonoBehaviour
         if(!isDead) _speed = originalspeed;
         _animator.SetBool("isRunning", isRunning);
     }
-
-
 
     public void Hit(float damage)//피격 판정
     {
