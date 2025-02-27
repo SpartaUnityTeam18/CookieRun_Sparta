@@ -1,3 +1,5 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
@@ -29,6 +31,8 @@ public class UIManager : Singleton<UIManager>
     ClearUI clearUI;
 
     public Cookie cookie;
+    public GameObject achievementUI;
+    public TextMeshProUGUI achievementText;
 
     public override void Awake()
     {
@@ -54,8 +58,7 @@ public class UIManager : Singleton<UIManager>
 
     private void Start()
     {
-        if (GameManager.Instance.isTutorialScene)
-            ChangeState(UIState.Start);
+        achievementUI.SetActive(false);  
 
         GameManager.Instance.uiManager = this;
     }
@@ -82,5 +85,23 @@ public class UIManager : Singleton<UIManager>
 //#else
 //        Application.Quit();
 //#endif
+    }
+
+    public void ShowAchievement(string achievementMessage)
+    {
+        // 업적 달성 메시지를 설정
+        achievementText.text = achievementMessage;
+
+        // 업적 UI 활성화
+        achievementUI.SetActive(true);
+
+        // 3초 후에 업적 UI를 숨김
+        StartCoroutine(HideAchievementUIAfterDelay(3f));
+    }
+
+    private IEnumerator HideAchievementUIAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay); // 지정된 시간만큼 대기
+        achievementUI.SetActive(false); // UI를 숨김
     }
 }

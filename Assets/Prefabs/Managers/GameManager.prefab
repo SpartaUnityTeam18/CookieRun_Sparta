@@ -50,6 +50,8 @@ MonoBehaviour:
   isPlaying: 0
   totalCoin: 0
   isTutorialScene: 0
+  isSelectScene: 0
+  stageNumber: 0
   cookiePrefab: {fileID: 0}
   sceneName: Stage_1
   sceneSprite: {fileID: 0}
