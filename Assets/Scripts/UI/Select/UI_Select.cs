@@ -53,7 +53,7 @@ public class UI_Select : MonoBehaviour
         //천사맛, 맵 2, 3 잠금 확인
         cookiePanelsList[1].SetLock(GameManager.Instance.LoadAchievement("Jelly"));
         mapPanelsList[1].SetLock(GameManager.Instance.LoadAchievement("Dodge"));
-        mapPanelsList[2].SetLock(GameManager.Instance.LoadAchievement("Coin"));
+        mapPanelsList[2].SetLock(GameManager.Instance.LoadAchievement("Score"));
     }
 
     void FindCookiePanels()//쿠키 목록 찾아서 버튼 할당
