@@ -69,7 +69,8 @@
 
 게임 설정, 쿠키 목록, 스테이지 선택하여 게임 실행할 수 있는 로비 씬 입니다.
 
-![image.png](attachment:fd9ceaca-35b9-4221-a9e7-82655adddd45:image.png)
+![image](https://github.com/user-attachments/assets/e706cd86-304f-4a1d-8910-57d230a4dadd)
+
 
 - 설정
 
@@ -83,10 +84,14 @@
 
 게임 시작 전 스테이지와 진행할 쿠키를 선택할 수 있으며, Start 버튼 클릭 시 게임이 시작됩니다.
 
-![image.png](attachment:76ea3e02-365c-49a6-aeb8-65b8f9af1fba:image.png)
+![image](https://github.com/user-attachments/assets/74c53caf-4715-445f-8a2f-8c27f7ef1e78)
+
 
 - 게임 씬
 
 현재 체력 상태와 스코어를 확인할 수 있습니다.
 
 조작은 키보드/버튼을 이용하여 가능합니다.
+
+![image](https://github.com/user-attachments/assets/d770750e-3205-4bd8-96b4-fc603d2e7d84)
+
