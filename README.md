@@ -69,17 +69,31 @@
 
 ![image](https://github.com/user-attachments/assets/e706cd86-304f-4a1d-8910-57d230a4dadd)
 
+
 1.[게임 설정]
+
+게임 음악 크기(전체, 배경음, 효과음 볼륨) 조절이 가능합니다.
+
 
 ![화면 캡처 2025-02-28 113453](https://github.com/user-attachments/assets/26a70014-8d11-4ebd-903d-7488be0debb4)
 
+
 2.[쿠키 목록]
 
-![화면 캡처 2025-02-28 113404](https://github.com/user-attachments/assets/62730c9f-2db1-4bf0-bf72-aa8959624378)
+현재 보유중인 쿠키 목록을 조회할 수 있으며 쿠키의 레벨업이 가능합니다.
+
+
+![화면 캡처 2025-02-28 113330](https://github.com/user-attachments/assets/b55d3e28-fe28-4e7e-856c-a68e07ccca56)
+
 
 3.[스테이지 선책창]
 
+게임 시작 전 스테이지와 진행할 쿠키를 선택할 수 있으며, Start 버튼 클릭 시 게임이 시작됩니다.
+
+
 ![화면 캡처 2025-02-28 114611](https://github.com/user-attachments/assets/5bb10231-c87c-40e2-bf57-a9c5dcd3dedb)
+
+
 
 3-1.(쿠키 선택)
 
@@ -89,21 +103,6 @@
 
 ![화면 캡처 2025-02-28 113430](https://github.com/user-attachments/assets/f65b9d7e-e8eb-4bd7-942b-3950ed38e418)
 
-
-
-- 설정
-  
-게임 음악 크기(전체, 배경음, 효과음 볼륨) 조절이 가능합니다.
-
-- 쿠키 목록
-  
-현재 보유중인 쿠키 목록을 조회할 수 있으며 쿠키의 레벨업이 가능합니다.
-
-- 스테이지 선택
-  
-게임 시작 전 스테이지와 진행할 쿠키를 선택할 수 있으며, Start 버튼 클릭 시 게임이 시작됩니다.
-
-![image](https://github.com/user-attachments/assets/74c53caf-4715-445f-8a2f-8c27f7ef1e78)
 
 
 - 게임 씬
