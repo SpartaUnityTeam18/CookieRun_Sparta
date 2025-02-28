@@ -21,6 +21,7 @@ public class ClearZone : MonoBehaviour
     {
         if (collision != null && collision.CompareTag("Cookie"))
         {
+            GameManager.Instance.isPlaying = false;
             GameManager.Instance.ScoreUpdate();
             ShowClearUI();
         }
@@ -46,6 +47,5 @@ public class ClearZone : MonoBehaviour
         }
 
         exitButton.SetActive(true);
-        GameManager.Instance.isPlaying = false;
     }
 }
