@@ -70,18 +70,23 @@
 ![image](https://github.com/user-attachments/assets/e706cd86-304f-4a1d-8910-57d230a4dadd)
 
 1.[게임 설정]
+
 ![화면 캡처 2025-02-28 113453](https://github.com/user-attachments/assets/26a70014-8d11-4ebd-903d-7488be0debb4)
 
 2.[쿠키 목록]
+
 ![화면 캡처 2025-02-28 113404](https://github.com/user-attachments/assets/62730c9f-2db1-4bf0-bf72-aa8959624378)
 
 3.[스테이지 선책창]
+
 ![화면 캡처 2025-02-28 114611](https://github.com/user-attachments/assets/5bb10231-c87c-40e2-bf57-a9c5dcd3dedb)
 
 3-1.(쿠키 선택)
+
 ![화면 캡처 2025-02-28 113404](https://github.com/user-attachments/assets/d838593a-118a-4d92-b322-59716c07e405)
 
 3-2.(스테이지 선택)
+
 ![화면 캡처 2025-02-28 113430](https://github.com/user-attachments/assets/f65b9d7e-e8eb-4bd7-942b-3950ed38e418)
 
 
@@ -107,11 +112,14 @@
 조작은 키보드/버튼을 이용하여 가능합니다.
 
 [stage1]
+
 ![image](https://github.com/user-attachments/assets/d770750e-3205-4bd8-96b4-fc603d2e7d84)
 
 [stage2]
+
 ![화면 캡처 2025-02-28 113837](https://github.com/user-attachments/assets/70ad4bf5-c171-4302-a9d1-64a506663a15)
 
 [stage3]
+
 ![화면 캡처 2025-02-28 113902](https://github.com/user-attachments/assets/8e80f12b-32d7-4f0a-8afc-b946d2587c2a)
 
