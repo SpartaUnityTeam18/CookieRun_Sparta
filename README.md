@@ -59,38 +59,31 @@
 | 버튼 | Jump | Slide |
 
 - 튜토리얼 진행
-
 게임 최초 진행 시 게임 조작에 대해 간단하게 안내해주는 튜토리얼이 실행됩니다
 
 ![image](https://github.com/user-attachments/assets/909154e7-0561-4d90-91e7-0733fc2a5b99)
 
 
 - 로비
-
 게임 설정, 쿠키 목록, 스테이지 선택하여 게임 실행할 수 있는 로비 씬 입니다.
 
 ![image](https://github.com/user-attachments/assets/e706cd86-304f-4a1d-8910-57d230a4dadd)
 
 
 - 설정
-
 게임 음악 크기(전체, 배경음, 효과음 볼륨) 조절이 가능합니다.
 
 - 쿠키 목록
-
 현재 보유중인 쿠키 목록을 조회할 수 있으며 쿠키의 레벨업이 가능합니다.
 
 - 스테이지 선택
-
 게임 시작 전 스테이지와 진행할 쿠키를 선택할 수 있으며, Start 버튼 클릭 시 게임이 시작됩니다.
 
 ![image](https://github.com/user-attachments/assets/74c53caf-4715-445f-8a2f-8c27f7ef1e78)
 
 
 - 게임 씬
-
 현재 체력 상태와 스코어를 확인할 수 있습니다.
-
 조작은 키보드/버튼을 이용하여 가능합니다.
 
 ![image](https://github.com/user-attachments/assets/d770750e-3205-4bd8-96b4-fc603d2e7d84)
