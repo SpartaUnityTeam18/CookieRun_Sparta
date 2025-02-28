@@ -19,9 +19,13 @@ public class InGameUI : BaseUI
 
     public InputAction inputAction;
     public Button slideButton;
-
     public Button jumpButton;
 
+
+    public void Start()
+    {
+        currentScoreText.text = "0";
+    }
 
     public void Update()
     {
@@ -41,6 +45,7 @@ public class InGameUI : BaseUI
         {
             SimulateButtonPress(slideButton);
         }
+
         void SimulateButtonPress(Button button)
         {
             // 버튼 클릭 시각 효과
@@ -79,7 +84,8 @@ public class InGameUI : BaseUI
 
     public void highscoreUpdate()
     {
-        highScoreText.text = PlayerPrefs.GetInt($"Map_{GameManager.Instance.sceneName.Split('_')[1]}_HighScore", 0).ToString();
+        if(GameManager.Instance.sceneName != "Tutorial")
+            highScoreText.text = PlayerPrefs.GetInt($"Map_{GameManager.Instance.sceneName.Split('_')[1]}_HighScore", 0).ToString();
     }
 
     public void healthBarUpdate()

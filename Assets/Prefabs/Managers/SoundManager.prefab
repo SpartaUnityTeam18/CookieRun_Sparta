@@ -174,8 +174,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BGM:
+  - {fileID: 8300000, guid: 733594f14b5ac294996ab36960a0fe50, type: 3}
+  - {fileID: 8300000, guid: 3f0f5753171fb4445b0a090d2d64d3fb, type: 3}
   - {fileID: 8300000, guid: 4d71bc24206986744a4fac98812ac597, type: 3}
   - {fileID: 8300000, guid: 97233d2b3d20cf64b9902ea581ef36f6, type: 3}
+  - {fileID: 8300000, guid: bc1e7f32742a9a444afb88be24aea29c, type: 3}
   SFX:
   - {fileID: 8300000, guid: 2c38896a38cb6df4c9c2796fd4d4e274, type: 3}
   - {fileID: 8300000, guid: fd4b5cfb8c376a841bd4f5eedadea255, type: 3}
@@ -188,5 +191,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b06ee64b2894df042a78fc1f40d16d11, type: 3}
   - {fileID: 8300000, guid: 6e12b9cff7a3693408c6c70feb7159c0, type: 3}
   - {fileID: 8300000, guid: ffac9878fcb09fd4495e2a27161bfb18, type: 3}
-  bgmPlayer: {fileID: 0}
+  - {fileID: 8300000, guid: abfcc3148ecfce54ba5082307fc3be37, type: 3}
+  bgmPlayer: {fileID: 1589361711076180398}
   audioMixer: {fileID: 24100000, guid: 87cc6c91aca68ed4ca2b6097a6aae69a, type: 2}

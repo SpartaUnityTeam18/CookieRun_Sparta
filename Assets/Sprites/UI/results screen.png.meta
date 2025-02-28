@@ -177,6 +177,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: MENU
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 5
+        width: 127
+        height: 358
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe3b481647c129f41ad611efd6fe8b77
+      internalID: 1624850223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -190,6 +211,7 @@ TextureImporter:
     nameFileIdTable:
       Button_0: 2095880864
       Button_1: 2147051925
+      MENU: 1624850223
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

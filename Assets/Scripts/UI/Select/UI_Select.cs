@@ -16,6 +16,7 @@ public class UI_Select : MonoBehaviour
     public Button cookieButton;
     public Button mapButton;
     public Button startButton;
+    public Button lobbyButton;
 
     public GameObject cookieSelection;
     public GameObject cookiePanels;
@@ -43,15 +44,16 @@ public class UI_Select : MonoBehaviour
         mapButton.onClick.AddListener(MapButton);
         mapExitButton.onClick.AddListener(MapExitButton);
         startButton.onClick.AddListener(StartButton);
+        lobbyButton.onClick.AddListener(() => SceneManager.LoadScene("Lobby"));
 
         //쿠키, 맵 목록 찾기
         FindCookiePanels();
         FindMapPanels();
 
         //천사맛, 맵 2, 3 잠금 확인
-        cookiePanelsList[1].SetLock(AchievementManager.Instance.isAchievementComplete("Jelly"));
-        mapPanelsList[1].SetLock(AchievementManager.Instance.isAchievementComplete("Dodge"));
-        mapPanelsList[1].SetLock(AchievementManager.Instance.isAchievementComplete("Score"));
+        cookiePanelsList[1].SetLock(GameManager.Instance.LoadAchievement("Jelly"));
+        mapPanelsList[1].SetLock(GameManager.Instance.LoadAchievement("Dodge"));
+        mapPanelsList[2].SetLock(GameManager.Instance.LoadAchievement("Score"));
     }
 
     void FindCookiePanels()//쿠키 목록 찾아서 버튼 할당

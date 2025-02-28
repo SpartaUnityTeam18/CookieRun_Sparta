@@ -1,3 +1,5 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
@@ -7,6 +9,7 @@ public enum UIState
     Start,
     Score,
     InGame,
+    Clear
 }
 
 public class UIManager : Singleton<UIManager>
@@ -25,8 +28,11 @@ public class UIManager : Singleton<UIManager>
     StartUI startUI;
     ScoreUI scoreUI;
     InGameUI ingameUI;
+    ClearUI clearUI;
 
     public Cookie cookie;
+    public GameObject achievementUI;
+    public TextMeshProUGUI achievementText;
 
     public override void Awake()
     {
@@ -43,13 +49,16 @@ public class UIManager : Singleton<UIManager>
         
         ingameUI = GetComponentInChildren<InGameUI>(true);
         ingameUI?.Init(this);
+
+        clearUI = GetComponentInChildren<ClearUI>(true); 
+        clearUI?.Init(this);
+
+        ChangeState(UIState.InGame);
     }
 
     private void Start()
     {
-        // awakeì—ì„œ ë³€ê²½ ì‹œ íŠœí† ë¦¬ì–¼ì—ì„œë„ ë°”ë¡œ ë– ë²„ë ¤ì„œ startë¡œ ë³€ê²½í–ˆìŒ
-        if (!GameManager.Instance.isTutorialScene)
-            ChangeState(UIState.Start);
+        achievementUI.SetActive(false);  
 
         GameManager.Instance.uiManager = this;
     }
@@ -60,6 +69,7 @@ public class UIManager : Singleton<UIManager>
         startUI?.SetActive(currentState);
         scoreUI?.SetActive(currentState);
         ingameUI?.SetActive(currentState);
+        clearUI?.SetActive(currentState);
     }
 
     public void OnClickStart()
@@ -69,11 +79,29 @@ public class UIManager : Singleton<UIManager>
 
     public void OnClickExit()
     {
-        SceneManager.LoadScene("Start");
+        SceneManager.LoadScene("Lobby");
 //#if UNITY_EDITOR
 //        UnityEditor.EditorApplication.isPlaying = false;
 //#else
 //        Application.Quit();
 //#endif
+    }
+
+    public void ShowAchievement(string achievementMessage)
+    {
+        // ¾÷Àû ´Ş¼º ¸Ş½ÃÁö¸¦ ¼³Á¤
+        achievementText.text = achievementMessage;
+
+        // ¾÷Àû UI È°¼ºÈ­
+        achievementUI.SetActive(true);
+
+        // 3ÃÊ ÈÄ¿¡ ¾÷Àû UI¸¦ ¼û±è
+        StartCoroutine(HideAchievementUIAfterDelay(3f));
+    }
+
+    private IEnumerator HideAchievementUIAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay); // ÁöÁ¤µÈ ½Ã°£¸¸Å­ ´ë±â
+        achievementUI.SetActive(false); // UI¸¦ ¼û±è
     }
 }

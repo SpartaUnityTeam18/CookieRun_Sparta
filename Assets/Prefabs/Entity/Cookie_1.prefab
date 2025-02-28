@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 7015692853538013381}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.3, y: -3.9, z: 0}
+  m_LocalPosition: {x: -4, y: -3.9, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -79,8 +79,14 @@ MonoBehaviour:
   cookieSprite: {fileID: 21300000, guid: 78b6aab3e4f74d14ea17e09c97944814, type: 3}
   cookieId: 1
   cookieName: "\uCC9C\uC0AC\uB9DB \uCFE0\uD0A4"
+  _maxHp: 150
+  _hp: 0
   hpDecrease: 3
   isDead: 0
+  obstacle: {fileID: 0}
+  breakEffectPrefab: {fileID: 5407792866184378661, guid: 4f96acda923918548a1ee5a217519a06, type: 3}
+  isGiant: 0
+  isRunning: 0
 --- !u!61 &5105865636413776412
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -183,6 +189,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 301f15b8-e078-4b26-9d4c-cb397cf728c9
     m_ActionName: Cookie/Slide[/Keyboard/shift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 54f91889-cf2c-407e-af89-81b13082a291
+    m_ActionName: TT/enter[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 49c531db-e82a-4537-9f03-3004154cc421
+    m_ActionName: UI/Click[/Mouse/leftButton]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Cookie

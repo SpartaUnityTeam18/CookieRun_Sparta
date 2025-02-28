@@ -21,12 +21,10 @@ public class StartUI : BaseUI
         base.Init(uiManager);
 
         StartButton.onClick.AddListener(OnClickStartButton);
-        Debug.Log("버튼 할당됨");
     }
     void OnClickStartButton()
     {
-        Debug.Log("버튼 클릭");
-        GameManager.Instance.StartGame();
+        SetActive(UIState.InGame);
         uiManager.OnClickStart();
     }
 }
