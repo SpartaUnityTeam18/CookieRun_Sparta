@@ -56,7 +56,6 @@ public class AchievementManager : Singleton<AchievementManager>
             if (!Completed)
             {
                 current = 0;
-                Debug.Log($"{name} 업적 진행도 초기화됨!");
             }
         }
     }
