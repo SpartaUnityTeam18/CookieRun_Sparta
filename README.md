@@ -2,6 +2,8 @@
 
 ## 목차
 
+---
+
 - 프로젝트 소개
 - 게임 소개
 - 게임 플레이 방식
@@ -60,7 +62,8 @@
 
 게임 최초 진행 시 게임 조작에 대해 간단하게 안내해주는 튜토리얼이 실행됩니다
 
-![image.png](attachment:13e4cd83-1975-431a-baa7-ab65c033a505:image.png)
+![image](https://github.com/user-attachments/assets/909154e7-0561-4d90-91e7-0733fc2a5b99)
+
 
 - 로비
 
